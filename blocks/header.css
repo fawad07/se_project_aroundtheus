@@ -1,0 +1,24 @@
+.header {
+	display: flex;
+	flex-shrink: 0;
+	flex-direction: column;
+	color: #FFFFFF;
+	max-width: 880px;
+	max-height: 74px;
+	margin:45px 200px 0 200px;
+	box-sizing: border-box;
+}
+
+.header__image {
+	width: 173px;
+	height: 33px;
+	margin: 0 701px 41px 0;
+	box-sizing: border-box;
+}
+
+.header__line{
+	width: 880px;
+    height: 1px;
+    opacity: 0.7;
+    background: #545454;
+}
