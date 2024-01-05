@@ -19,6 +19,7 @@
 .header__line{
 	width: 880px;
     height: 1px;
+	border: 1px;
     opacity: 0.7;
     background: #545454;
 }
