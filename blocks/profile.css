@@ -16,7 +16,7 @@
 .profile__info{
   display:grid;
   grid-template-areas:"title button" "description description";
-  grid-template-colums: minmax(auto, 373px) auto;
+  grid-template-columns: minmax(auto, 373px) auto;
 }
 
 .profile__edit-button{
@@ -29,18 +29,19 @@
 }
 
 .profile__add-button{
-  background: transparent url("../images/add_button.svg") center no-repeat;
-  border: white;
+  background: transparent url("../images/add-button.svg") center no-repeat;
+  border: pink;
   width: 150px;
   height: 50px;
   margin: 0 0 14px auto;
 }
 
 .profile__title{
-  font-size: 42px;
-  line-height: 48px;
-  font-weight: 500;
   font-family: Inter;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 48px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -49,9 +50,11 @@
 }
 
 .profile__description{
+  font-family: Inter;
   font-size: 18px;
-  line-height: 21.78px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal/*21.78px*/;
   grid-area: description;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -59,27 +62,52 @@
   margin: 0 0 0 0;
 }
 
-
-@media screen and(max-width: 480px){
-  .profile{
-    background: pink;
-	flex-direction: column;
-  } 
-  
-  .profile__info{
-	  display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	  width: 100%;
-  }
-  
-  .profile__description{
-	  width: 100%;
-	  text-align: center;
-  }
-  
-  .profile__add-button{
-	  margin: 0;
-	  width: 100%;
-  }
+@media screen and (max-width: 480px)
+{
+	.profile{
+		flex-direction: column;
+		/*justify-content:center;
+		align-items: center;*/		
+	}
+	
+	.profile__info{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		width: 100%;
+	}
+	
+	.profile__description{
+		width: 100%;
+		text-align: center;
+	}
+	
+	.profile__add-button{
+		margin: 0;
+		width: 100%;
+	}
 }
+
+/*
+@media only screen and (max-width: 480px) {
+  .profile__info {
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  background: pink;		/*DEBUGGING STATEMENT: NEED TO REMOVE*
+  }
+
+  .profile__title{
+	font-size: 32px;
+  }
+  
+  .profile__edit-button {
+    width: 24px;
+    height: 24px;
+    margin: 0 0 0 0; /* Adjust the margin as needed */
+	padding: 0;
+    background: transparent url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fedit-glassy-orange-round-button-isolated-abstract-illustration-88605439.jpg&f=1&nofb=1&ipt=a781f23b0ea1a818563e51b261441afe459c2538f89b68622005db23b822c5da&ipo=images") center no-repeat;
+    border: #FFFFFF;
+	}
+}
+*/
