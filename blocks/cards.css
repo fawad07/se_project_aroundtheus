@@ -24,6 +24,7 @@
 .card__image{
   width: 282px;
   height: 282px;
+  border-radius: 10px;
 }
 
 .card__description{
@@ -38,7 +39,14 @@
 .card__like-button{
   width: 21px;
   height: 18px;
-  background: transparent url("../images/vector.svg") center no-repeat;
+  background: transparent url("../images/heart.svg") center no-repeat;
+  border: 0 solid white;
+  transition: opacity 1s;
+}
+
+.card__like-button:hover{
+	cursor: pointer;
+	opacity: 0.3;
 }
 
 .card__title{
