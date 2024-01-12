@@ -34,6 +34,7 @@
   width: 150px;
   height: 50px;
   margin: 0 0 14px auto;
+  border: 5px solid #FFFFFF;
 }
 
 .profile__title{
@@ -83,31 +84,8 @@
 	}
 	
 	.profile__add-button{
-		margin: 0;
+		margin: 17px 132px 17px 134px;
 		width: 100%;
 	}
 }
 
-/*
-@media only screen and (max-width: 480px) {
-  .profile__info {
-	  display: flex;
-	  align-items: center;
-	  justify-content: space-between;
-	  background: pink;		/*DEBUGGING STATEMENT: NEED TO REMOVE*
-  }
-
-  .profile__title{
-	font-size: 32px;
-  }
-  
-  .profile__edit-button {
-    width: 24px;
-    height: 24px;
-    margin: 0 0 0 0; /* Adjust the margin as needed */
-	padding: 0;
-    background: transparent url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fedit-glassy-orange-round-button-isolated-abstract-illustration-88605439.jpg&f=1&nofb=1&ipt=a781f23b0ea1a818563e51b261441afe459c2538f89b68622005db23b822c5da&ipo=images") center no-repeat;
-    border: #FFFFFF;
-	}
-}
-*/
