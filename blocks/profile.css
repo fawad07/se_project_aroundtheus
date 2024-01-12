@@ -17,6 +17,8 @@
   display:grid;
   grid-template-areas:"title button" "description description";
   grid-template-columns: minmax(auto, 373px) auto;
+  font-size: 42px;
+  font-weight: 500;
 }
 
 .profile__edit-button{
@@ -66,7 +68,7 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal/*21.78px*/;
+  line-height: normal;
   grid-area: description;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -102,4 +104,24 @@
 		border-radius: 2px;
 	}
 }
+
+ @media screen and (max-width: 330px){
+    .profile__info {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .profile__title {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .profile__description {
+        font-size: 14px;
+        line-height: 17px;
+        margin-right: auto;
+        align-content: center;
+    }
+ }
 
