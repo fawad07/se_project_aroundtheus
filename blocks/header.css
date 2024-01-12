@@ -19,7 +19,13 @@
 .header__line{
 	width: 880px;
     height: 1px;
-	border: 1px;
+	border: 1px solid #545454;
     opacity: 0.7;
     background: #545454;
+}
+
+@media screen and (max-width: 480px){
+	.header__image{
+		margin: 0 167px 32px 27px;
+	}
 }
