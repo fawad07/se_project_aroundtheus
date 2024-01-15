@@ -13,7 +13,7 @@
   line-height: 1.2;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 330px) {
   .footer {
     align-self: self-start;
     margin-bottom: 36px;
