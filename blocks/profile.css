@@ -16,7 +16,7 @@
 .profile__info{
   display:grid;
   grid-template-areas:"title button" "description description";
-  grid-template-columns: minmax(auto, 373px) auto;
+  grid-template-columns: minmax(auto, 400px) auto;
   font-size: 42px;
   font-weight: 500;
 }
@@ -51,7 +51,7 @@
 }
 
 .profile__title{
-  font-family: Inter;
+  font-family: Inter, Arial, san-serif;
   font-size: 42px;
   font-style: normal;
   font-weight: 500;
@@ -64,7 +64,7 @@
 }
 
 .profile__description{
-  font-family: Inter;
+  font-family: Inter, Arial, san-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -80,7 +80,7 @@
 {
 	.profile{
 		flex-direction: column;
-		margin: 0 19px 0 19px;
+		margin: 0;
 		/*justify-content:center;
 		align-items: center;*/		
 	}
@@ -103,8 +103,18 @@
 		width: 282px;
 		border-radius: 2px;
 	}
+	.profile__image{
+		margin-right:0;
+	}
+	
+	.profile__title {
+        font-size: 22px;
+        font-weight: 500;
+    }
 }
 
+
+/*
  @media screen and (max-width: 330px){
     .profile__info {
         display: flex;
@@ -124,4 +134,5 @@
         align-content: center;
     }
  }
+ */
 
