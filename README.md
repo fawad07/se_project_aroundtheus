@@ -22,3 +22,6 @@ Good luck and have fun!
 
 **Website Link**
 https://fawad07.github.io/se_project_aroundtheus/
+
+***Project Recording link***
+https://screenrec.com/share/o0cj4QFOtm
