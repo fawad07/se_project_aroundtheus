@@ -30,3 +30,9 @@
 		margin: 0 167px 32px 27px;
 	}
 }
+
+@media screen and (max-width: 770px){
+	.header__image{
+		margin: 0 167px 32px 27px;
+	}
+}

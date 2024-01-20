@@ -76,8 +76,7 @@
   margin: 0 0 0 0;
 }
 
-/*media q 480 changed to 768*/
-@media screen and (max-width: 768px)
+@media screen and (max-width: 480px)
 {
 	.profile{
 		flex-direction: column;
@@ -114,7 +113,15 @@
     }
 }
 
-
+@media screen and (max-width: 780px){
+	.profile__image{
+		margin-left: 20px;
+	}
+	
+	.profile__add-button{
+		margin: 14px 19px 14px 19px;
+	}
+}
 /*
 
 @media screen and (max-width:620px) {
@@ -161,7 +168,7 @@
 }
 */
 
-/*
+
  @media screen and (max-width: 330px){
     .profile__info {
         display: flex;
@@ -181,5 +188,5 @@
         align-content: center;
     }
  }
- */
+
 
