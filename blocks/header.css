@@ -17,13 +17,6 @@
 	box-sizing: border-box;
 }
 
-.header__line{
-	width: 880px;
-    height: 1px;
-	border: 1px solid #545454;
-    opacity: 0.7;
-    background: #545454;
-}
 
 @media screen and (max-width: 330px){
 	.header__image{
