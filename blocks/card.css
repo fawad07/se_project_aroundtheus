@@ -1,34 +1,34 @@
 .card{
-  display: flex;
-  flex-direction: column;
-  /*justify-content: center;*/
-  list-style-type: none;
-  /*margin: 0 0 0 20px;*/
-  /*border-radius: 10px; */
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	/*justify-content: center;*/
+	/*margin: 0 0 0 20px;*/
+	/*border-radius: 10px; */
 }
 
 .card__image{
-  width: 282px;
-  height: 282px;
-  border-radius: 10px;
+	width: 282px;
+	height: 282px;
+	border-radius: 10px;
 }
 
 .card__description{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #FFFFFF;
-  color: #000000;
-  padding: 24px 29px;
-  white-space: nowrap;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #FFFFFF;
+	color: #000000;
+	padding: 24px 29px;
+	white-space: nowrap;
 }
 
 .card__like-button{
-  width: 21px;
-  height: 18px;
-  background: transparent url("../images/heart.svg") center no-repeat;
-  border: 0 solid white;
-  /*transition: opacity 1s;*/
+	width: 21px;
+	height: 18px;
+	background: transparent url("../images/heart.svg") center no-repeat;
+	border: 0 solid white;
+	/*transition: opacity 1s;*/
 }
 
 .card__like-button:hover{
