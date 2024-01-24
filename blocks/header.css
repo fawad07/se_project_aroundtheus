@@ -19,13 +19,17 @@
 @media screen and (max-width: 770px){
 	.header__image{
 		margin: 0 0 32px 27px;
+		width: 126px;
+		height: 24px;
 	}
 }
 
 /*
 @media screen and (max-width: 330px){
 	.header__image{
-		margin: 0 167px 32px 27px;
+		/*margin: 0 167px 32px 27px;*
+		width: 126px;
+		height: 24px;
 	}
 }
 */
