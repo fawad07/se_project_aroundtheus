@@ -22,7 +22,7 @@
   width: 24px;
   height: 24px;
   margin: 15px 0 9px 18px;
-  background: transparent url("../images/edit_button.svg") center no-repeat;
+  background: transparent url("../images/Edit_Button.svg") center no-repeat;
   border: #FFFFFF;
   grid-area: button;
   transition: opacity 1s;
@@ -121,7 +121,7 @@
 	}
 	
 	.profile__add-button{
-		margin: 50px 19px 14px 19px;
+		margin: 14px 19px 14px 19px;
 	}
 }
 /*
