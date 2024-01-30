@@ -21,9 +21,9 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  margin: 15px 0 9px 18px;
-  background: transparent url("../images/Edit_Button.svg") center no-repeat;
-  border: #ffffff;
+  margin: 15px 0 0 18px;
+  background: transparent url("../images/edit_button.svg") center no-repeat;
+  border: 1px solid #ffffff;
   grid-area: button;
   transition: opacity 1s;
 }
@@ -66,7 +66,6 @@
   font-family: Inter, Arial, san-serif;
   font-size: 18px;
   font-style: normal;
-  /*font-weight: 400;*/
   line-height: normal;
   grid-area: description;
   white-space: nowrap;
@@ -109,6 +108,7 @@
 
 @media screen and (max-width: 780px) {
   .profile__image {
+	/*margin-right: 0;*/
     margin-left: 0;
   }
 
@@ -123,6 +123,12 @@
     align-items: center;
     width: 100%;
   }
+/*
+  .profile__image {
+	margin-right: 0;
+    margin-left: 0;
+  }
+*/
 
   .profile__title {
     font-size: 22px;
