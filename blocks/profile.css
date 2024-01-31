@@ -53,7 +53,6 @@
   font-family: Inter, Arial, san-serif;
   font-size: 42px;
   font-style: normal;
-  /*font-weight: 500;*/
   line-height: 48px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -95,10 +94,8 @@
   }
 
   .profile__add-button {
-    /*margin: 17px 132px 17px 134px;*/
     padding: 0;
     width: 282px;
-    border-radius: 2px;
   }
 
   .profile__title {
@@ -123,12 +120,11 @@
     align-items: center;
     width: 100%;
   }
-/*
+
   .profile__image {
 	margin-right: 0;
     margin-left: 0;
   }
-*/
 
   .profile__title {
     font-size: 22px;
