@@ -109,7 +109,7 @@
   }
 
   .profile__add-button {
-    margin: 53px 19px 14px 19px;
+    margin: 36px 19px 14px 19px;
   }
 }
 
@@ -126,14 +126,14 @@
   }
 
   .profile__title {
-    /*font-size: 22px;*/
-	margin-top: 26px;
+    margin-top: 30px;
   }
 
   .profile__description {
     font-size: 14px;
     line-height: 17px;
     margin-right: auto;
+	margin-top: 14px;
     align-content: center;
   }
   
