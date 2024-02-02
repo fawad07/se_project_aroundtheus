@@ -1,0 +1,84 @@
+.modal {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	padding: 0 19px 0 19px;
+	top: 0;
+	left: 0;
+	right:0;
+	bottom:0;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_opened {
+	display: flex;
+}
+
+.modal__container {
+	position: relative;
+	padding: 36px;
+	border-radius: 10px;
+	background-color: #FFFFFF;
+}
+
+.modal__form {
+	display: flex;
+	flex-direction: column;
+	
+}
+
+.modal__title {
+	width: 330px;
+	height: 23px;
+	font-family: Inter, Arial, san-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 900;
+	line-height: 29px;
+	color: #000000;
+	margin: 34px 28px 54px 36px;
+}
+
+.modal__field {
+	padding: 0;
+	margin: 0 36px 30px 36px;
+	border: none;
+	border-bottom: 1px solid #000000;
+}
+
+.modal__save-button {
+	padding: 0;
+    margin: 48px 36px 36px 36px;
+    width: 358px;
+    height: 50px;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 2px;
+    border: none;	
+	transition: opacity 0.6s;
+}
+
+.modal__save-button:hover {
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+.modal__close-button {
+	width: 40px;
+	height: 40px;
+	bottom: calc(100% + 5px);
+	left: calc(100% + 5px);
+	position: absolute;
+	background: url("../images/modal_close-button.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+	border: none;
+	transition: opacity 0.6s;
+}
+
+.modal__close-button:hover {
+	cursor: pointer;
+	opacity: 0.6;
+}

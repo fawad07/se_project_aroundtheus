@@ -28,3 +28,11 @@ const initialCards = [
 ]
 
 console.log(initialCards);
+
+/*DEBUGGING*
+function add(num1, num2){
+	sum = num1 + num2;
+	return sum;
+}
+console.log("sum is: ",add(9,1));
+*/
