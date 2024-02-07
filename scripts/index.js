@@ -1,4 +1,3 @@
-console.log("this is my friend!!");
 const initialCards = [
 	{
 		name: "Yosemite Valley",
@@ -26,13 +25,42 @@ const initialCards = [
 	},
 	
 ]
+/*----------------------------------------------------------*/
+/*                 ELEMENTS                                 */
+/*----------------------------------------------------------*/
+const profileEditButton = document.querySelector("#js-profile-edit-button");
+console.log(profileEditButton);		//debugging statement 
 
-console.log(initialCards);
+const profileEditModal = document.querySelector("#js-profile-edit-modal");
+console.log(profileEditModal);		//debugging sttement
 
-/*DEBUGGING*
-function add(num1, num2){
-	sum = num1 + num2;
-	return sum;
-}
-console.log("sum is: ",add(9,1));
-*/
+const profileCloseModal = document.querySelector("#js-profile-close-modal");
+console.log(profileCloseModal);		//debugging statement 
+
+const profileTitle = document.querySelector("#js-profile-title");
+console.log(profileTitle.textContent);			//debugging statement
+
+const profileDescription = document.querySelector("#js-profile-description");
+console.log(profileDescription.textContent);	//debugging statemente
+
+const profileTitleInput = document.querySelector("#js-profile-title-input");
+console.log(profileTitleInput.value);					//debugging statement
+
+const profileDescriptionInput = document.querySelector("#js-profile-description-input");
+console.log(profileDescriptionInput.value);
+/*----------------------------------------------------------*/
+/*               EVENT LISTNERS                             */
+/*----------------------------------------------------------*/
+
+profileEditButton.addEventListener("click", () => {
+	console.log("profile editButton Clicked!!");	//debugging statement
+	
+	profileTitleInput.value = profileTitle.textContent;
+	profileDescriptionInput.value = profileDescription.textContent;
+	profileEditModal.classList.add("modal_opened");
+});
+
+profileCloseModal.addEventListener("click", () => {
+	console.log("profile CloseButton Clicked in pop up!!");	//debugging statement
+	profileEditModal.classList.remove("modal_opened");
+});
