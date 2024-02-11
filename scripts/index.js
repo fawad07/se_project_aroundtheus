@@ -53,7 +53,7 @@ const profileEditForm = profileEditModal.querySelector("#js-modal-form");
 console.log(profileEditForm);							//debugging statement
 
 const cardTemplate = document.querySelector("#js-card-template").content.firstElementChild;
-console.log(cardTemplate);
+console.log(cardTemplate);								//debugging statement 
 
 const cardListElement = document.querySelector("#js-card__list");
 
