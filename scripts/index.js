@@ -47,20 +47,48 @@ const profileTitleInput = document.querySelector("#js-profile-title-input");
 console.log(profileTitleInput.value);					//debugging statement
 
 const profileDescriptionInput = document.querySelector("#js-profile-description-input");
-console.log(profileDescriptionInput.value);
+console.log(profileDescriptionInput.value);				//debugging statement
+
+const profileEditForm = profileEditModal.querySelector("#js-modal-form");
+console.log(profileEditForm);							//debugging statement
+
 /*----------------------------------------------------------*/
-/*               EVENT LISTNERS                             */
+/*               			FUNCTIONS		                */
+/*----------------------------------------------------------*/
+function closePopUp()
+{
+	profileEditModal.classList.remove("modal_opened");
+}//end func 
+
+
+
+
+/*----------------------------------------------------------*/
+/*               EVENT LISTNERS				                */
 /*----------------------------------------------------------*/
 
+//profile edit button clicked -- pop up opened
 profileEditButton.addEventListener("click", () => {
 	console.log("profile editButton Clicked!!");	//debugging statement
 	
-	profileTitleInput.value = profileTitle.textContent;
-	profileDescriptionInput.value = profileDescription.textContent;
+	profileTitleInput.value = profileTitle.textContent;				//pre-filled form with the profile title 
+	profileDescriptionInput.value = profileDescription.textContent; //pre-filled form with the profile description 
 	profileEditModal.classList.add("modal_opened");
 });
 
+//close button  -- close pop-up 
 profileCloseModal.addEventListener("click", () => {
 	console.log("profile CloseButton Clicked in pop up!!");	//debugging statement
-	profileEditModal.classList.remove("modal_opened");
+	closePopUp();
+	//profileEditModal.classList.remove("modal_opened");
+});
+
+
+profileEditForm.addEventListener("submit", (event) => {
+	event.preventDefault();
+	console.log("Save button clicked");
+	profileTitle.textContent = profileTitleInput.value;			//form text content goes to profile value	
+	profileDescription.textContent = profileDescriptionInput.value;		//form text content goes to profile value
+	closePopUp();
+	//profileEditModal.classList.remove("modal_opened");
 });
