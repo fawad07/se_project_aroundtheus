@@ -84,6 +84,15 @@
 }
 
 @media screen and (max-width: 600px) {
+	
+	.modal__container {
+		max-width: 282px;
+		height: 322px;
+		/*margin: 0 19px 0 19px;*/
+		padding: 18px;
+		border: 1px solid #000000;
+	}
+	
 	.modal__save-button {
 		width: 238px;
 		height: 46px;		
@@ -101,14 +110,6 @@
 		line-height: 22px;
 	}
 	
-	.modal__container {
-		width: 282px;
-		height: 322px;
-		/*margin: 0 19px 0 19px;*/
-		padding: 18px;
-		border: 1px solid #000000;
-	}
-	
 	.modal__close-button {
 		width: 26px;
 		height: 26px;
@@ -116,4 +117,16 @@
 		left: calc(100% - 30px);
 		transform: rotate(90deg);
 	}
-}
+}/*end 600px*/
+
+@media screen and (max-width: 330px) {
+	
+	.modal__form {
+		max-width: 100%;
+	}
+	
+	.modal_close-button {
+		height: 50px;
+		left: auto;
+	}
+}/*end 330px*/	
