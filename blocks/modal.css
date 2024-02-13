@@ -87,19 +87,19 @@
 	.modal__container {
 		max-width: 282px;
 		height: 322px;
-		/*margin: 0 19px 0 19px;*/
-		padding: 18px;
 		border: 1px solid #000000;
 	}
 	
 	.modal__save-button {
 		width: 238px;
-		height: 46px;		
+		height: 46px;
+		margin: 45px 22px 25px 22px;		
 	}
 	
 	.modal__field {
 		width: 238px;
 		height: 27px;
+		margin: 30px 22px 0 22px;
 	}
 	
 	.modal__title {
