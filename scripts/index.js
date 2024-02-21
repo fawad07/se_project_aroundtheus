@@ -65,10 +65,10 @@ const profileAddCardButton = document.querySelector("#js-profile-add-button");		
 /*----------------------------------------------------------*/
 
 //open modal when edit button clicked/modal
-function profileEditButtonClicked(modal)
+function openPopUp(modal)
 {
-	console.log("profile editButton/add Clicked!! and this function name needs to be Changed");	//debugging statement
-	profileEditModal.classList.add("modal_opened");
+	console.log("we are in open pop up func");	//debugging statement
+	modal.classList.add("modal_opened");
 	
 }//end func 
 
@@ -76,7 +76,7 @@ function profileEditButtonClicked(modal)
 function closePopUp(modal)
 {
 	console.log("profile CloseButton Clicked in pop up!!");	//debugging statement
-	profileEditModal.classList.remove("modal_opened");
+	modal.classList.remove("modal_opened");
 }//end func 
 
 function getCardElement(cardData)
@@ -114,7 +114,7 @@ function getCardElement(cardData)
 profileEditButton.addEventListener("click", () => {
 	profileTitleInput.value = profileTitle.textContent;				//pre-filled form with the profile title 
 	profileDescriptionInput.value = profileDescription.textContent; //pre-filled form with the profile description 
-	profileEditButtonClicked(profileEditModal)
+	openPopUp(profileEditModal);
 	
 });
 
@@ -131,7 +131,7 @@ profileEditForm.addEventListener("submit", (event) => {
 	});
 
 //profile add Card button clicked
-profileAddCardButton.addEventListener("click", () => profileEditButtonClicked(profileAddCardButton));
+profileAddCardButton.addEventListener("click", () => openPopUp(profileAddCardButton));
 /* {
 	console.log("Profile add button clicked");		//debugging statement
 	profileEditButtonClicked(profileAddCardButton);
