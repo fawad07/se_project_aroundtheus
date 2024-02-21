@@ -33,7 +33,7 @@
             <button type="button" class="profile__edit-button" id="js-profile-edit-button"></button>
             <p class="profile__description" id="js-profile-description">Explorer</p>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button type="button" class="profile__add-button" id="js-profile-add-button"></button>
         </section>
         <section class="cards page__section">
           <ul class="cards__list" id="js-card__list">
@@ -47,11 +47,12 @@
       </main>
     </div>
 	
+	<!-- Profile edit button modal -->
 	<div class="modal" id="js-profile-edit-modal">
 		<div class="modal__container">
 			<button class="modal__close-button" id="js-profile-close-modal"></button>
 			<p class="modal__title">Edit Profile</p>
-			<form class="modal__form" id="js-modal-form">
+			<form class="modal__form" id="js-modal-edit-form">
 				<input type="text" name="title" class="modal__field" id="js-profile-title-input">
 				<input type="text" name="description" class="modal__field" id="js-profile-description-input">
 				<button class="modal__save-button">Save</button>
@@ -59,6 +60,29 @@
 			</form>
 		</div>		
 	</div>
+	
+	<!-- Add card modal -->
+	<div class="modal" id="js-add-card-modal">
+		<div class="modal__container">
+			<button class="modal__close-button" id="js-add-card-close-modal"></button>
+			<p class="modal__title">New Place</p>
+			<form class="modal__form" id="js-modal-add-card-form">
+				<input type="text"
+						name="title" 
+						placeholder="Title" 
+						class="modal__field" 
+						id="js-add-card-title-input">
+				<input type="text" 
+						name="url" 
+						placeholder="Image URL" 
+						class="modal__field" 
+						id="js-add-card-description-input">
+				<button class="modal__add-card-save-button">Save</button>
+							
+			</form>
+		</div>		
+	</div>
+	
 	
 	<template id="js-card-template">
 	<li class="card">

@@ -116,17 +116,4 @@
 		left: calc(100% - 30px);
 		transform: rotate(90deg);
 	}
-}/*end 600px*/
-
-/*
-@media screen and (max-width: 330px) {
-	
-	.modal__form {
-		max-width: 100%;
-	}
-	
-	.modal_close-button {
-		height: 50px;
-		left: auto;
-	}
-}/*end 330px*/	
+}/*end 550px*/
