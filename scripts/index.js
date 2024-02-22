@@ -64,7 +64,7 @@ const profileEditForm = profileEditModal.querySelector("#js-modal-edit-form");
 const cardTemplate = document.querySelector("#js-card-template").content.firstElementChild;
 //console.log(cardTemplate);								//debugging statement 
 
-const cardListElement = document.querySelector("#js-card__list");
+const cardListElement = document.querySelector("#js-card-template");
 
 
 const addCardModal = document.querySelector("#js-add-card-modal");		//grab card modal from html
@@ -131,8 +131,8 @@ function getCardElement(cardData)
 }//end func 
 //helper func
 function renderCard(cardData, cardList){
-	const cardEL = getCardElement(cardData);
-	cardList.prepend(cardEl);
+	const cardElement = getCardElement(cardData);
+	cardList.prepend(cardElement);
 }//end func 
 
 /*----------------------------------------------------------*/
@@ -215,4 +215,3 @@ initialCards.forEach((cardData) => renderCard(cardData,cardListElement));
 	cardListElement.append(cardElement);
 });
 */
-//Task 2: Form for adding a card
