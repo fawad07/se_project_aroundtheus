@@ -28,6 +28,11 @@ const initialCards = [
 /*----------------------------------------------------------*/
 /*                 ELEMENTS                                 */
 /*----------------------------------------------------------*/
+
+/*----------------------------------------------------------*/
+/*                Profile edit button                       */
+/*----------------------------------------------------------*/
+
 const profileEditButton = document.querySelector("#js-profile-edit-button");
 //console.log(profileEditButton);		//debugging statement 
 
@@ -52,13 +57,33 @@ const profileDescriptionInput = document.querySelector("#js-profile-description-
 const profileEditForm = profileEditModal.querySelector("#js-modal-edit-form");
 //console.log(profileEditForm);							//debugging statement
 
+/*----------------------------------------------------------*/
+/*                Card Template/Element                             */
+/*----------------------------------------------------------*/
+
 const cardTemplate = document.querySelector("#js-card-template").content.firstElementChild;
 //console.log(cardTemplate);								//debugging statement 
 
 const cardListElement = document.querySelector("#js-card__list");
 
+
+const addCardModal = document.querySelector("#js-add-card-modal");		//grab card modal from html
+console.log(addCardModal);		//debugging statement
+
+const addCardForm = addCardModal.querySelector("#js-modal-add-card-form");
+
+const newCardTitleInput = addCardForm.querySelector("#js-add-card-title-input");
+const newCardUrlInput = addCardForm.querySelector("#js-add-card-description-input");
+
+/*----------------------------------------------------------*/
+/*                Profile add button                        */
+/*----------------------------------------------------------*/
+
 const profileAddCardButton = document.querySelector("#js-profile-add-button");			//button for adding card
 //console.log(profileAddCardButton);
+
+
+
 
 /*----------------------------------------------------------*/
 /*               			FUNCTIONS		                */
@@ -104,13 +129,22 @@ function getCardElement(cardData)
 	//return the ready HTML element with the filled-in data
 	return cardElement;
 }//end func 
-
+//helper func
+function renderCard(cardData, cardList){
+	const cardEL = getCardElement(cardData);
+	cardList.prepend(cardEl);
+}//end func 
 
 /*----------------------------------------------------------*/
 /*               EVENT LISTNERS				                */
 /*----------------------------------------------------------*/
 
+/*----------------------------------------------------------*/
+/*            profile edit button clicked                   */
+/*----------------------------------------------------------*/
+
 //profile edit button clicked -- pop up opened
+
 profileEditButton.addEventListener("click", () => {
 	profileTitleInput.value = profileTitle.textContent;				//pre-filled form with the profile title 
 	profileDescriptionInput.value = profileDescription.textContent; //pre-filled form with the profile description 
@@ -118,32 +152,67 @@ profileEditButton.addEventListener("click", () => {
 	
 });
 
-//close button  -- close pop-up 
-profileCloseModal.addEventListener("click", () => closePopUp(profileCloseModal));
+/*----------------------------------------------------------*/
+/*            profile edit modal close btn clicked          */
+/*----------------------------------------------------------*/
 
-//profile save button clicked 
+//close button in edit profile modal -- close pop-up 
+profileCloseModal.addEventListener("click", () => closePopUp(profileEditModal));
+
+/*----------------------------------------------------------*/
+/*            profile edit modal save btn clicked           */
+/*----------------------------------------------------------*/
+
+//profile save button clicked --> profile edit modal 
 profileEditForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 	console.log("Save button clicked");
 	profileTitle.textContent = profileTitleInput.value;			//form text content goes to profile value	
 	profileDescription.textContent = profileDescriptionInput.value;		//form text content goes to profile value
-	closePopUp();
+	closePopUp(profileEditModal);
 	});
 
+/*----------------------------------------------------------*/
+/*            profile add (+) btn clicked           */
+/*----------------------------------------------------------*/
+
 //profile add Card button clicked
-profileAddCardButton.addEventListener("click", () => openPopUp(profileAddCardButton));
+profileAddCardButton.addEventListener("click", () => openPopUp(addCardModal));
 /* {
 	console.log("Profile add button clicked");		//debugging statement
 	profileEditButtonClicked(profileAddCardButton);
 });
-*/
+*
+
+/*----------------------------------------------------------*/
+/*      profile add (+) card modal close btn clicked        */
+/*----------------------------------------------------------*/
+
+//add card modal close button clicked
+const addCardmodalCloseButton = addCardModal.querySelector("#js-add-card-close-modal");
+
+addCardModal.addEventListener("click", () => closePopUp(addCardModal));
+
+const  addCardButtonForm = addCardModal.querySelector("#js-modal-add-card-form");
+addCardButtonForm.addEventListener("submit", (event) => {
+	event.preventDefault();
+	console.log("save btn cliked in Add card Modal");			//debugging statement 
+	const name = newCardTitleInput.value;			//newCardTitleValue
+	const link = newCardUrlInput.value;				//newCardUrlValue
+	console.log(newCardTitleValue);					//debugging statement
+	console.log(newCardUrlValue);					//debugging statement
+	const newCardEl = getCardElement({name, link});	
+	closePopUp(addCardModal);
+});
 
 /************************************************************************/
 
 //TAsk 1: Render Card with forEach() instead of for  loop
-initialCards.forEach((cardData) => {
+initialCards.forEach((cardData) => renderCard(cardData,cardListElement));
+/*
+{
 	const cardElement = getCardElement(cardData);
 	cardListElement.append(cardElement);
 });
-
+*/
 //Task 2: Form for adding a card
