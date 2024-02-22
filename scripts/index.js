@@ -64,7 +64,7 @@ const profileEditForm = profileEditModal.querySelector("#js-modal-edit-form");
 const cardTemplate = document.querySelector("#js-card-template").content.firstElementChild;
 //console.log(cardTemplate);								//debugging statement 
 
-const cardListElement = document.querySelector("#js-card-template");
+const cardListElement = document.querySelector("#js-card__list");
 
 
 const addCardModal = document.querySelector("#js-add-card-modal");		//grab card modal from html
