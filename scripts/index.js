@@ -191,7 +191,7 @@ profileAddCardButton.addEventListener("click", () => openPopUp(addCardModal));
 //add card modal close button clicked
 const addCardmodalCloseButton = addCardModal.querySelector("#js-add-card-close-modal");
 
-addCardModal.addEventListener("click", () => closePopUp(addCardModal));
+addCardmodalCloseButton.addEventListener("click", () => closePopUp(addCardModal));
 
 const  addCardButtonForm = addCardModal.querySelector("#js-modal-add-card-form");
 addCardButtonForm.addEventListener("submit", (event) => {
