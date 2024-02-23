@@ -67,7 +67,7 @@ const cardTemplate = document.querySelector("#js-card-template").content.firstEl
 const cardListElement = document.querySelector("#js-card__list");
 
 
-const addCardModal = document.querySelector("#js-add-card-modal");		//grab card modal from html
+const addCardModal = document.querySelector("#js-add-card-modal");		//grab card modal/popup from html
 console.log(addCardModal);		//debugging statement
 
 const addCardForm = addCardModal.querySelector("#js-modal-add-card-form");
@@ -81,6 +81,9 @@ const newCardUrlInput = addCardForm.querySelector("#js-add-card-description-inpu
 
 const profileAddCardButton = document.querySelector("#js-profile-add-button");			//button for adding card
 //console.log(profileAddCardButton);
+
+//add card modal close button clicked
+const addCardmodalCloseButton = addCardModal.querySelector("#js-add-card-close-modal");
 
 
 
@@ -106,6 +109,7 @@ function closePopUp(modal)
 
 function getCardElement(cardData)
 {
+	
 	//clone the template element with all its content and store it in a cardElement variable
 	const cardElement = cardTemplate.cloneNode(true);
 	//console.log(cardElement);		//debuging statement 
@@ -130,9 +134,9 @@ function getCardElement(cardData)
 	return cardElement;
 }//end func 
 //helper func
-function renderCard(cardData, cardList){
+function renderCard(cardData, container){
 	const cardElement = getCardElement(cardData);
-	cardList.prepend(cardElement);
+	container.prepend(cardElement);
 }//end func 
 
 /*----------------------------------------------------------*/
@@ -188,22 +192,23 @@ profileAddCardButton.addEventListener("click", () => openPopUp(addCardModal));
 /*      profile add (+) card modal close btn clicked        */
 /*----------------------------------------------------------*/
 
-//add card modal close button clicked
-const addCardmodalCloseButton = addCardModal.querySelector("#js-add-card-close-modal");
-
-addCardmodalCloseButton.addEventListener("click", () => closePopUp(addCardModal));
-
 const  addCardButtonForm = addCardModal.querySelector("#js-modal-add-card-form");
+
 addCardButtonForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 	console.log("save btn cliked in Add card Modal");			//debugging statement 
 	const name = newCardTitleInput.value;			//newCardTitleValue
 	const link = newCardUrlInput.value;				//newCardUrlValue
-	console.log(newCardTitleValue);					//debugging statement
-	console.log(newCardUrlValue);					//debugging statement
+	console.log(`${name} + ${link}`);					//debugging statement
+	//console.log(newCardUrlValue);					//debugging statement
+	debugger;
 	const newCardEl = getCardElement({name, link});	
+	//call renderCArd func
+	renderCard(newCardEl, cardListElement);
 	closePopUp(addCardModal);
 });
+
+addCardmodalCloseButton.addEventListener("click", () => closePopUp(addCardModal));
 
 /************************************************************************/
 
@@ -215,3 +220,13 @@ initialCards.forEach((cardData) => renderCard(cardData,cardListElement));
 	cardListElement.append(cardElement);
 });
 */
+//CARD LIKE btn --> click and change coloe
+//1. Grab like btn id from html with likebtn=documentquerySelector();
+//2. add event listener to likeBtn in getCardElement()
+//   cardlikebtn = cardElement.querySelector("LIKE CARD BTN ID GOES HERE"); cardlikebtn.classList.toggle(like btn ID);
+//3. add event listener for delete btn in getCardElement()
+//cardElement.remove();
+//4. add event listener for imageEl in getCardElement() for popup view
+//open image-popup --> popup/moda for image in html (3rd)
+//find image element in popup
+//replace src with the link ,alt with card title 
