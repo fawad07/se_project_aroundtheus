@@ -217,7 +217,7 @@ addCardButtonForm.addEventListener("submit", (event) => {
 	//console.log(newCardUrlValue);					//debugging statement
 	const newCardEl = getCardElement({name, link});	
 	//call renderCArd func
-	renderCard(newCardEl, cardListElement);
+	renderCard({name, link}, cardListElement);
 	closePopUp(addCardModal);
 });
 
