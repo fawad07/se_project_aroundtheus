@@ -51,7 +51,7 @@
 }
 
 .card__delete-image {
-  background: transparent url("../images/delete.svg");
+  /*background: transparent url("../images/delete.svg");*/
   color: #FFFFFF;
   position: absolute;
   height: 19px;
