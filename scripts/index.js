@@ -75,6 +75,7 @@ const addCardForm = addCardModal.querySelector("#js-modal-add-card-form");
 const newCardTitleInput = addCardForm.querySelector("#js-add-card-title-input");
 const newCardUrlInput = addCardForm.querySelector("#js-add-card-description-input");
 
+
 /*----------------------------------------------------------*/
 /*                Profile add button                        */
 /*----------------------------------------------------------*/
@@ -109,7 +110,6 @@ function closePopUp(modal)
 
 function getCardElement(cardData)
 {
-	
 	//clone the template element with all its content and store it in a cardElement variable
 	const cardElement = cardTemplate.cloneNode(true);
 	//console.log(cardElement);		//debuging statement 
@@ -129,6 +129,14 @@ function getCardElement(cardData)
 	//set the card title to the name field of the object, too
 	cardTitleElement.textContent = cardData.name;
 	//console.log(cardTitleElement);		//debugging statement 
+	
+
+	//delete btn
+	const cardDeleteButton = cardElement.querySelector("#js-card__delete-image");
+	console.log(cardDeleteButton);			//debugging statement 
+	cardDeleteButton.addEventListener("click", () => {
+		cardElement.remove();
+	});
 	
 	//return the ready HTML element with the filled-in data
 	return cardElement;
@@ -224,8 +232,7 @@ initialCards.forEach((cardData) => renderCard(cardData,cardListElement));
 //1. Grab like btn id from html with likebtn=documentquerySelector();
 //2. add event listener to likeBtn in getCardElement()
 //   cardlikebtn = cardElement.querySelector("LIKE CARD BTN ID GOES HERE"); cardlikebtn.classList.toggle(like btn ID);
-//3. add event listener for delete btn in getCardElement()
-//cardElement.remove();
+
 //4. add event listener for imageEl in getCardElement() for popup view
 //open image-popup --> popup/moda for image in html (3rd)
 //find image element in popup

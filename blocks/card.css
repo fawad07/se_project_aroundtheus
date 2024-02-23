@@ -44,3 +44,19 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.card__delete-image {
+  background: transparent url("../images/delete.svg") center no-repeat;
+  color: #FFFFFF;
+  position: absolute;
+  height: 19px;
+  width: 18px;
+  border: none;
+  margin: 18px 0 0 249px ;
+  transition: opacity 1s;
+}
+
+.card__delete-image:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
