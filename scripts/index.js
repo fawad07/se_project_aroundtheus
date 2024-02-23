@@ -133,9 +133,15 @@ function getCardElement(cardData)
 
 	//delete btn
 	const cardDeleteButton = cardElement.querySelector("#js-card__delete-image");
-	console.log(cardDeleteButton);			//debugging statement 
+	//console.log(cardDeleteButton);			//debugging statement 
 	cardDeleteButton.addEventListener("click", () => {
 		cardElement.remove();
+	});
+	
+	//like buton
+	const cardLikeButton = cardElement.querySelector("#js-card__like-button");
+	cardLikeButton.addEventListener("click", () => {
+		cardLikeButton.classList.toggle("card__like-button-active");
 	});
 	
 	//return the ready HTML element with the filled-in data
@@ -209,7 +215,6 @@ addCardButtonForm.addEventListener("submit", (event) => {
 	const link = newCardUrlInput.value;				//newCardUrlValue
 	console.log(`${name} + ${link}`);					//debugging statement
 	//console.log(newCardUrlValue);					//debugging statement
-	debugger;
 	const newCardEl = getCardElement({name, link});	
 	//call renderCArd func
 	renderCard(newCardEl, cardListElement);
@@ -229,9 +234,6 @@ initialCards.forEach((cardData) => renderCard(cardData,cardListElement));
 });
 */
 //CARD LIKE btn --> click and change coloe
-//1. Grab like btn id from html with likebtn=documentquerySelector();
-//2. add event listener to likeBtn in getCardElement()
-//   cardlikebtn = cardElement.querySelector("LIKE CARD BTN ID GOES HERE"); cardlikebtn.classList.toggle(like btn ID);
 
 //4. add event listener for imageEl in getCardElement() for popup view
 //open image-popup --> popup/moda for image in html (3rd)
