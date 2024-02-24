@@ -218,6 +218,7 @@ addCardButtonForm.addEventListener("submit", (event) => {
 	const newCardEl = getCardElement({name, link});	
 	//call renderCArd func
 	renderCard({name, link}, cardListElement);
+	event.target.reset();
 	closePopUp(addCardModal);
 });
 
