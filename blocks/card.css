@@ -4,6 +4,10 @@
   list-style-type: none;
 }
 
+.card:hover {
+	cursor: pointer;
+}
+
 .card__image {
   width: 282px;
   height: 282px;

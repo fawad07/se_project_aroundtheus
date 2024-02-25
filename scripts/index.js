@@ -86,7 +86,13 @@ const profileAddCardButton = document.querySelector("#js-profile-add-button");		
 //add card modal close button clicked
 const addCardmodalCloseButton = addCardModal.querySelector("#js-add-card-close-modal");
 
+/*----------------------------------------------------------*/
+/*                Image Preview.                            */
+/*----------------------------------------------------------*/
+let imagePreviewModal = document.querySelector("#js-image-preview-modal");
+console.log(imagePreviewModal);		//debugging statement
 
+let imageClosePreviewModal = document.querySelector("#js-image-preview-close-modal");
 
 
 /*----------------------------------------------------------*/
@@ -104,7 +110,7 @@ function openPopUp(modal)
 //close edit profile pop up/modal
 function closePopUp(modal)
 {
-	console.log("profile CloseButton Clicked in pop up!!");	//debugging statement
+	console.log("we are in close pop up func");	//debugging statement
 	modal.classList.remove("modal_opened");
 }//end func 
 
@@ -129,32 +135,68 @@ function getCardElement(cardData)
 	//set the card title to the name field of the object, too
 	cardTitleElement.textContent = cardData.name;
 	//console.log(cardTitleElement);		//debugging statement 
+
+
+/*----------------------------------------------------------*/
+/*      Card image clicked		     				        */
+/*----------------------------------------------------------*/
+
+	//Card Image Preview - event listener
+	cardImageElement.addEventListener("click", () => {
+		//image view on image preview modal
+
+		const imageElement = imagePreviewModal.querySelector("#js-card__image");
+		imageElement.src = cardData.link;
+		imageElement.alt = cardData.name;
+		/*
+		imageElement.style.width = "400px";
+		imageElement.style.height = "400px";
+		*/
+		//text view on the image view modal		
+		const titleElement = imagePreviewModal.querySelector("#js-image-preview-card-title");
+		titleElement.textContent = cardData.name;
+
+		//open image preview modal
+		openPopUp(imagePreviewModal);
+	});//end lambda func
 	
 
+/*************************************************************/
 	//delete btn
-	const cardDeleteButton = cardElement.querySelector("#js-card__delete-image");
-	//console.log(cardDeleteButton);			//debugging statement 
-	cardDeleteButton.addEventListener("click", () => {
-		cardElement.remove();
-	});
+	remove(cardElement);
 	
-	//like buton
-	const cardLikeButton = cardElement.querySelector("#js-card__like-button");
-	cardLikeButton.addEventListener("click", () => {
-		cardLikeButton.classList.toggle("card__like-button-active");
-	});
+	//like button
+	like(cardElement);
 	
 	//return the ready HTML element with the filled-in data
 	return cardElement;
 }//end func 
+
 //helper func
 function renderCard(cardData, container){
 	const cardElement = getCardElement(cardData);
 	container.prepend(cardElement);
 }//end func 
 
+function like(element){
+	//like button
+	const cardLikeButton = element.querySelector("#js-card__like-button");
+	cardLikeButton.addEventListener("click", () => {
+		cardLikeButton.classList.toggle("card__like-button-active");
+	});
+}//end like func
+
+function remove(element){
+	const cardDeleteButton = element.querySelector("#js-card__delete-image");
+	//console.log(cardDeleteButton);			//debugging statement 
+	cardDeleteButton.addEventListener("click", () => {
+		element.remove();
+	});
+}//end delete func 
+
+
 /*----------------------------------------------------------*/
-/*               EVENT LISTNERS				                */
+/*               EVENT LISTNERS			             */
 /*----------------------------------------------------------*/
 
 /*----------------------------------------------------------*/
@@ -223,6 +265,12 @@ addCardButtonForm.addEventListener("submit", (event) => {
 });
 
 addCardmodalCloseButton.addEventListener("click", () => closePopUp(addCardModal));
+
+
+/*----------------------------------------------------------*/
+/*      Card preview modal close				       */
+/*----------------------------------------------------------*/
+imageClosePreviewModal.addEventListener("click", () => closePopUp(imagePreviewModal));
 
 /************************************************************************/
 
