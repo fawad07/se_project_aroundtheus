@@ -148,10 +148,10 @@ function getCardElement(cardData)
 		const imageElement = imagePreviewModal.querySelector("#js-card__image");
 		imageElement.src = cardData.link;
 		imageElement.alt = cardData.name;
-		/*
-		imageElement.style.width = "400px";
-		imageElement.style.height = "400px";
-		*/
+		
+		imageElement.style.width = "75vw";
+		imageElement.style.height = "75vh";
+		
 		//text view on the image view modal		
 		const titleElement = imagePreviewModal.querySelector("#js-image-preview-card-title");
 		titleElement.textContent = cardData.name;
