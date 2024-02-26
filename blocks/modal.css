@@ -10,9 +10,9 @@
 	bottom:0;
 	z-index: 999;
 	background-color: rgba(0, 0, 0, 0.5);
-	/*visibility: hidden;
+	visibility: hidden;
 	opacity: 0.5;
-	transition: visibility 0s, opacity 0.25s linear;*/
+	transition: visibility 0s, opacity 0.25s linear;
 }
 
 .modal_opened {
@@ -84,6 +84,20 @@
 	cursor: pointer;
 	opacity: 0.6;
 }
+/*
+.modal__inage-preview {
+	max-width: 75vw;
+	max-height: 75vh;
+	object-fit: cover;
+}
+
+.modal__image-title {
+	font-family: "Inter", Arial, Helvetica, sans-serif;
+	word-wrap: break-word;
+	font-size: 12px;
+	font-weight: 400;
+}
+*/
 
 @media screen and (max-width: 550px) {
 	
