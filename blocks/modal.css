@@ -92,6 +92,7 @@
 	max-width: 75vw;
 	max-height: 75vh;
 	object-fit: cover;
+	
 }
 
 .modal__image-title {
@@ -99,7 +100,7 @@
 	word-wrap: break-word;
 	font-size: 12px;
 	font-weight: 400;
-	color: black;;
+	color: white;
 }
 
 @media screen and (max-width: 550px) {
@@ -136,4 +137,20 @@
 		left: calc(100% - 30px);
 		transform: rotate(90deg);
 	}
+	/*image preview
+	.modal__preview-container {
+		width: 240px;
+		height: 299px;
+		top: 136px;
+		left: 40px;
+	}
+	*/
+	.modal__image-preview {
+		width: 240px;
+		height: 299px;
+		top: 136px;
+		left: 40px;
+	}
+	
+	
 }/*end 550px*/
