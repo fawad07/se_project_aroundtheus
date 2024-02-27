@@ -142,6 +142,8 @@ function getCardElement(cardData)
 /*----------------------------------------------------------*/
 
 	//Card Image Preview - event listener
+	//imagePreview(cardImageElement, cardData);
+	
 	cardImageElement.addEventListener("click", () => {
 		//image view on image preview modal
 
@@ -149,8 +151,8 @@ function getCardElement(cardData)
 		imageElement.src = cardData.link;
 		imageElement.alt = cardData.name;
 		
-		/*imageElement.style.width = "75vw";
-		imageElement.style.height = "75vh";*/
+		imageElement.style.width = "75vw";
+		imageElement.style.height = "75vh";
 		
 		//text view on the image view modal		
 		const titleElement = imagePreviewModal.querySelector("#js-image-preview-card-title");
