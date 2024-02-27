@@ -3,20 +3,23 @@
 	align-items: center;
 	justify-content: center;
 	position: fixed;
-	padding: 0 19px 0 19px;
+	padding: 0 19px;
 	top: 0;
 	left: 0;
 	right:0;
 	bottom:0;
 	z-index: 999;
 	background-color: rgba(0, 0, 0, 0.5);
-	/*visibility: hidden;
+	visibility: hidden;
 	opacity: 0.5;
-	transition: visibility 0s, opacity 0.25s linear;*/
+	transition: visibility 1s, opacity 0.25s linear;
 }
 
 .modal_opened {
 	display: flex;
+	visibility: visible;
+	opacity: 1;
+	transition-delay: 0s;
 }
 
 .modal__container {
@@ -84,8 +87,8 @@
 	cursor: pointer;
 	opacity: 0.6;
 }
-/*
-.modal__inage-preview {
+
+.modal__image-preview {
 	max-width: 75vw;
 	max-height: 75vh;
 	object-fit: cover;
@@ -96,8 +99,8 @@
 	word-wrap: break-word;
 	font-size: 12px;
 	font-weight: 400;
+	color: black;;
 }
-*/
 
 @media screen and (max-width: 550px) {
 	
