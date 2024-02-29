@@ -1,30 +1,29 @@
 const initialCards = [
-	{
-		name: "Yosemite Valley",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-	},
-	{
-		name: "Lake Louise",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-	},
-	{
-		name: "Bald Mountains",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-	},
-	{
-		name: "Latemar",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-	},
-	{
-		name: "Vanoise National Park",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-	},
-	{
-		name: "Lago di Braies",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-	},
-	
-]
+  {
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  },
+];
 /*----------------------------------------------------------*/
 /*                 ELEMENTS                                 */
 /*----------------------------------------------------------*/
@@ -37,7 +36,9 @@ const profileEditButton = document.querySelector("#js-profile-edit-button");
 
 const profileEditModal = document.querySelector("#js-profile-edit-modal");
 
-const profileCloseModal = profileEditModal.querySelector("#js-profile-close-modal");
+const profileCloseModal = profileEditModal.querySelector(
+  "#js-profile-close-modal",
+);
 
 const profileTitle = document.querySelector("#js-profile-title");
 
@@ -45,7 +46,9 @@ const profileDescription = document.querySelector("#js-profile-description");
 
 const profileTitleInput = document.querySelector("#js-profile-title-input");
 
-const profileDescriptionInput = document.querySelector("#js-profile-description-input");
+const profileDescriptionInput = document.querySelector(
+  "#js-profile-description-input",
+);
 
 const profileEditForm = profileEditModal.querySelector("#js-modal-edit-form");
 
@@ -53,126 +56,127 @@ const profileEditForm = profileEditModal.querySelector("#js-modal-edit-form");
 /*                Card Template/Element                             */
 /*----------------------------------------------------------*/
 
-const cardTemplate = document.querySelector("#js-card-template").content.firstElementChild;
+const cardTemplate =
+  document.querySelector("#js-card-template").content.firstElementChild;
 
 const cardListElement = document.querySelector("#js-card__list");
 
-
-const addCardModal = document.querySelector("#js-add-card-modal");		//grab card modal/popup from html
+const addCardModal = document.querySelector("#js-add-card-modal"); //grab card modal/popup from html
 
 const addCardForm = addCardModal.querySelector("#js-modal-add-card-form");
 
 const newCardTitleInput = addCardForm.querySelector("#js-add-card-title-input");
-const newCardUrlInput = addCardForm.querySelector("#js-add-card-description-input");
-
+const newCardUrlInput = addCardForm.querySelector(
+  "#js-add-card-description-input",
+);
 
 /*----------------------------------------------------------*/
 /*                Profile add button                        */
 /*----------------------------------------------------------*/
 
-const profileAddCardButton = document.querySelector("#js-profile-add-button");			//button for adding card
+const profileAddCardButton = document.querySelector("#js-profile-add-button"); //button for adding card
 
 //add card modal close button clicked
-const addCardmodalCloseButton = addCardModal.querySelector("#js-add-card-close-modal");
+const addCardmodalCloseButton = addCardModal.querySelector(
+  "#js-add-card-close-modal",
+);
 
 /*----------------------------------------------------------*/
 /*                Image Preview.                            */
 /*----------------------------------------------------------*/
-let imagePreviewModal = document.querySelector("#js-image-preview-modal");
+const imagePreviewModal = document.querySelector("#js-image-preview-modal");
 
-let imageClosePreviewModal = document.querySelector("#js-image-preview-close-modal");
-
+const imageClosePreviewModal = document.querySelector(
+  "#js-image-preview-close-modal",
+);
 
 /*----------------------------------------------------------*/
 /*               			FUNCTIONS		                */
 /*----------------------------------------------------------*/
 
 //open modal when edit button clicked/modal
-function openPopUp(modal)
-{
-	modal.classList.add("modal_opened");	
-}//end func 
+function openPopUp(modal) {
+  modal.classList.add("modal_opened");
+} //end func
 
 //close edit profile pop up/modal
-function closePopUp(modal)
-{
-	console.log("we are in close pop up func");	//debugging statement
-	modal.classList.remove("modal_opened");
-}//end func 
+function closePopUp(modal) {
+  console.log("we are in close pop up func"); //debugging statement
+  modal.classList.remove("modal_opened");
+} //end func
 
-function getCardElement(cardData)
-{
-	//clone the template element with all its content and store it in a cardElement variable
-	const cardElement = cardTemplate.cloneNode(true);
-	
-	//access the card title and image and store them in variables
-	const cardImageElement = cardElement.querySelector("#js-card__image");
-	
-	const cardTitleElement = cardElement.querySelector("#js-card__title");
+function getCardElement(cardData) {
+  //clone the template element with all its content and store it in a cardElement variable
+  const cardElement = cardTemplate.cloneNode(true);
 
-	//set the path to the image to the link field of the object
-	cardImageElement.src = cardData.link;
-	//set the image alt text to the name field of the object
-	cardImageElement.alt = cardData.name;
-	
-	//set the card title to the name field of the object, too
-	cardTitleElement.textContent = cardData.name;
+  //access the card title and image and store them in variables
+  const cardImageElement = cardElement.querySelector("#js-card__image");
 
-/*----------------------------------------------------------*/
-/*      Card image clicked		     				        */
-/*----------------------------------------------------------*/
+  const cardTitleElement = cardElement.querySelector("#js-card__title");
 
-	//Card Image Preview - event listener
-	
-	cardImageElement.addEventListener("click", () => {
-		//image view on image preview modal
+  //set the path to the image to the link field of the object
+  cardImageElement.src = cardData.link;
+  //set the image alt text to the name field of the object
+  cardImageElement.alt = cardData.name;
 
-		const imageElement = imagePreviewModal.querySelector("#js-card__image");
-		imageElement.src = cardData.link;
-		imageElement.alt = cardData.name;
-		
-		//text view on the image view modal		
-		const titleElement = imagePreviewModal.querySelector("#js-image-preview-card-title");
-		titleElement.textContent = cardData.name;
+  //set the card title to the name field of the object, too
+  cardTitleElement.textContent = cardData.name;
 
-		//open image preview modal
-		openPopUp(imagePreviewModal);
-	});//end lambda func
-	
+  /*----------------------------------------------------------*/
+  /*      Card image clicked		     				        */
+  /*----------------------------------------------------------*/
 
-/*************************************************************/
-	//delete btn
-	remove(cardElement);
-	
-	//like button
-	like(cardElement);
-	
-	//return the ready HTML element with the filled-in data
-	return cardElement;
-}//end func 
+  //Card Image Preview - event listener
+
+  cardImageElement.addEventListener("click", () => {
+    //image view on image preview modal
+
+    const imageElement = imagePreviewModal.querySelector("#js-card__image");
+    imageElement.src = cardData.link;
+    imageElement.alt = cardData.name;
+
+    //text view on the image view modal
+    const titleElement = imagePreviewModal.querySelector(
+      "#js-image-preview-card-title",
+    );
+    titleElement.textContent = cardData.name;
+
+    //open image preview modal
+    openPopUp(imagePreviewModal);
+  }); //end lambda func
+
+  /*************************************************************/
+  //delete btn
+  setDeleteHandler(cardElement);
+
+  //like button
+  setLikeHandler(cardElement);
+
+  //return the ready HTML element with the filled-in data
+  return cardElement;
+} //end func
 
 //helper func
-function renderCard(cardData, container){
-	const cardElement = getCardElement(cardData);
-	container.prepend(cardElement);
-}//end func 
+function renderCard(cardData, container) {
+  const cardElement = getCardElement(cardData);
+  container.prepend(cardElement);
+} //end func
 
-function like(element){
-	//like button
-	const cardLikeButton = element.querySelector("#js-card__like-button");
-	cardLikeButton.addEventListener("click", () => {
-		cardLikeButton.classList.toggle("card__like-button-active");
-	});
-}//end like func
+function setLikeHandler(element) {
+  //like button
+  const cardLikeButton = element.querySelector("#js-card__like-button");
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle("card__like-button-active");
+  });
+} //end like func
 
-function remove(element){
-	const cardDeleteButton = element.querySelector("#js-card__delete-image");
-	//console.log(cardDeleteButton);			//debugging statement 
-	cardDeleteButton.addEventListener("click", () => {
-		element.remove();
-	});
-}//end delete func 
-
+function setDeleteHandler(element) {
+  const cardDeleteButton = element.querySelector("#js-card__delete-image");
+  //console.log(cardDeleteButton);			//debugging statement
+  cardDeleteButton.addEventListener("click", () => {
+    element.remove();
+  });
+} //end delete func
 
 /*----------------------------------------------------------*/
 /*               EVENT LISTNERS			             */
@@ -185,31 +189,30 @@ function remove(element){
 //profile edit button clicked -- pop up opened
 
 profileEditButton.addEventListener("click", () => {
-	profileTitleInput.value = profileTitle.textContent;				//pre-filled form with the profile title 
-	profileDescriptionInput.value = profileDescription.textContent; //pre-filled form with the profile description 
-	openPopUp(profileEditModal);
-	
+  profileTitleInput.value = profileTitle.textContent; //pre-filled form with the profile title
+  profileDescriptionInput.value = profileDescription.textContent; //pre-filled form with the profile description
+  openPopUp(profileEditModal);
 });
 
 /*----------------------------------------------------------*/
 /*            profile edit modal close btn clicked          */
 /*----------------------------------------------------------*/
 
-//close button in edit profile modal -- close pop-up 
+//close button in edit profile modal -- close pop-up
 profileCloseModal.addEventListener("click", () => closePopUp(profileEditModal));
 
 /*----------------------------------------------------------*/
 /*            profile edit modal save btn clicked           */
 /*----------------------------------------------------------*/
 
-//profile save button clicked --> profile edit modal 
+//profile save button clicked --> profile edit modal
 profileEditForm.addEventListener("submit", (event) => {
-	event.preventDefault();
-	console.log("Save button clicked");
-	profileTitle.textContent = profileTitleInput.value;			//form text content goes to profile value	
-	profileDescription.textContent = profileDescriptionInput.value;		//form text content goes to profile value
-	closePopUp(profileEditModal);
-	});
+  event.preventDefault();
+  console.log("Save button clicked");
+  profileTitle.textContent = profileTitleInput.value; //form text content goes to profile value
+  profileDescription.textContent = profileDescriptionInput.value; //form text content goes to profile value
+  closePopUp(profileEditModal);
+});
 
 /*----------------------------------------------------------*/
 /*            profile add (+) btn clicked           */
@@ -222,30 +225,32 @@ profileAddCardButton.addEventListener("click", () => openPopUp(addCardModal));
 /*      profile add (+) card modal close btn clicked        */
 /*----------------------------------------------------------*/
 
-const  addCardButtonForm = addCardModal.querySelector("#js-modal-add-card-form");
+const addCardButtonForm = addCardModal.querySelector("#js-modal-add-card-form");
 
 addCardButtonForm.addEventListener("submit", (event) => {
-	event.preventDefault();
-	console.log("save btn cliked in Add card Modal");			//debugging statement 
-	const name = newCardTitleInput.value;						//newCardTitleValue
-	const link = newCardUrlInput.value;							//newCardUrlValue
+  event.preventDefault();
+  console.log("save btn cliked in Add card Modal"); //debugging statement
+  const name = newCardTitleInput.value; //newCardTitleValue
+  const link = newCardUrlInput.value; //newCardUrlValue
 
-	const newCardEl = getCardElement({name, link});	
-	//call renderCArd func
-	renderCard({name, link}, cardListElement);
-	event.target.reset();
-	closePopUp(addCardModal);
+  //call renderCArd func
+  renderCard({ name, link }, cardListElement);
+  event.target.reset();
+  closePopUp(addCardModal);
 });
 
-addCardmodalCloseButton.addEventListener("click", () => closePopUp(addCardModal));
-
+addCardmodalCloseButton.addEventListener("click", () =>
+  closePopUp(addCardModal),
+);
 
 /*----------------------------------------------------------*/
 /*      Card preview modal close				       */
 /*----------------------------------------------------------*/
-imageClosePreviewModal.addEventListener("click", () => closePopUp(imagePreviewModal));
+imageClosePreviewModal.addEventListener("click", () =>
+  closePopUp(imagePreviewModal),
+);
 
 /************************************************************************/
 
 //TAsk 1: Render Card with forEach() instead of for  loop
-initialCards.forEach((cardData) => renderCard(cardData,cardListElement));
+initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
