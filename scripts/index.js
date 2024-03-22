@@ -252,5 +252,5 @@ imageClosePreviewModal.addEventListener("click", () =>
 
 /************************************************************************/
 
-//TAsk 1: Render Card with forEach() instead of for  loop
+//Render Card with forEach() instead of for  loop
 initialCards.forEach((cardData) => renderCard(cardData, cardListElement));

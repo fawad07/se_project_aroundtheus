@@ -53,9 +53,18 @@
 			<button class="modal__close-button" id="js-profile-close-modal"></button>
 			<p class="modal__title">Edit Profile</p>
 			<form class="modal__form" id="js-modal-edit-form">
-				<input type="text" name="title" class="modal__field" id="js-profile-title-input">
-				<input type="text" name="description" class="modal__field" id="js-profile-description-input">
-				<button class="modal__save-button">Save</button>
+				<input type="text" 
+						name="title"
+						class="modal__field" 
+						id="js-profile-title-input"
+						minlength="2"
+						maxlength="40"						
+						required/>
+				<input type="text" 
+						name="description" 
+						class="modal__field" 
+						id="js-profile-description-input"/>
+				<button class="modal__save-button modal__button">Save</button>
 							
 			</form>
 		</div>		
@@ -77,7 +86,7 @@
 						placeholder="Image URL" 
 						class="modal__field" 
 						id="js-add-card-description-input">
-				<button class="modal__save-button">Save</button>
+				<button class="modal__save-button modal__button">Save</button>
 							
 			</form>
 		</div>		
@@ -120,5 +129,6 @@
 	</template>
 	
 	<script src="./scripts/index.js">	</script>
+	<script src="./scripts/validation.js">	</script>
   </body>
 </html>
