@@ -60,11 +60,17 @@
 						minLength="2"
 						maxLength="40"						
 						required/>
+				<span class="modal__error" id="js-profile-title-input-error"> </span>
+						
 				<input type="text" 
 						name="description" 
 						class="modal__field" 
-						id="js-profile-description-input"/>
-				<button class="modal__save-button modal__button">Save</button>
+						id="js-profile-description-input"
+						minLength="2"
+						maxLength="200"						
+						required/>
+				<span class="modal__error" id="js-profile-description-input-error"> </span>
+				<button class="modal__save-button modal__button" id="js-modal__button">Save</button>
 							
 			</form>
 		</div>		

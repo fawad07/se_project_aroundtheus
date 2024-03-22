@@ -51,6 +51,14 @@
 	border-bottom: 1px solid #000000;
 }
 
+.modal__error {
+	
+	margin-left: 36px;
+	font-size: 12px;
+	color: red;
+	word-wrap: break-word;
+}
+
 .modal__save-button {
 	padding: 0;
     margin: 48px 36px 36px 36px;

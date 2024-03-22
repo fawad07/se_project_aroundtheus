@@ -2,25 +2,90 @@ console.log("THIS IS VALIDATION>JS LOADED");
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
+function showInputError(formEl, inputEl, opts) {
+	const {inputErrorClass} = opts;
+	const {errorClass} = opts;
+	
+	const errorMessageElement = formEl.querySelector(`#${inputEl.id}-error`);
+	console.log(errorMessageElement);				//debugging statement
+	
+	inputEl.classList.add(inputErrorClass);
+	//get validation msg
+	//display err msg
+	errorMessageElement.textContent = inputEl.validationMessage;
+	//add error class to input
+	inputEl.classList.add(errorClass);
+	
+	//disable submit button
+	
+}//end func
+
+function hideInputError(formEl, inputEl, opts) {
+	const {inputErrorClass} = opts;
+	const {errorClass} = opts;
+	
+	const errorMessageElement = formEl.querySelector(`#${inputEl.id}-error`);
+	inputEl.classList.remove(inputErrorClass);
+	errorMessageElement.textContent = "";
+	inputEl.classList.remove(errorClass);
+	
+	
+}//end func
+
+function toggleButtonState(inputEls, btn, opts) {
+	const {inactiveButtonClass} = opts;
+	let isValid = false;
+	inputEls.forEach( (inputEl) => {
+		//if input valdity true 
+		//btn disabled
+		if(!inputEl.validity.valid)
+		{
+			isValid = true;
+		}//end if
+	});
+
+	if(isValid)
+	{
+		btn.classList.add(inactiveButtonClass);
+		btn.disabled = true;
+	}//end if 
+	else
+	{
+		btn.classList.remove(inactiveButtonClass);
+		btn.disabled = false;
+	}//end else 
+}//end func 
+
+function checkInputValidity(formEls, inputEls, opt) {
+	//if input !valid
+	if(!inputEls.validity.valid)
+	{
+		showInputError(formEls, inputEls, opt);
+	}//end if
+	else {
+		hideInputError(formEls, inputEls, opt);
+	}//end else
+}//end func
+
 function setEventListeners(formElements, options) {
 	// look for all inputs inside of forms
 	const {inputSelector} = options;
 	const inputElement = Array.from(formElements.querySelectorAll(inputSelector));
 	//console.log(inputElement);									//debugging statement
+	const submitButton = formElements.querySelector("#js-modal__button");
 	inputElement.forEach(inputEl => {
 		inputEl.addEventListener("input", (evt) => {
 			//console.log("inpu ran");							//debugging statement 
 			console.log(inputEl.validity.valid);
+			console.log(inputEl.validationMessage);				//debugging statement
 			
+			// loop through all inputs to see if they are valid 
+			checkInputValidity(formElements, inputEl, options);
+			toggleButtonState(inputElement, submitButton, options);
 			
 		});
 	});
-	// loop through all inputs to see if they are valid 
-		//if input !valid
-			//get validation msg
-			//add error class to input
-			//display err msg 
-			//disable submit button
+		
 		//if inputs valid	
 			//enable button
 			//reset error msg 
@@ -48,7 +113,7 @@ const config = {
   inputSelector: ".modal__field",								//".popup__input",
   submitButtonSelector: ".modal__button",						//".popup__button",
   inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
+  inputErrorClass: "modal__error", 											//"popup__input_type_error",
   errorClass: "popup__error_visible"
 };
 
