@@ -34,25 +34,27 @@ function hideInputError(formEl, inputEl, opts) {
 
 function toggleButtonState(inputEls, btn, opts) {
 	const {inactiveButtonClass} = opts;
-	let isValid = false;
+	let isValid = true;			//assume all inputs are initially true 
 	inputEls.forEach( (inputEl) => {
 		//if input valdity true 
 		//btn disabled
-		if(!inputEl.validity.valid)
+		if(!inputEl.validity.valid)			//if any inputs not valid isValid set to false 
 		{
-			isValid = true;
+			isValid = false;
 		}//end if
 	});
-
+	
+	//if every input valid, enable button
 	if(isValid)
-	{
-		btn.classList.add(inactiveButtonClass);
-		btn.disabled = true;
-	}//end if 
-	else
 	{
 		btn.classList.remove(inactiveButtonClass);
 		btn.disabled = false;
+	}//end if 
+	//if any input in valid disable button 
+	else
+	{
+		btn.classList.add(inactiveButtonClass);
+		btn.disabled = true;
 	}//end else 
 }//end func 
 
@@ -81,6 +83,7 @@ function setEventListeners(formElements, options) {
 			
 			// loop through all inputs to see if they are valid 
 			checkInputValidity(formElements, inputEl, options);
+			debugger;
 			toggleButtonState(inputElement, submitButton, options);
 			
 		});
