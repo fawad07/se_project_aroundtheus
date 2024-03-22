@@ -10,7 +10,7 @@ function setEventListeners(formElements, options) {
 	inputElement.forEach(inputEl => {
 		inputEl.addEventListener("input", (evt) => {
 			//console.log("inpu ran");							//debugging statement 
-			console.log(evt.validationMessage);
+			console.log(inputEl.validity.valid);
 			
 			
 		});
