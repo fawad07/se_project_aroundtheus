@@ -52,11 +52,23 @@
 }
 
 .modal__error {
-	
+	font-family: "Inter", Arial, sans-serif;
+	color: #ff0000;
+	font-size: 12px;
+	max-width: 358px;
+	/* this becomes the bottom margin for the input  */
+	min-height: 30px;
+	display: block;
 	margin-left: 36px;
 	font-size: 12px;
 	color: red;
-	word-wrap: break-word;
+}
+
+.modal__button:disabled {
+  color: #000000;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  opacity: 0.2;
+  background-color: #ffffff;
 }
 
 .modal__save-button {

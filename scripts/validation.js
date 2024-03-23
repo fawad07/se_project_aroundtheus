@@ -83,7 +83,6 @@ function setEventListeners(formElements, options) {
 			
 			// loop through all inputs to see if they are valid 
 			checkInputValidity(formElements, inputEl, options);
-			debugger;
 			toggleButtonState(inputElement, submitButton, options);
 			
 		});
@@ -115,7 +114,7 @@ const config = {
   formSelector: ".modal__form",									//".popup__form",
   inputSelector: ".modal__field",								//".popup__input",
   submitButtonSelector: ".modal__button",						//".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
+  inactiveButtonClass: ".modal__button_disabled",
   inputErrorClass: "modal__error", 											//"popup__input_type_error",
   errorClass: "popup__error_visible"
 };
