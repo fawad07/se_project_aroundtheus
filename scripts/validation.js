@@ -27,9 +27,7 @@ function hideInputError(formEl, inputEl, opts) {
 	const errorMessageElement = formEl.querySelector(`#${inputEl.id}-error`);
 	inputEl.classList.remove(inputErrorClass);
 	errorMessageElement.textContent = "";
-	inputEl.classList.remove(errorClass);
-	
-	
+	inputEl.classList.remove(errorClass);	
 }//end func
 
 function toggleButtonState(inputEls, btn, opts) {
@@ -37,20 +35,18 @@ function toggleButtonState(inputEls, btn, opts) {
 	let isValid = true;			//assume all inputs are initially true 
 	inputEls.forEach( (inputEl) => {
 		//if input valdity true 
-		//btn disabled
 		if(!inputEl.validity.valid)			//if any inputs not valid isValid set to false 
 		{
 			isValid = false;
 		}//end if
 	});
-	
 	//if every input valid, enable button
 	if(isValid)
 	{
 		btn.classList.remove(inactiveButtonClass);
 		btn.disabled = false;
 	}//end if 
-	//if any input in valid disable button 
+	//if any input in-valid disable button 
 	else
 	{
 		btn.classList.add(inactiveButtonClass);
@@ -86,12 +82,7 @@ function setEventListeners(formElements, options) {
 			toggleButtonState(inputElement, submitButton, options);
 			
 		});
-	});
-		
-		//if inputs valid	
-			//enable button
-			//reset error msg 
-	
+	});	
 }//end func 
 
 
