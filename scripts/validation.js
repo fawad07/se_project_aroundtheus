@@ -71,14 +71,16 @@ function checkInputValidity(formEls, inputEls, opt) {
 function setEventListeners(formElements, options) {
 	// look for all inputs inside of forms
 	const {inputSelector} = options;
+	const {submitButtonSelector} = options;
 	const inputElement = Array.from(formElements.querySelectorAll(inputSelector));
 	//console.log(inputElement);									//debugging statement
-	const submitButton = formElements.querySelector("#js-modal__button");
+	const submitButton = formElements.querySelector(submitButtonSelector);	//("#js-modal__button");
 	inputElement.forEach(inputEl => {
 		inputEl.addEventListener("input", (evt) => {
 			// loop through all inputs to see if they are valid 
 			checkInputValidity(formElements, inputEl, options);
-			toggleButtonState(inputEl, submitButton, options);				//togglebtn(inputElement, submitbtn,options)
+			//debugger;
+			toggleButtonState(inputElement, submitButton, options);				//togglebtn(inputEl, submitbtn,options)
 		});
 	});	
 }//end func 
