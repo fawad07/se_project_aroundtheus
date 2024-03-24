@@ -5,7 +5,7 @@ console.log("THIS IS VALIDATION>JS LOADED");
 function showInputError(formEl, inputEl, opts) {
 	const {inputErrorClass} = opts;
 	const {errorClass} = opts;
-	
+	console.log(inputEl.id);			//debugging statement
 	const errorMessageElement = formEl.querySelector(`#${inputEl.id}-error`);
 	console.log(errorMessageElement);				//debugging statement
 	
@@ -32,6 +32,9 @@ function hideInputError(formEl, inputEl, opts) {
 
 function toggleButtonState(inputEls, btn, opts) {
 	const {inactiveButtonClass} = opts;
+	console.log(typeof(inputEls));		//debugging statement 
+	inputEls = Array.from(inputEls);	//debugging
+	
 	let isValid = true;			//assume all inputs are initially true 
 	inputEls.forEach( (inputEl) => {
 		//if input valdity true 
@@ -73,14 +76,9 @@ function setEventListeners(formElements, options) {
 	const submitButton = formElements.querySelector("#js-modal__button");
 	inputElement.forEach(inputEl => {
 		inputEl.addEventListener("input", (evt) => {
-			//console.log("inpu ran");							//debugging statement 
-			console.log(inputEl.validity.valid);
-			console.log(inputEl.validationMessage);				//debugging statement
-			
 			// loop through all inputs to see if they are valid 
 			checkInputValidity(formElements, inputEl, options);
-			toggleButtonState(inputElement, submitButton, options);
-			
+			toggleButtonState(inputEl, submitButton, options);				//togglebtn(inputElement, submitbtn,options)
 		});
 	});	
 }//end func 
@@ -89,9 +87,9 @@ function setEventListeners(formElements, options) {
 function enableValidation(setup)
 {
 	const allFormElements = Array.from(document.querySelectorAll(setup.formSelector));
-	console.log(allFormElements);
+	//console.log(allFormElements);
 	allFormElements.forEach( (formEl) => {
-		console.log(formEl);									//debugging statement
+		//console.log(formEl);									//debugging statement
 		formEl.addEventListener("submit", (evt) => {
 			evt.preventDefault();
 		});
