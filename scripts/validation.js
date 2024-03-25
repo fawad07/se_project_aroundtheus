@@ -106,7 +106,7 @@ const config = {
   inputSelector: ".modal__field",								//".popup__input",
   submitButtonSelector: ".modal__button",						//".popup__button",
   inactiveButtonClass: ".modal__button_disabled",
-  inputErrorClass: "modal__error", 											//"popup__input_type_error",
+  inputErrorClass: "modal__error", 								//"popup__input_type_error",
   errorClass: "popup__error_visible"
 };
 
