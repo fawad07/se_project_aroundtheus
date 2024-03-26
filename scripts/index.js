@@ -97,13 +97,27 @@ const imageClosePreviewModal = document.querySelector(
 //open modal when edit button clicked/modal
 function openPopUp(modal) {
   modal.classList.add("modal_opened");
+  modal.addEventListener("mousedown", closeModalOnClick);  //try adding a parameter to closeModalOnClick
+  
+  //add event listener for pressing escape button
+  
 } //end func
 
 //close edit profile pop up/modal
 function closePopUp(modal) {
   console.log("we are in close pop up func"); //debugging statement
   modal.classList.remove("modal_opened");
+  modal.removeEventListener("mousedown", closeModalOnClick);
 } //end func
+
+//close pop up on click on the window
+function closeModalOnClick(evt) {
+  if(evt.target === evt.currentTarget)
+  {
+      closePopUp(evt.currentTarget);
+  }//end if
+}//end func
+
 
 function getCardElement(cardData) {
   //clone the template element with all its content and store it in a cardElement variable
