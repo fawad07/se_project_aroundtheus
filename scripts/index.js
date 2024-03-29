@@ -109,8 +109,8 @@ function closePopUp(modal) {
 
   modal.classList.remove("modal_opened");
 
-  modal.removeEventListener("keydown", (evt) => modalCloseEscPressDown(evt));
-  modal.removeEventListener("mousedown", (evt) => modalCloseMouseClick(evt));
+  modal.removeEventListener("keydown", modalCloseEscPressDown);
+  modal.removeEventListener("mousedown", modalCloseMouseClick);
 } //end func
 
 /*
