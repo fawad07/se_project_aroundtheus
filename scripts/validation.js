@@ -19,8 +19,7 @@ function showInputError(formEl, inputEl, opts) {
 } //end func
 
 function hideInputError(formEl, inputEl, opts) {
-  const { inputErrorClass } = opts;
-  const { errorClass } = opts;
+  const { inputErrorClass, errorClass } = opts;
 
   const errorMessageElement = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.remove(inputErrorClass);
