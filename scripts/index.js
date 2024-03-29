@@ -99,7 +99,7 @@ function openPopUp(modal) {
   modal.classList.add("modal_opened");
 
   document.addEventListener("keydown", modalCloseEscPressDown);
-  modal.addEventListener("mousedown", (evt) => modalCloseMouseClick(evt));
+  modal.addEventListener("mousedown", modalCloseMouseClick);
 } //end func
 
 //close edit profile pop up/modal
