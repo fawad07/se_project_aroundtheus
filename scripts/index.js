@@ -98,9 +98,7 @@ const imageClosePreviewModal = document.querySelector(
 function openPopUp(modal) {
   modal.classList.add("modal_opened");
 
-  document.addEventListener("keydown", (evt) =>
-    modalCloseEscPressDown(evt, modal),
-  );
+  document.addEventListener("keydown", modalCloseEscPressDown);
   modal.addEventListener("mousedown", (evt) => modalCloseMouseClick(evt));
 } //end func
 
@@ -111,9 +109,7 @@ function closePopUp(modal) {
 
   modal.classList.remove("modal_opened");
 
-  modal.removeEventListener("keydown", (evt) =>
-    modalCloseEscPressDown(evt, modal),
-  );
+  modal.removeEventListener("keydown", (evt) => modalCloseEscPressDown(evt));
   modal.removeEventListener("mousedown", (evt) => modalCloseMouseClick(evt));
 } //end func
 
@@ -133,14 +129,14 @@ Description: gets the modal_opened class and
 			checks if the esc key pressed only 
 			than close the pop up/modal 
 */
-function modalCloseEscPressDown(evt, modal) {
-  console.log("Modal ", modal);
-  //const modalOpened = document.querySelector(".modal_opened");
+function modalCloseEscPressDown(evt) {
+  const modalOpened = document.querySelector(".modal_opened");
+  console.log("Modal ", modalOpened);	//debugging statement 
   if (evt.key === "Escape") {
     console.log("Esc key pressed"); //debugging statement
-    //console.log(modalOpened);			//debugging statemet
-    //closePopUp(modalOpened);
-    closePopUp(modal);
+    console.log(modalOpened);			//debugging statemet
+    closePopUp(modalOpened);
+    //closePopUp(modal);
   }
 } //end func
 
