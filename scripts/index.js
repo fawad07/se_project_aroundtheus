@@ -127,6 +127,7 @@ Description: gets the modal_opened class and
 */
 function handleModalCloseEscPressDown(evt) {
 	if (evt.key === "Escape") {
+		const modalOpened = document.querySelector(".modal_opened");
 		closePopUp(modalOpened);
 	}//end if 
 } //end func
