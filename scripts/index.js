@@ -104,11 +104,7 @@ function openPopUp(modal) {
 
 //close edit profile pop up/modal
 function closePopUp(modal) {
-  console.log("we are in close pop up func"); //debugging statement
-  console.log(modal); //debugging statement
-
   modal.classList.remove("modal_opened");
-
   document.removeEventListener("keydown", handleModalCloseEscPressDown);
   modal.removeEventListener("mousedown", handleModalCloseMouseClick);
 } //end func
@@ -130,14 +126,9 @@ Description: gets the modal_opened class and
 			than close the pop up/modal 
 */
 function handleModalCloseEscPressDown(evt) {
-  const modalOpened = document.querySelector(".modal_opened");
-  console.log("Modal ", modalOpened);	//debugging statement 
-  if (evt.key === "Escape") {
-    console.log("Esc key pressed"); //debugging statement
-    console.log(modalOpened);			//debugging statemet
-    closePopUp(modalOpened);
-    //closePopUp(modal);
-  }
+	if (evt.key === "Escape") {
+		closePopUp(modalOpened);
+	}//end if 
 } //end func
 
 function getCardElement(cardData) {
@@ -207,7 +198,6 @@ function setLikeHandler(element) {
 
 function setDeleteHandler(element) {
   const cardDeleteButton = element.querySelector("#js-card__delete-image");
-  //console.log(cardDeleteButton);			//debugging statement
   cardDeleteButton.addEventListener("click", () => {
     element.remove();
   });
@@ -264,7 +254,6 @@ const addCardButtonForm = addCardModal.querySelector("#js-modal-add-card-form");
 
 addCardButtonForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  console.log("save btn cliked in Add card Modal"); //debugging statement
   const name = newCardTitleInput.value; //newCardTitleValue
   const link = newCardUrlInput.value; //newCardUrlValue
 

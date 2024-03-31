@@ -1,12 +1,9 @@
-console.log("THIS IS VALIDATION>JS LOADED");
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
 function showInputError(formEl, inputEl, opts) {
   const { inputErrorClass, errorClass } = opts;
-  console.log(inputEl.id); //debugging statement
   const errorMessageElement = formEl.querySelector(`#${inputEl.id}-error`);
-  console.log(errorMessageElement); //debugging statement
 
   inputEl.classList.add(inputErrorClass);
   //get validation msg
@@ -15,7 +12,6 @@ function showInputError(formEl, inputEl, opts) {
   //add error class to input
   inputEl.classList.add(errorClass);
 
-  //disable submit button
 } //end func
 
 function hideInputError(formEl, inputEl, opts) {
@@ -29,10 +25,9 @@ function hideInputError(formEl, inputEl, opts) {
 
 function toggleButtonState(inputEls, btn, opts) {
   const { inactiveButtonClass } = opts;
-  console.log(typeof inputEls); //debugging statement
-  inputEls = Array.from(inputEls); //debugging
+  inputEls = Array.from(inputEls); 					
 
-  let isValid = true; //assume all inputs are initially true
+  let isValid = true; 					//assume all inputs are initially true
   inputEls.forEach((inputEl) => {
     //if input valdity true
     if (!inputEl.validity.valid) {
@@ -65,9 +60,7 @@ function checkInputValidity(formEls, inputEls, opt) {
 function setEventListeners(formElements, options) {
   // look for all inputs inside of forms
   const { inputSelector, submitButtonSelector } = options;
-  //const { submitButtonSelector } = options;
   const inputElement = Array.from(formElements.querySelectorAll(inputSelector));
-  //console.log(inputElement);									//debugging statement
   const submitButton = formElements.querySelector(submitButtonSelector); //("#js-modal__button");
   inputElement.forEach((inputEl) => {
     inputEl.addEventListener("input", (evt) => {
@@ -82,9 +75,7 @@ function enableValidation(setup) {
   const allFormElements = Array.from(
     document.querySelectorAll(setup.formSelector),
   );
-  //console.log(allFormElements);
   allFormElements.forEach((formEl) => {
-    //console.log(formEl);									//debugging statement
     formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
@@ -94,11 +85,11 @@ function enableValidation(setup) {
 } //end func
 
 const config = {
-  formSelector: ".modal__form", //".popup__form",
-  inputSelector: ".modal__field", //".popup__input",
-  submitButtonSelector: ".modal__button", //".popup__button",
+  formSelector: ".modal__form", 						//".popup__form",
+  inputSelector: ".modal__field", 						//".popup__input",
+  submitButtonSelector: ".modal__button", 				//".popup__button",
   inactiveButtonClass: ".modal__button_disabled",
-  inputErrorClass: "modal__error", //"popup__input_type_error",
+  inputErrorClass: "modal__error", 						//"popup__input_type_error",
   errorClass: "modal__error_visible",
 };
 
