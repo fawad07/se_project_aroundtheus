@@ -1,3 +1,5 @@
+import { FormValidator } from "..components/FormValidator"; 
+
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
@@ -94,3 +96,6 @@ const config = {
 };
 
 enableValidation(config);
+
+/*DEBUGGING BELOW LINE 100*/
+const editFormValidator = new FormValidator(config);

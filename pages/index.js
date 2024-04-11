@@ -1,3 +1,7 @@
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js"; 
+
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -174,7 +178,7 @@ function getCardElement(cardData) {
 
   /*************************************************************/
   //delete btn
-  setDeleteHandler(cardElement);
+ setDeleteHandler(cardElement);
 
   //like button
   setLikeHandler(cardElement);
@@ -189,6 +193,7 @@ function renderCard(cardData, container) {
   container.prepend(cardElement);
 } //end func
 
+
 function setLikeHandler(element) {
   //like button
   const cardLikeButton = element.querySelector("#js-card__like-button");
@@ -197,12 +202,16 @@ function setLikeHandler(element) {
   });
 } //end like func
 
+
+
 function setDeleteHandler(element) {
   const cardDeleteButton = element.querySelector("#js-card__delete-image");
   cardDeleteButton.addEventListener("click", () => {
     element.remove();
   });
 } //end delete func
+
+
 
 /*----------------------------------------------------------*/
 /*               EVENT LISTNERS			             */
@@ -275,7 +284,27 @@ imageClosePreviewModal.addEventListener("click", () =>
   closePopUp(imagePreviewModal),
 );
 
-/************************************************************************/
 
 //Render Card with forEach() instead of for  loop
 initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
+/************************************************************************/
+
+
+//debuggig below line 292
+const card = new Card(initialCards[0], "#js-card-template");
+//console.log(card);
+//console.log(card.testFunc());
+//card.getCard();
+const config = {
+  formSelector: ".modal__form", 						//".popup__form",
+  inputSelector: ".modal__field", 						//".popup__input",
+  submitButtonSelector: ".modal__button", 				//".popup__button",
+  inactiveButtonClass: ".modal__button_disabled",
+  inputErrorClass: "modal__error", 						//"popup__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+
+/*DEBUGGING BELOW LINE 100*/
+const editFormValidator = new FormValidator(config);
+
