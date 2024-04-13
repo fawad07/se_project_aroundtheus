@@ -86,6 +86,8 @@ function enableValidation(setup) {
   });
 } //end func
 
+
+/*
 const config = {
   formSelector: ".modal__form", 						//".popup__form",
   inputSelector: ".modal__field", 						//".popup__input",
@@ -97,5 +99,6 @@ const config = {
 
 enableValidation(config);
 
-/*DEBUGGING BELOW LINE 100*/
+/*DEBUGGING BELOW LINE 100*
 const editFormValidator = new FormValidator(config);
+*/

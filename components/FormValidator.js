@@ -17,7 +17,7 @@ export class FormValidator {
                 evt.preventDefault();
             });
             //setEventListeners(formEl, setup);
-            setEventListeners();
+           this. _setEventListeners(); 
         });
     }//end func
 
@@ -69,7 +69,8 @@ export class FormValidator {
          this._showInputError(inputEls);
         } //end if
         else {
-          _hideInputError(formEls, inputEls, opt);
+          //_hideInputError(formEls, inputEls, opt);
+          _hideInputError(inputEls);
         } //end else
       } //end func
       
@@ -99,3 +100,27 @@ export class FormValidator {
       } //end func
 
 }//end class
+
+
+
+//MOVE TO INDEX.JS
+const config = {
+    formSelector: ".modal__form", 						//".popup__form",
+    inputSelector: ".modal__field", 						//".popup__input",
+    submitButtonSelector: ".modal__button", 				//".popup__button",
+    inactiveButtonClass: ".modal__button_disabled",
+    inputErrorClass: "modal__error", 						//"popup__input_type_error",
+    errorClass: "modal__error_visible",
+  };
+  
+ // enableValidation(config);
+  
+  /*DEBUGGING BELOW LINE 100*/
+  const editFormValidator = new FormValidator(config);
+  
+//profile edit button form vlidator
+//const editFormValidator = new FormValidator(config, profileEditModal.querySelector("#js-modal-edit-form"));
+console.log(editFormValidator);
+
+//const addFormValidator = new FormValidator(config, addCardModal.querySelector("#js-modal-add-card-form"));
+//console.log(editFormValidator);

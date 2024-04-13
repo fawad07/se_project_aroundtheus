@@ -11,16 +11,17 @@ export class Card  {
                           takes a str selector, the card template tag
                           takes an image click handler  <-- elaborate on this later
 */
-constructor(data, cardSelector) /*, handleImageClick)*/ {
+constructor(data, cardSelector, handleImageClick)  {
     this._data = data;
     this._selector = cardSelector;
-    ///console.log(this._data);         //debugging
-    //console.log(this);              //debuging
+    this._handleImageClick = handleImageClick;
+    
 
-    /*
-    this.cardSelector = cardSelector;
-    this.handleImageClick = handlemageClick;
-    */
+    console.log(this._data);         //debugging
+    console.log(this);              //debuging
+    console.log(this._data.name);       //debugging
+    console.log(this._selector);            //debugging
+    console.log(this._handleImageClick);            //debugging
 }//end contructor
 
 _setEventListeners() {
@@ -65,12 +66,5 @@ _setDeleteHandler() {
     this._cardEl.querySelector("#js-card__delete-image").remove();
 }//end func
 
-
-
-//debugging below line 23
-testFunc() {
-   // console.log(this._data.name);
-    console.log(this._selector);
-}//end unc
 
 }//end class

@@ -290,7 +290,7 @@ initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
 /************************************************************************/
 
 
-//debuggig below line 292
+/*debuggig below line 292
 const card = new Card(initialCards[0], "#js-card-template");
 //console.log(card);
 //console.log(card.testFunc());
@@ -305,6 +305,12 @@ const config = {
 };
 
 
-/*DEBUGGING BELOW LINE 100*/
-const editFormValidator = new FormValidator(config);
+/*DEBUGGING BELOW *
 
+//profile edit button form vlidator
+const editFormValidator = new FormValidator(config, profileEditModal.querySelector("#js-modal-edit-form"));
+console.log(editFormValidator);
+
+const addFormValidator = new FormValidator(config, addCardModal.querySelector("#js-modal-add-card-form"));
+console.log(editFormValidator);
+*/
