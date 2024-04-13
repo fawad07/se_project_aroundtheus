@@ -15,7 +15,11 @@ constructor(data, cardSelector, handleImageClick)  {
     this._data = data;
     this._selector = cardSelector;
     this._handleImageClick = handleImageClick;
-    
+
+    /*this._cardTemplate = document.querySelector(cardTemplateSelector)
+                        .content
+                        .firstElementChild;
+    */
 
     console.log(this._data);         //debugging
     console.log(this);              //debuging
