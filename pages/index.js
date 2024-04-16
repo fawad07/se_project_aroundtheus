@@ -140,6 +140,28 @@ function handleModalCloseEscPressDown(evt) {
 	}//end if 
 } //end func
 
+
+
+  /*----------------------------------------------------------*/
+  /*      Card image clicked				        */
+  /*----------------------------------------------------------*/
+
+  //Card Image Preview - event listener
+function handleImageClick(cardData) {
+    //image view on image preview modal
+    const imageElement = imagePreviewModal.querySelector("#js-card__image");
+    imageElement.src = cardData.link;
+    imageElement.alt = cardData.name;
+    
+    //text view on the image view modal
+    const titleElement = imagePreviewModal.querySelector("#js-image-preview-card-title" );
+    titleElement.textContent = cardData.name;
+
+      //open image preview modal
+      openPopUp(imagePreviewModal);
+}//end func
+
+/*
 function getCardElement(cardData) {
   //clone the template element with all its content and store it in a cardElement variable
   const cardElement = cardTemplate.cloneNode(true);
@@ -159,7 +181,7 @@ function getCardElement(cardData) {
 
   /*----------------------------------------------------------*/
   /*      Card image clicked		     				        */
-  /*----------------------------------------------------------*/
+  /*----------------------------------------------------------*
 
   //Card Image Preview - event listener
 function handleImageClick(cardData) {
