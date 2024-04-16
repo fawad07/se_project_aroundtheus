@@ -295,8 +295,9 @@ imageClosePreviewModal.addEventListener("click", () =>
 
 
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "js-card-template");
-  card.getCard();
+  const card = new Card(cardData, "#js-card-template");
+  const cardElement = card.getCard();
+  cardListElement.appendChild(cardElement);
 });
 /* 
 const cardElement = card.getCard(); // Assuming the Card class has a method to get the card element

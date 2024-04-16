@@ -20,7 +20,7 @@ constructor(data, cardSelector, handleImageClick)  {
 }//end contructor
 
 _setEventListeners() {
-alert("We were inside the seEventLisener Method()");        //DEBUGGING
+//alert("We were inside the seEventLisener Method()");        //DEBUGGING
 
 //#js-card__like-buton
 this._cardEl.querySelector("#js-card__like-button")
@@ -40,15 +40,15 @@ this._cardEl.querySelector("#js-card__delete-image")
 
 getCard() {
     //1. get car view
-    this._cardEl = document.querySelector(this._selector)
-    .content.firstElementChild
-    .cloneNode(true);
+   // console.log(this._selector);            //debugging
+    this._cardEl = document.querySelector(this._selector).content.firstElementChild.cloneNode(true);
 
     const cardImageElement = this._cardEl.querySelector("#js-card__image");
     const cardTitleElement = this._cardEl.querySelector("#js-card__title");
     cardImageElement.src = this._data.link;
     cardImageElement.alt = this._data.name;
     cardTitleElement.textContent = this._data.name;
+    console.log(this._cardEl);      //debugging
 
     //2. set event listeners
     this._setEventListeners();
