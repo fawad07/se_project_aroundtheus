@@ -1,6 +1,10 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js"; 
 
+/*
+import { Card } from "../components/Card_copy.js";
+import { FormValidator } from "../components/FormValidator_copy.js"; 
+*/
 
 const initialCards = [
   {
@@ -189,6 +193,7 @@ function getCardElement(cardData) {
 
 //helper func
 function renderCard(cardData, container) {
+ console.log(cardData);          //debugging
   const cardElement = getCardElement(cardData);
   container.prepend(cardElement);
 } //end func
@@ -286,15 +291,23 @@ imageClosePreviewModal.addEventListener("click", () =>
 
 
 //Render Card with forEach() instead of for  loop
-initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
+//initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
+
+
+initialCards.forEach((cardData) => {
+  const card = new Card(cardData, "js-card-template");
+  card.getCard();
+});
+/* 
+const cardElement = card.getCard(); // Assuming the Card class has a method to get the card element
+cardListElement.prepend(cardElement); // Prepend the new card element to the cardListElement
+});
+*/
+
+////console.log(cardListElement);               //debugging
 /************************************************************************/
 
 
-/*debuggig below line 292
-const card = new Card(initialCards[0], "#js-card-template");
-//console.log(card);
-//console.log(card.testFunc());
-//card.getCard();
 const config = {
   formSelector: ".modal__form", 						//".popup__form",
   inputSelector: ".modal__field", 						//".popup__input",
@@ -304,13 +317,5 @@ const config = {
   errorClass: "modal__error_visible",
 };
 
-
-/*DEBUGGING BELOW *
-
-//profile edit button form vlidator
-const editFormValidator = new FormValidator(config, profileEditModal.querySelector("#js-modal-edit-form"));
-console.log(editFormValidator);
-
-const addFormValidator = new FormValidator(config, addCardModal.querySelector("#js-modal-add-card-form"));
-console.log(editFormValidator);
-*/
+//const card = new Card(initialCards[0], "#js-card-template");
+//console.log(card);

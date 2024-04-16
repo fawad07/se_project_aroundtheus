@@ -115,12 +115,16 @@ const config = {
   
  // enableValidation(config);
   
-  /*DEBUGGING BELOW LINE 100*/
+  /*DEBUGGING BELOW */
+
+  //validation 
+  
+
   const editFormValidator = new FormValidator(config);
   
 //profile edit button form vlidator
 //const editFormValidator = new FormValidator(config, profileEditModal.querySelector("#js-modal-edit-form"));
-console.log(editFormValidator);
+//console.log(editFormValidator);
 
 //const addFormValidator = new FormValidator(config, addCardModal.querySelector("#js-modal-add-card-form"));
 //console.log(editFormValidator);

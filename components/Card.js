@@ -16,11 +16,12 @@ constructor(data, cardSelector, handleImageClick)  {
     this._selector = cardSelector;
     this._handleImageClick = handleImageClick;
     
-
+/*
     console.log(this._data);         //debugging
     console.log(this);              //debuging
     console.log(this._data.name);       //debugging
     console.log(this._selector);            //debugging
+    */
     console.log(this._handleImageClick);            //debugging
 }//end contructor
 
@@ -49,10 +50,17 @@ getCard() {
     .content.firstElementChild
     .cloneNode(true);
 
+    const cardImageElement = this._cardEl.querySelector("#js-card__image");
+    const cardTitleElement = this._cardEl.querySelector("#js-card__title");
+    cardImageElement.src = this._data.link;
+    cardImageElement.alt = this._data.name;
+    cardTitleElement.textContent = this._data.name;
+
     //2. set event listeners
     this._setEventListeners();
 
     //3. return card
+    return this._cardEl;
 }//end func
 
 //Helper Functions
