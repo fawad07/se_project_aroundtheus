@@ -15,13 +15,7 @@ constructor(data, cardSelector, handleImageClick)  {
     this._data = data;
     this._selector = cardSelector;
     this._handleImageClick = handleImageClick;
-    
-/*
-    console.log(this._data);         //debugging
-    console.log(this);              //debuging
-    console.log(this._data.name);       //debugging
-    console.log(this._selector);            //debugging
-    */
+
     console.log(this._handleImageClick);            //debugging
 }//end contructor
 
@@ -76,3 +70,23 @@ _setDeleteHandler() {
 
 
 }//end class
+
+
+//option for set like and delete handlers
+/*
+ _setLikeHandler() {
+    const cardLikeButton = document.querySelector("#js-card__like-button");
+    
+    cardLikeButton.addEventListener("click", () => {
+      cardLikeButton.classList.toggle("card__like-button-active");
+    });
+  }
+
+  _setDeleteHandler() {
+    const cardDeleteButton = document.querySelector("#js-card__delete-image");
+    
+    cardDeleteButton.addEventListener("click", () => {
+      cardDeleteButton.closest('.card').remove();
+    });
+  }
+*/
