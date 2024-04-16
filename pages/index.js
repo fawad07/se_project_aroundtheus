@@ -162,7 +162,21 @@ function getCardElement(cardData) {
   /*----------------------------------------------------------*/
 
   //Card Image Preview - event listener
+function handleImageClick(cardData) {
+    //image view on image preview modal
+    const imageElement = imagePreviewModal.querySelector("#js-card__image");
+    imageElement.src = cardData.link;
+    imageElement.alt = cardData.name;
+    
+    //text view on the image view modal
+    const titleElement = imagePreviewModal.querySelector("#js-image-preview-card-title" );
+    titleElement.textContent = cardData.name;
 
+      //open image preview modal
+      openPopUp(imagePreviewModal);
+}//end func
+
+/*
   cardImageElement.addEventListener("click", () => {
     //image view on image preview modal
 
@@ -179,7 +193,7 @@ function getCardElement(cardData) {
     //open image preview modal
     openPopUp(imagePreviewModal);
   }); //end lambda func
-
+*/
   /*************************************************************/
   //delete btn
  setDeleteHandler(cardElement);
@@ -191,13 +205,14 @@ function getCardElement(cardData) {
   return cardElement;
 } //end func
 
+/*
 //helper func
 function renderCard(cardData, container) {
  console.log(cardData);          //debugging
   const cardElement = getCardElement(cardData);
   container.prepend(cardElement);
 } //end func
-
+*/
 
 function setLikeHandler(element) {
   //like button
@@ -295,15 +310,10 @@ imageClosePreviewModal.addEventListener("click", () =>
 
 
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#js-card-template");
+  const card = new Card(cardData, "#js-card-template", handleImageClick);
   const cardElement = card.getCard();
-  cardListElement.appendChild(cardElement);
+ cardListElement.prepend(cardElement);
 });
-/* 
-const cardElement = card.getCard(); // Assuming the Card class has a method to get the card element
-cardListElement.prepend(cardElement); // Prepend the new card element to the cardListElement
-});
-*/
 
 ////console.log(cardListElement);               //debugging
 /************************************************************************/

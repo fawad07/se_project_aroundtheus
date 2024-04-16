@@ -35,7 +35,11 @@ this._cardEl.querySelector("#js-card__delete-image")
 });
 
 //#js-card__image
-
+const cardImageElement = this._cardEl.querySelector("#js-card__image");
+ // Use the stored handleImageClick function
+ cardImageElement.addEventListener("click", () => {
+    this._handleImageClick(this._data);
+});
 }//end func
 
 getCard() {
