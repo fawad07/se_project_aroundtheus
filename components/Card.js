@@ -16,11 +16,10 @@ constructor(data, cardSelector, handleImageClick)  {
     this._selector = cardSelector;
     this._handleImageClick = handleImageClick;
 
-   // console.log(this._handleImageClick);            //debugging
+   console.log(this._setLikeHandler);            //debugging
 }//end contructor
 
 _setEventListeners() {
-//alert("We were inside the seEventLisener Method()");        //DEBUGGING
 
 //#js-card__like-buton
 this._cardEl.querySelector("#js-card__like-button")
@@ -63,13 +62,17 @@ getCard() {
 
 //Helper Functions
 _setLikeHandler() {
-    this._cardEl
-    .querySelector("#js-card__like-button")
-    .classList.toggle("class__like-button-active");    
+   const likeButton =  this._cardEl.querySelector("#js-card__like-button");
+    likeButton.addEventListener("click",  () => {
+        likeButton.classList.toggle("card__like-button-active");
+    }) ;   
 }//end func
 
 _setDeleteHandler() {
-    this._cardEl.querySelector("#js-card__delete-image").remove();
+   const deleteButton =  this._cardEl.querySelector("#js-card__delete-image");
+   deleteButton.addEventListener("click", () => {
+    this._cardEl.remove();
+   });
 }//end func
 
 

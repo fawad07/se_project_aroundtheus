@@ -231,7 +231,7 @@ function renderCard(cardData, container) {
 */
 
 
-
+/*
 function setLikeHandler(element) {
   //like button
   const cardLikeButton = element.querySelector("#js-card__like-button");
@@ -239,7 +239,7 @@ function setLikeHandler(element) {
     cardLikeButton.classList.toggle("card__like-button-active");
   });
 } //end like func
-
+*/
 
 
 function setDeleteHandler(element) {
