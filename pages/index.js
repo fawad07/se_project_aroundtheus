@@ -155,100 +155,14 @@ function handleModalCloseEscPressDown(evt) {
       openPopUp(imagePreviewModal);
 }//end func
 
-/*
-function getCardElement(cardData) {
-  //clone the template element with all its content and store it in a cardElement variable
-  const cardElement = cardTemplate.cloneNode(true);
-
-  //access the card title and image and store them in variables
-  const cardImageElement = cardElement.querySelector("#js-card__image");
-
-  const cardTitleElement = cardElement.querySelector("#js-card__title");
-
-  //set the path to the image to the link field of the object
-  cardImageElement.src = cardData.link;
-  //set the image alt text to the name field of the object
-  cardImageElement.alt = cardData.name;
-
-  //set the card title to the name field of the object, too
-  cardTitleElement.textContent = cardData.name;
-
-  /*----------------------------------------------------------*/
-  /*      Card image clicked		     				        */
-  /*----------------------------------------------------------*
-
-  //Card Image Preview - event listener
-function handleImageClick(cardData) {
-    //image view on image preview modal
-    const imageElement = imagePreviewModal.querySelector("#js-card__image");
-    imageElement.src = cardData.link;
-    imageElement.alt = cardData.name;
-    
-    //text view on the image view modal
-    const titleElement = imagePreviewModal.querySelector("#js-image-preview-card-title" );
-    titleElement.textContent = cardData.name;
-
-      //open image preview modal
-      openPopUp(imagePreviewModal);
-}//end func
-
-/*
-  cardImageElement.addEventListener("click", () => {
-    //image view on image preview modal
-
-    const imageElement = imagePreviewModal.querySelector("#js-card__image");
-    imageElement.src = cardData.link;
-    imageElement.alt = cardData.name;
-
-    //text view on the image view modal
-    const titleElement = imagePreviewModal.querySelector(
-      "#js-image-preview-card-title",
-    );
-    titleElement.textContent = cardData.name;
-
-    //open image preview modal
-    openPopUp(imagePreviewModal);
-  }); //end lambda func
-*/
-  /*************************************************************
-  //delete btn
- setDeleteHandler(cardElement);
-
-  //like button
-  setLikeHandler(cardElement);
-
-  //return the ready HTML element with the filled-in data
-  return cardElement;
-} //end func
 
 /*
 //helper func
 function renderCard(cardData, container) {
- console.log(cardData);          //debugging
-  const cardElement = getCardElement(cardData);
-  container.prepend(cardElement);
-} //end func
-*/
-
-
-/*
-function setLikeHandler(element) {
-  //like button
-  const cardLikeButton = element.querySelector("#js-card__like-button");
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-button-active");
-  });
-} //end like func
-*/
-
-
-function setDeleteHandler(element) {
-  const cardDeleteButton = element.querySelector("#js-card__delete-image");
-  cardDeleteButton.addEventListener("click", () => {
-    element.remove();
-  });
-} //end delete func
-
+	const cardElement = getCardElement(cardData);		//have no card element func anymore
+	container.prepend(cardElement);
+  } //end func
+*/  
 
 
 /*----------------------------------------------------------*/
@@ -305,11 +219,18 @@ addCardButtonForm.addEventListener("submit", (event) => {
   const name = newCardTitleInput.value; //newCardTitleValue
   const link = newCardUrlInput.value; //newCardUrlValue
 
+  //create new Card
+const dataCard = {name, link};				//collect new card data and link
+const newCard = new Card(dataCard, "#js-card-template", handleImageClick);		//pass new info to new card
+const elementCard = newCard.getCard();				
+  /*
   //call renderCArd func
-  renderCard({ name, link }, cardListElement);
+  renderCard({ name, link }, cardListElement);				//func does'nt exist anymore!!
+ */ 
   event.target.reset();
   closePopUp(addCardModal);
 });
+
 
 addCardmodalCloseButton.addEventListener("click", () =>
   closePopUp(addCardModal),
@@ -322,29 +243,50 @@ imageClosePreviewModal.addEventListener("click", () =>
   closePopUp(imagePreviewModal),
 );
 
+/**
+ * Param: None
+ * Description: builds the initial cards using the card class
+ */
+function cardView() {
+	//Intialize cards
+	initialCards.forEach((cardData) => {
+		const card = new Card(cardData, "#js-card-template", handleImageClick);
+		const cardElement = card.getCard();
+	cardListElement.prepend(cardElement);
+	});
+}//end func
 
-//Render Card with forEach() instead of for  loop
-//initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
 
+/**
+ * Param: None
+ * Description: all form validation initialize 
+ */
+function validateForms(opts) {
+	//initialize forms
+	const forms = document.querySelectorAll(config.formSelector);
+	//console.log(typeof(forms));		//debugging  type0f --> objects that is a NodeList
+	
+	const formArray = Array.from(forms);
+	formArray.forEach((form) => {
+		const validateForm = new FormValidator( opts, form);
+		console.log(validateForm);
+		validateForm.enableValidation();
+	});
+}//end func
 
-initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#js-card-template", handleImageClick);
-  const cardElement = card.getCard();
- cardListElement.prepend(cardElement);
-});
-
-////console.log(cardListElement);               //debugging
-/************************************************************************/
-
-
+/********************MAIN FILE BELOW******************** */
 const config = {
-  formSelector: ".modal__form", 						//".popup__form",
-  inputSelector: ".modal__field", 						//".popup__input",
-  submitButtonSelector: ".modal__button", 				//".popup__button",
-  inactiveButtonClass: ".modal__button_disabled",
-  inputErrorClass: "modal__error", 						//"popup__input_type_error",
-  errorClass: "modal__error_visible",
-};
+	formSelector: ".modal__form", 						//".popup__form",
+	inputSelector: ".modal__field", 						//".popup__input",
+	submitButtonSelector: ".modal__button", 				//".popup__button",
+	inactiveButtonClass: ".modal__button_disabled",
+	inputErrorClass: "modal__error", 						//"popup__input_type_error",
+	errorClass: "modal__error_visible",
+  };
 
-//const card = new Card(initialCards[0], "#js-card-template");
-//console.log(card);
+//initialize cards with cardView Func
+cardView();
+
+//all forms validation
+validateForms(config);
+

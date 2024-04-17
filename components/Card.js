@@ -15,10 +15,14 @@ constructor(data, cardSelector, handleImageClick)  {
     this._data = data;
     this._selector = cardSelector;
     this._handleImageClick = handleImageClick;
-
-   console.log(this._setLikeHandler);            //debugging
 }//end contructor
 
+/*
+    Params: None
+    Description: sets all the event listeners on the card including the delete button, the like button
+                        and image click
+
+*/
 _setEventListeners() {
 
 //#js-card__like-buton
@@ -41,17 +45,23 @@ const cardImageElement = this._cardEl.querySelector("#js-card__image");
 });
 }//end func
 
+/**
+ * Params: None
+ * Description: get card shows the card on the html with its elements of the card title, like
+ *                      button, card image and the delete button  
+ * return: return the card element for display on the html 
+ */
 getCard() {
     //1. get car view
-   // console.log(this._selector);            //debugging
-    this._cardEl = document.querySelector(this._selector).content.firstElementChild.cloneNode(true);
+    this._cardEl = document.querySelector(this._selector)
+                            .content
+                            .firstElementChild.cloneNode(true);
 
     const cardImageElement = this._cardEl.querySelector("#js-card__image");
     const cardTitleElement = this._cardEl.querySelector("#js-card__title");
     cardImageElement.src = this._data.link;
     cardImageElement.alt = this._data.name;
     cardTitleElement.textContent = this._data.name;
-    //console.log(this._cardEl);      //debugging
 
     //2. set event listeners
     this._setEventListeners();
@@ -61,6 +71,10 @@ getCard() {
 }//end func
 
 //Helper Functions
+/**
+ * Params:  None
+ * Description: function used to help the set event listeners function to toggle the like button 
+ */
 _setLikeHandler() {
    const likeButton =  this._cardEl.querySelector("#js-card__like-button");
     likeButton.addEventListener("click",  () => {
@@ -68,32 +82,15 @@ _setLikeHandler() {
     }) ;   
 }//end func
 
+/**
+ * Params:  None
+ * Description: function used to help the set event listeners function remove the card
+ *                      element from the html 
+ */
 _setDeleteHandler() {
    const deleteButton =  this._cardEl.querySelector("#js-card__delete-image");
    deleteButton.addEventListener("click", () => {
     this._cardEl.remove();
    });
 }//end func
-
-
 }//end class
-
-
-//option for set like and delete handlers
-/*
- _setLikeHandler() {
-    const cardLikeButton = document.querySelector("#js-card__like-button");
-    
-    cardLikeButton.addEventListener("click", () => {
-      cardLikeButton.classList.toggle("card__like-button-active");
-    });
-  }
-
-  _setDeleteHandler() {
-    const cardDeleteButton = document.querySelector("#js-card__delete-image");
-    
-    cardDeleteButton.addEventListener("click", () => {
-      cardDeleteButton.closest('.card').remove();
-    });
-  }
-*/

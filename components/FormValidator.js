@@ -7,11 +7,18 @@ export class FormValidator {
     */
     constructor(config, formElement) {
         this._config = config;
-        this._form = formElement;
+        this._form = formElement;                   //HTML element
     }//end constructor
 
 
     enableValidation() {
+        console.log(typeof(this._form));        //debugging typeof --> object
+        this._form.addEventListener("submit", (evt) => {
+          evt.preventDefault();
+        });
+        this. _setEventListeners(); 
+
+        /*
         this._form.forEach((formEl) => {
             formEl.addEventListener("submit" , (evt) => {
                 evt.preventDefault();
@@ -19,6 +26,8 @@ export class FormValidator {
             //setEventListeners(formEl, setup);
            this. _setEventListeners(); 
         });
+
+        */
     }//end func
 
     _setEventListeners() {
@@ -28,7 +37,7 @@ export class FormValidator {
         this._inputElement.forEach((inputEl) => {
           inputEl.addEventListener("input", (evt) => {
             // loop through all inputs to see if they are valid
-            checkInputValidity(this._form, inputEl, this._config);
+            this._checkInputValidity(this._form, inputEl, this._config);
            // toggleButtonState(this._inputElement, this._config.submitButton, this._config);     
             //togglebtn(inputEl, submitbtn,options)
             this._toggleButtonState();
@@ -70,7 +79,7 @@ export class FormValidator {
         } //end if
         else {
           //_hideInputError(formEls, inputEls, opt);
-          _hideInputError(inputEls);
+         this. _hideInputError(inputEls);
         } //end else
       } //end func
       
@@ -100,31 +109,3 @@ export class FormValidator {
       } //end func
 
 }//end class
-
-
-
-//MOVE TO INDEX.JS
-const config = {
-    formSelector: ".modal__form", 						//".popup__form",
-    inputSelector: ".modal__field", 						//".popup__input",
-    submitButtonSelector: ".modal__button", 				//".popup__button",
-    inactiveButtonClass: ".modal__button_disabled",
-    inputErrorClass: "modal__error", 						//"popup__input_type_error",
-    errorClass: "modal__error_visible",
-  };
-  
- // enableValidation(config);
-  
-  /*DEBUGGING BELOW */
-
-  //validation 
-  
-
-  const editFormValidator = new FormValidator(config);
-  
-//profile edit button form vlidator
-//const editFormValidator = new FormValidator(config, profileEditModal.querySelector("#js-modal-edit-form"));
-//console.log(editFormValidator);
-
-//const addFormValidator = new FormValidator(config, addCardModal.querySelector("#js-modal-add-card-form"));
-//console.log(editFormValidator);
