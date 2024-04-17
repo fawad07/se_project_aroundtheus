@@ -16,7 +16,7 @@ constructor(data, cardSelector, handleImageClick)  {
     this._selector = cardSelector;
     this._handleImageClick = handleImageClick;
 
-    console.log(this._handleImageClick);            //debugging
+   // console.log(this._handleImageClick);            //debugging
 }//end contructor
 
 _setEventListeners() {
@@ -52,7 +52,7 @@ getCard() {
     cardImageElement.src = this._data.link;
     cardImageElement.alt = this._data.name;
     cardTitleElement.textContent = this._data.name;
-    console.log(this._cardEl);      //debugging
+    //console.log(this._cardEl);      //debugging
 
     //2. set event listeners
     this._setEventListeners();
