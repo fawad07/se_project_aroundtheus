@@ -215,21 +215,26 @@ profileAddCardButton.addEventListener("click", () => openPopUp(addCardModal));
 const addCardButtonForm = addCardModal.querySelector("#js-modal-add-card-form");
 
 addCardButtonForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const name = newCardTitleInput.value; //newCardTitleValue
-  const link = newCardUrlInput.value; //newCardUrlValue
+	event.preventDefault();
+	const name = newCardTitleInput.value; //newCardTitleValue
+	const link = newCardUrlInput.value; //newCardUrlValue
 
-  //create new Card
-const dataCard = {name, link};				//collect new card data and link
-const newCard = new Card(dataCard, "#js-card-template", handleImageClick);		//pass new info to new card
-const elementCard = newCard.getCard();				
-  /*
-  //call renderCArd func
-  renderCard({ name, link }, cardListElement);				//func does'nt exist anymore!!
- */ 
-  event.target.reset();
-  closePopUp(addCardModal);
+	//create new Card
+	const dataCard = {name, link};				//collect new card data and link
+	createCard(dataCard);							//prepend card 
+	
+	event.target.reset();
+	closePopUp(addCardModal);
 });
+
+
+//func to make new card
+function createCard(data) {
+	const newCard = new Card(data, "#js-card-template", handleImageClick);		//pass new info to new card
+	const elementCard = newCard.getCard();	
+	cardListElement.prepend(elementCard);			//display card	
+}//end func
+
 
 
 addCardmodalCloseButton.addEventListener("click", () =>
@@ -273,6 +278,7 @@ function validateForms(opts) {
 		validateForm.enableValidation();
 	});
 }//end func
+
 
 /********************MAIN FILE BELOW******************** */
 const config = {
