@@ -155,10 +155,6 @@ function handleModalCloseEscPressDown(evt) {
       openPopUp(imagePreviewModal);
 }//end func
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 80714a7d9977670c7a3b1543e6ff8413cb65ca7d
 /*
 function getCardElement(cardData) {
   //clone the template element with all its content and store it in a cardElement variable
