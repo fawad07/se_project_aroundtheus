@@ -103,7 +103,6 @@ export class FormValidator {
 	 * Params:  input elements, text input
 	 * Description: takes the text input and checks the validity and shows or hide error respectively
 	 * return:  None
-	 *
 	 */
 	_checkInputValidity(inputEls) {
 		//if input !valid
