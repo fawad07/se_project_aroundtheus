@@ -1,6 +1,5 @@
-export class Card  {
-
-/*
+export class Card {
+	/*
     Cnstructor:
     Params:
     data: obj ontainig card text and img link
@@ -11,86 +10,89 @@ export class Card  {
                           takes a str selector, the card template tag
                           takes an image click handler  <-- elaborate on this later
 */
-constructor(data, cardSelector, handleImageClick)  {
-    this._data = data;
-    this._selector = cardSelector;
-    this._handleImageClick = handleImageClick;
-}//end contructor
+	constructor(data, cardSelector, handleImageClick) {
+		this._data = data;
+		this._selector = cardSelector;
+		this._handleImageClick = handleImageClick;
+	} //end contructor
 
-/*
+	/*
     Params: None
     Description: sets all the event listeners on the card including the delete button, the like button
                         and image click
 
 */
-_setEventListeners() {
+	_setEventListeners() {
+		//#js-card__like-buton
+		this._cardEl
+			.querySelector("#js-card__like-button")
+			.addEventListener("click", () => {
+				this._setLikeHandler();
+			});
 
-//#js-card__like-buton
-this._cardEl.querySelector("#js-card__like-button")
-.addEventListener("click",  () => {
-    this._setLikeHandler();
-}) ;
+		//#js-card__delete-image
+		this._cardEl
+			.querySelector("#js-card__delete-image")
+			.addEventListener("click", () => {
+				this._setDeleteHandler();
+			});
 
-//#js-card__delete-image
-this._cardEl.querySelector("#js-card__delete-image")
-.addEventListener("click", () => {
-    this._setDeleteHandler();
-});
+		//#js-card__image
+		const cardImageElement = this._cardEl.querySelector("#js-card__image");
+		// Use the stored handleImageClick function
+		cardImageElement.addEventListener("click", () => {
+			this._handleImageClick(this._data);
+		});
+	} //end func
 
-//#js-card__image
-const cardImageElement = this._cardEl.querySelector("#js-card__image");
- // Use the stored handleImageClick function
- cardImageElement.addEventListener("click", () => {
-    this._handleImageClick(this._data);
-});
-}//end func
+	/**
+	 * Params: None
+	 * Description: get card shows the card on the html with its elements of the card title, like
+	 *                      button, card image and the delete button
+	 * return: return the card element for display on the html
+	 */
+	getCard() {
+		//1. get car view
+		this._cardEl = document
+			.querySelector(this._selector)
+			.content.firstElementChild.cloneNode(true);
 
-/**
- * Params: None
- * Description: get card shows the card on the html with its elements of the card title, like
- *                      button, card image and the delete button  
- * return: return the card element for display on the html 
- */
-getCard() {
-    //1. get car view
-    this._cardEl = document.querySelector(this._selector)
-                            .content
-                            .firstElementChild.cloneNode(true);
+		const cardImageElement = this._cardEl.querySelector("#js-card__image");
+		const cardTitleElement = this._cardEl.querySelector("#js-card__title");
+		cardImageElement.src = this._data.link;
+		cardImageElement.alt = this._data.name;
+		cardTitleElement.textContent = this._data.name;
 
-    const cardImageElement = this._cardEl.querySelector("#js-card__image");
-    const cardTitleElement = this._cardEl.querySelector("#js-card__title");
-    cardImageElement.src = this._data.link;
-    cardImageElement.alt = this._data.name;
-    cardTitleElement.textContent = this._data.name;
+		//2. set event listeners
+		this._setEventListeners();
 
-    //2. set event listeners
-    this._setEventListeners();
+		//3. return card
+		return this._cardEl;
+	} //end func
 
-    //3. return card
-    return this._cardEl;
-}//end func
+	//Helper Functions
+	/**
+	 * Params:  None
+	 * Description: function used to help the set event listeners function to toggle the like button
+	 */
+	_setLikeHandler() {
+		const likeButton = this._cardEl.querySelector("#js-card__like-button");
+		likeButton.addEventListener("click", () => {
+			likeButton.classList.toggle("card__like-button-active");
+		});
+	} //end func
 
-//Helper Functions
-/**
- * Params:  None
- * Description: function used to help the set event listeners function to toggle the like button 
- */
-_setLikeHandler() {
-   const likeButton =  this._cardEl.querySelector("#js-card__like-button");
-    likeButton.addEventListener("click",  () => {
-        likeButton.classList.toggle("card__like-button-active");
-    }) ;   
-}//end func
-
-/**
- * Params:  None
- * Description: function used to help the set event listeners function remove the card
- *                      element from the html 
- */
-_setDeleteHandler() {
-   const deleteButton =  this._cardEl.querySelector("#js-card__delete-image");
-   deleteButton.addEventListener("click", () => {
-    this._cardEl.remove();
-   });
-}//end func
-}//end class
+	/**
+	 * Params:  None
+	 * Description: function used to help the set event listeners function remove the card
+	 *                      element from the html
+	 */
+	_setDeleteHandler() {
+		const deleteButton = this._cardEl.querySelector(
+			"#js-card__delete-image"
+		);
+		deleteButton.addEventListener("click", () => {
+			this._cardEl.remove();
+		});
+	} //end func
+} //end class
