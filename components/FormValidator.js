@@ -99,6 +99,12 @@ export class FormValidator {
 		} //end else
 	} //end func
 
+	/**
+	 * Params:  input elements, text input
+	 * Description: takes the text input and checks the validity and shows or hide error respectively
+	 * return:  None
+	 *
+	 */
 	_checkInputValidity(inputEls) {
 		//if input !valid
 		if (!inputEls.validity.valid) {
@@ -109,6 +115,11 @@ export class FormValidator {
 		} //end else
 	} //end func
 
+	/**
+   *Params: input element
+   Description: shows error message and adds on error class
+   *return: None 
+   */
 	_showInputError(inputEl) {
 		const errorMessageElement = this._form.querySelector(
 			`#${inputEl.id}-error`
@@ -122,6 +133,11 @@ export class FormValidator {
 		inputEl.classList.add(this._config.errorClass);
 	} //end func
 
+	/**
+	 * Params:  input element
+	 * Description: hides the input error and removes error class
+	 * return:  None
+	 */
 	_hideInputError(inputEl) {
 		const errorMessageElement = this._form.querySelector(
 			`#${inputEl.id}-error`
