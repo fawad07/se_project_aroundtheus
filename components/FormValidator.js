@@ -38,7 +38,9 @@ export class FormValidator {
 		this._inputElement.forEach((inputEl) => {
 			inputEl.addEventListener("input", (evt) => {
 				// loop through all inputs to see if they are valid
-				this._checkInputValidity(this._form, inputEl, this._config);
+				//this._checkInputValidity(this._form, inputEl, this._config);
+
+				this._checkInputValidity(inputEl);
 				// toggleButtonState(this._inputElement, this._config.submitButton, this._config);
 				//togglebtn(inputEl, submitbtn,options)
 				this._toggleButtonState();
@@ -123,7 +125,6 @@ export class FormValidator {
 		const errorMessageElement = this._form.querySelector(
 			`#${inputEl.id}-error`
 		);
-
 		inputEl.classList.add(this._config.inputErrorClass);
 		//get validation msg
 		//display err msg
