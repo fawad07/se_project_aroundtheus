@@ -1,11 +1,6 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js"; 
 
-/*
-import { Card } from "../components/Card_copy.js";
-import { FormValidator } from "../components/FormValidator_copy.js"; 
-*/
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -274,7 +269,6 @@ function validateForms(opts) {
 	const formArray = Array.from(forms);
 	formArray.forEach((form) => {
 		const validateForm = new FormValidator( opts, form);
-		console.log(validateForm);
 		validateForm.enableValidation();
 	});
 }//end func

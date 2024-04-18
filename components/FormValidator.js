@@ -12,7 +12,6 @@ export class FormValidator {
 
 
     enableValidation() {
-        console.log(typeof(this._form));        //debugging typeof --> object
         this._form.addEventListener("submit", (evt) => {
           evt.preventDefault();
         });
