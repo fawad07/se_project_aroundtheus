@@ -20,29 +20,16 @@ export class Card {
     Params: None
     Description: sets all the event listeners on the card including the delete button, the like button
                         and image click
-
-*/
+	*/
 	_setEventListeners() {
 		//#js-card__like-buton
-		this._cardEl
-			.querySelector("#js-card__like-button")
-			.addEventListener("click", () => {
-				this._setLikeHandler();
-			});
+		this._setLikeHandler();
 
 		//#js-card__delete-image
-		this._cardEl
-			.querySelector("#js-card__delete-image")
-			.addEventListener("click", () => {
-				this._setDeleteHandler();
-			});
+		this._setDeleteHandler();
 
 		//#js-card__image
-		const cardImageElement = this._cardEl.querySelector("#js-card__image");
-		// Use the stored handleImageClick function
-		cardImageElement.addEventListener("click", () => {
-			this._handleImageClick(this._data);
-		});
+		this._setImageClickHandler();
 	} //end func
 
 	/**
@@ -93,6 +80,21 @@ export class Card {
 		);
 		deleteButton.addEventListener("click", () => {
 			this._cardEl.remove();
+		});
+	} //end func
+
+	/**
+	 * Params:	None
+	 * Description:	func called by set event listeners and this handles what
+	 * 						happens when image clicked
+	 * return:	None
+	 */
+	_setImageClickHandler() {
+		//#js-card__image
+		const cardImageElement = this._cardEl.querySelector("#js-card__image");
+		// Use the stored handleImageClick function
+		cardImageElement.addEventListener("click", () => {
+			this._handleImageClick(this._data);
 		});
 	} //end func
 } //end class
