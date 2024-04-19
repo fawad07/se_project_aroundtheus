@@ -83,8 +83,8 @@
 	transition: opacity 0.6s;
 }
 
-.modal__save-button:hover {
-	cursor: pointer;
+.modal__save-button:hover:not(:disabled) {
+	cursor: default;
 	opacity: 0.6;
 }
 
