@@ -78,11 +78,20 @@ export class Card {
 		const deleteButton = this._cardEl.querySelector(
 			"#js-card__delete-image"
 		);
+		deleteButton.addEventListener("click", this._handleDelete);
+		/**WOKING CODE BELOW */
+		/*
 		deleteButton.addEventListener("click", () => {
 			this._cardEl.remove();
 			this._cardEl = null;
 		});
+		*/
 	} //end func
+
+	_handleDelete = () => {
+		this._cardEl.remove();
+		this._cardEl = null;
+	}; //end func
 
 	/**
 	 * Params:	None
