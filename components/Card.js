@@ -80,6 +80,7 @@ export class Card {
 		);
 		deleteButton.addEventListener("click", () => {
 			this._cardEl.remove();
+			this._cardEl = null;
 		});
 	} //end func
 

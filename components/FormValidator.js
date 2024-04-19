@@ -12,30 +12,20 @@ export class FormValidator {
 	enableValidation() {
 		this._form.addEventListener("submit", (evt) => {
 			evt.preventDefault();
+			this._buttonDisabled();
 		});
 		this._setEventListeners();
-
-		/*
-      this._form.forEach((formEl) => {
-          formEl.addEventListener("submit" , (evt) => {
-              evt.preventDefault();
-          });
-          //setEventListeners(formEl, setup);
-         this. _setEventListeners(); 
-      });
-
-      */
 	} //end func
 
 	_setEventListeners() {
-		this._inputElement = Array.from(
+		this._inputElements = Array.from(
 			this._form.querySelectorAll(this._config.inputSelector)
 		);
 		this._submitButton = this._form.querySelector(
 			this._config.submitButtonSelector
 		); //("#js-modal__button");
 
-		this._inputElement.forEach((inputEl) => {
+		this._inputElements.forEach((inputEl) => {
 			inputEl.addEventListener("input", (evt) => {
 				// loop through all inputs to see if they are valid
 				this._checkInputValidity(inputEl);
@@ -44,17 +34,15 @@ export class FormValidator {
 		});
 	} //end func
 
+	/**
+	 * Params: None
+	 * Description:	Chedks the input text of the place name and the url
+	 * returns: boolean value true/false
+	 */
 	_checkValidity() {
-		this._inputElement = Array.from(this._inputElement);
-
-		let isValid = true; //assume all inputs are initially true
-		this._inputElement.forEach((inputEl) => {
-			//if input valdity true
-			if (!inputEl.validity.valid) {
-				//if any inputs not valid isValid set to false
-				isValid = false;
-			} //end if
-		});
+		let isValid = this._inputElements.every(
+			(input) => input.validity.valid
+		);
 		return isValid;
 	} //end func
 
