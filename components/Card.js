@@ -63,7 +63,7 @@ export class Card {
 	 * Description: function used to help the set event listeners function to toggle the like button
 	 */
 	_setLikeHandler() {
-		const likeButton = this._cardEl.querySelector("#js-card__like-button");
+		const likeButton = this._cardEl.querySelector(".card__like-button");
 		likeButton.addEventListener("click", () => {
 			likeButton.classList.toggle("card__like-button-active");
 		});
@@ -75,9 +75,7 @@ export class Card {
 	 *                      element from the html
 	 */
 	_setDeleteHandler() {
-		const deleteButton = this._cardEl.querySelector(
-			"#js-card__delete-image"
-		);
+		const deleteButton = this._cardEl.querySelector(".card__delete-image");
 		deleteButton.addEventListener("click", this._handleDelete);
 		/**WOKING CODE BELOW */
 		/*
