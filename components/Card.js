@@ -22,13 +22,13 @@ export class Card {
                         and image click
 	*/
 	_setEventListeners() {
-		//#js-card__like-buton
+		//.card__like-buton
 		this._setLikeHandler();
 
-		//#js-card__delete-image
+		//.card__delete-image
 		this._setDeleteHandler();
 
-		//#js-card__image
+		//.card__image
 		this._setImageClickHandler();
 	} //end func
 
@@ -44,8 +44,8 @@ export class Card {
 			.querySelector(this._selector)
 			.content.firstElementChild.cloneNode(true);
 
-		const cardImageElement = this._cardEl.querySelector("#js-card__image");
-		const cardTitleElement = this._cardEl.querySelector("#js-card__title");
+		const cardImageElement = this._cardEl.querySelector(".card__image");
+		const cardTitleElement = this._cardEl.querySelector(".card__title");
 		cardImageElement.src = this._data.link;
 		cardImageElement.alt = this._data.name;
 		cardTitleElement.textContent = this._data.name;
@@ -98,8 +98,8 @@ export class Card {
 	 * return:	None
 	 */
 	_setImageClickHandler() {
-		//#js-card__image
-		const cardImageElement = this._cardEl.querySelector("#js-card__image");
+		//.card__image
+		const cardImageElement = this._cardEl.querySelector(".card__image");
 		// Use the stored handleImageClick function
 		cardImageElement.addEventListener("click", () => {
 			this._handleImageClick(this._data);
