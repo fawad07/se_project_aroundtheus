@@ -40,7 +40,7 @@ export class FormValidator {
 	 * returns: boolean value true/false
 	 */
 	_checkValidity() {
-		let isValid = this._inputElements.every(
+		const isValid = this._inputElements.every(
 			(input) => input.validity.valid
 		);
 		return isValid;
@@ -51,7 +51,7 @@ export class FormValidator {
 	 * Description:   disable button used by toggle button state
 	 * return:  None
 	 */
-	_buttonDisabled() {
+	_disabledButton() {
 		this._submitButton.classList.add(this._config.inactiveButtonClass);
 		this._submitButton.disabled = true;
 	} //end func
@@ -61,7 +61,7 @@ export class FormValidator {
 	 * Description:   enable button used by toggle button state
 	 * return:  None
 	 */
-	_buttonEnabled() {
+	_enabledButton() {
 		this._submitButton.classList.remove(this._config.inactiveButtonClass);
 		this._submitButton.disabled = false;
 	} //end func
@@ -76,11 +76,11 @@ export class FormValidator {
 
 		//if every input valid, enable button
 		if (isValid) {
-			this._buttonEnabled();
+			this._enabledButton();
 		} //end if
 		//if any input in-valid disable button
 		else {
-			this._buttonDisabled();
+			this._disabledButton();
 		} //end else
 	} //end func
 
