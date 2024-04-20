@@ -12,7 +12,7 @@ export class FormValidator {
 	enableValidation() {
 		this._form.addEventListener("submit", (evt) => {
 			evt.preventDefault();
-			this._buttonDisabled();
+			this._disabledButton();
 		});
 		this._setEventListeners();
 	} //end func
