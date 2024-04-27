@@ -22,16 +22,20 @@ export class Section {
 
 /**BELOW IS index.JS EXAMPLE 
  * 
- * //create class instances
+ * //		1. create class instances
  * const cardSection = new Section ({
  *          renderer: (item) => {
- *                  const eardElement = new Card(item, selector.cardTemplate);
+ *                  const eardElement = new Card(item, selector.cardTemplate,handleClick);
  *                  cardSection.additems(cardElement.getview())
  *                  },
  *        selector: selector.cardSection,
  *          });
  * 
+ * 			2. card preview
+ * const cardPreview = new popupWith iMage(selector.previewPopup)
+ * 
  * //initialize instances
  * CardSection.renderitems(initialCArds);
+ * cardpreview.setEventListeners()
  * 
  */
