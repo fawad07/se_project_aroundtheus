@@ -11,7 +11,7 @@ export class PopupWithImage extends Popup {
 		super(popupSelector);
 		console.log("PopUpWithImage Class:",popupSelector);				//debugging
 		
-		this._img = this._popupSelector.querySelector("#js-card__image");  //ERROR
+		this._img = this._popupElement.querySelector("#js-card__image");  //ERROR
 		this._title = this._popupElement.querySelector(
 			"#js-image-preview-card-title"
 		);
