@@ -276,11 +276,11 @@ function validateForms(opts) {
 
 /********************MAIN FILE BELOW******************** */
 const config = {
-	formSelector: ".modal__form", //".popup__form",
-	inputSelector: ".modal__field", //".popup__input",
-	submitButtonSelector: ".modal__button", //".popup__button",
+	formSelector: ".modal__form",									 //".popup__form",
+	inputSelector: ".modal__field", 									//".popup__input",
+	submitButtonSelector: ".modal__button", 					//".popup__button",
 	inactiveButtonClass: ".modal__button_disabled",
-	inputErrorClass: "modal__error", //"popup__input_type_error",
+	inputErrorClass: "modal__error", 								//"popup__input_type_error",
 	errorClass: "modal__error_visible",
 };
 

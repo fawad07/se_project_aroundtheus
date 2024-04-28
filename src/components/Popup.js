@@ -1,13 +1,17 @@
 export class Popup {
 	constructor(popUpSelector) {
 		this._selector = docuemnt.querySelector(popUpSelector);
-		this._closeButton = this._selector.querySelector(".modal__close-button");
+		this._closeButton = this._selector.querySelector(
+			".modal__close-button"
+		);
 	} //end contructor
 
 	open() {
 		this._selector.classList.add("modal_opened");
 		document.addEventListener("keydown", this._handleCloseEscPressDown);
-		this._selector.addEventListener("mousedown", this._handleCloseMouseClick
+		this._selector.addEventListener(
+			"mousedown",
+			this._handleCloseMouseClick
 		);
 	} //end func
 
@@ -15,7 +19,10 @@ export class Popup {
 	close() {
 		this._selector.classList.remove("modal_opened");
 		document.removeEventListener("keydown", this._handleCloseEscPressDown);
-		this._selector.removeEventListener("mousedown",this._handleCloseMouseClick);
+		this._selector.removeEventListener(
+			"mousedown",
+			this._handleCloseMouseClick
+		);
 	} //end func
 
 	/*
@@ -30,18 +37,20 @@ Description: gets the modal_opened class and
 		} //end if
 	} //end func
 
-/*
+	/*
 Param:	takes the event i.e mouse click 
 Description: closes pop up/ modal when clicked outside form 
 */
-_handleCloseMouseClick(evt) {
-	if (evt.target === evt.currentTarget) {
-		this.close();
-	} //end if
-} //end func
+	_handleCloseMouseClick(evt) {
+		if (evt.target === evt.currentTarget) {
+			this.close();
+		} //end if
+	} //end func
 
-setEventListeners() {
-	this._closeButton.addEventListener('click', this._handleCloseMouseClick);
-}//end func
-
+	setEventListeners() {
+		this._closeButton.addEventListener(
+			"click",
+			this._handleCloseMouseClick
+		);
+	} //end func
 } //end class
