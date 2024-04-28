@@ -104,7 +104,7 @@ const imageClosePreviewModal = document.querySelector(
 /*               			FUNCTIONS		                */
 /*----------------------------------------------------------*/
 
-//open modal when edit button clicked/modal
+//open modal when edit button clicked/modal			NEED TO REMOVE
 function openPopUp(modal) {
 	modal.classList.add("modal_opened");
 
@@ -112,14 +112,14 @@ function openPopUp(modal) {
 	modal.addEventListener("mousedown", handleModalCloseMouseClick);
 } //end func
 
-//close edit profile pop up/modal
+//close edit profile pop up/modal						NEED TO REMOVE
 function closePopUp(modal) {
 	modal.classList.remove("modal_opened");
 	document.removeEventListener("keydown", handleModalCloseEscPressDown);
 	modal.removeEventListener("mousedown", handleModalCloseMouseClick);
 } //end func
 
-/*
+/*																		NEED TO REMOVE
 Param:	takes the event i.e mouse click 
 Description: closes pop up/ modal when clicked outside form 
 */
@@ -129,7 +129,7 @@ function handleModalCloseMouseClick(evt) {
 	} //end if
 } //end func
 
-/*
+/*																		NEED TO REMOVE
 param: takes the event i.e key pressed
 Description: gets the modal_opened class and
 			checks if the esc key pressed only 
@@ -142,7 +142,9 @@ function handleModalCloseEscPressDown(evt) {
 	} //end if
 } //end func
 
-//Card Image Preview - event listener
+
+
+//Card Image Preview - event listener  USED LINE 239
 function handleImageClick(cardData) {
 	//image view on image preview modal
 	const imageElement = imagePreviewModal.querySelector("#js-card__image");
@@ -158,6 +160,9 @@ function handleImageClick(cardData) {
 	//open image preview modal
 	openPopUp(imagePreviewModal);
 } //end func
+
+
+
 
 /*
 //helper func
@@ -236,27 +241,35 @@ function createCard(data) {
 	cardListElement.prepend(elementCard); //display card
 } //end func
 
+
+/*
 addCardmodalCloseButton.addEventListener("click", () =>
 	closePopUp(addCardModal)
 );
 
-/*----------------------------------------------------------*/
-/*      Card preview modal close				       */
-/*----------------------------------------------------------*/
+/*----------------------------------------------------------*
+/*      Card preview modal close				       *
+/*----------------------------------------------------------*
 imageClosePreviewModal.addEventListener("click", () =>
 	closePopUp(imagePreviewModal)
 );
+*/
 
+
+/*																NEED TO REMOVE
 /**
  * Param: None
  * Description: builds the initial cards using the card class
- */
+ *
 function renderInitialCards() {
 	//Intialize cards
 	initialCards.forEach((cardData) => {
 		createCard(cardData);
 	});
 } //end func
+/*
+
+
 
 /**
  * Param: None
@@ -284,12 +297,23 @@ const config = {
 	errorClass: "modal__error_visible",
 };
 
-//initialize cards with cardView Func
-renderInitialCards();
+//initialize cards with cardView Func					NEED TO REMOVE
+//renderInitialCards();
 
 //all forms validation
 validateForms(config);
 
 //instance of popupWithImage
-const imagePopup = new PopupWithImage("#js-image-preview-modal");
-imagePopup.setEventListeners();
+//const imagePopup = new PopupWithImage("#js-image-preview-modal");
+//imagePopup.setEventListeners();
+
+const sectionCards = new Section({
+		items:	initialCards,
+		renderer:	(cardData) => {
+			const cardEl = createCard(cardData);
+			sectionCards.addItems(cardEl);
+		}
+	},
+	"#js-card__list"
+	);
+	sectionCards.renderItems();
