@@ -256,20 +256,6 @@ imageClosePreviewModal.addEventListener("click", () =>
 */
 
 
-/*																NEED TO REMOVE
-/**
- * Param: None
- * Description: builds the initial cards using the card class
- *
-function renderInitialCards() {
-	//Intialize cards
-	initialCards.forEach((cardData) => {
-		createCard(cardData);
-	});
-} //end func
-/*
-
-
 
 /**
  * Param: None
@@ -297,23 +283,22 @@ const config = {
 	errorClass: "modal__error_visible",
 };
 
-//initialize cards with cardView Func					NEED TO REMOVE
-//renderInitialCards();
 
 //all forms validation
 validateForms(config);
 
-//instance of popupWithImage
-//const imagePopup = new PopupWithImage("#js-image-preview-modal");
-//imagePopup.setEventListeners();
-
+//CARD SECTION
 const sectionCards = new Section({
-		items:	initialCards,
-		renderer:	(cardData) => {
+		items:	initialCards, renderer: createCard	},
+		/*(cardData) => {
 			const cardEl = createCard(cardData);
 			sectionCards.addItems(cardEl);
-		}
-	},
+		}  
+	},*/
 	"#js-card__list"
 	);
 	sectionCards.renderItems();
+
+//instance of popupWithImage
+const imagePopup = new PopupWithImage("#js-image-preview-modal");
+imagePopup.setEventListeners();

@@ -13,9 +13,7 @@ export class Section {
 	 */
 	constructor({ items, renderer }, containerSelector) {
 		this._renderer = renderer;
-		console.log("Section class Constructor: ", this._renderer);			//debugging
 		this._renderItems = items;
-
 		this._selector = document.querySelector(containerSelector);
 	} //end const
 
