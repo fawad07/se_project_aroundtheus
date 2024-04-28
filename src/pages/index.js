@@ -146,6 +146,8 @@ function handleModalCloseEscPressDown(evt) {
 
 //Card Image Preview - event listener  USED LINE 239
 function handleImageClick(cardData) {
+	imagePopup.open(cardData);
+	/*NEED TO REMOVE 
 	//image view on image preview modal
 	const imageElement = imagePreviewModal.querySelector("#js-card__image");
 	imageElement.src = cardData.link;
@@ -159,6 +161,7 @@ function handleImageClick(cardData) {
 
 	//open image preview modal
 	openPopUp(imagePreviewModal);
+	*/
 } //end func
 
 

@@ -1,12 +1,12 @@
 export class Popup {
 	constructor(popUpSelector) {
 		this._selector = document.querySelector(popUpSelector);
-		console.log("Popup Class:",popUpSelector);				//debugging
+		console.log("Popup Class:", popUpSelector); //debugging
 		this._closeButton = this._selector.querySelector(
 			".modal__close-button"
 		);
 
-		console.log("Popup Class:",this._closeButton);				//debugging
+		console.log("Popup Class:", this._closeButton); //debugging
 	} //end contructor
 
 	open() {
@@ -34,21 +34,21 @@ Description: gets the modal_opened class and
 			checks if the esc key pressed only 
 			than close the pop up/modal 
 */
-	_handleCloseEscPressDown(evt) {
+	_handleCloseEscPressDown = (evt) => {
 		if (evt.key === "Escape") {
 			this.close();
 		} //end if
-	} //end func
+	}; //end func
 
 	/*
 Param:	takes the event i.e mouse click 
 Description: closes pop up/ modal when clicked outside form 
 */
-	_handleCloseMouseClick(evt) {
+	_handleCloseMouseClick = (evt) => {
 		if (evt.target === evt.currentTarget) {
 			this.close();
 		} //end if
-	} //end func
+	}; //end func
 
 	setEventListeners() {
 		this._closeButton.addEventListener(
