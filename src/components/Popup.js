@@ -1,9 +1,12 @@
 export class Popup {
 	constructor(popUpSelector) {
-		this._selector = docuemnt.querySelector(popUpSelector);
+		this._selector = document.querySelector(popUpSelector);
+		console.log("Popup Class:",popUpSelector);				//debugging
 		this._closeButton = this._selector.querySelector(
 			".modal__close-button"
 		);
+
+		console.log("Popup Class:",this._closeButton);				//debugging
 	} //end contructor
 
 	open() {

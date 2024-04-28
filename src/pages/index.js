@@ -2,7 +2,7 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Popup } from "../components/Popup.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
-import { PopupWIthImage } from "../components/PopupWithImage.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
 //import { SOMETHING GOES HERE } from "../Utils/Constants.js";
@@ -276,11 +276,11 @@ function validateForms(opts) {
 
 /********************MAIN FILE BELOW******************** */
 const config = {
-	formSelector: ".modal__form",									 //".popup__form",
-	inputSelector: ".modal__field", 									//".popup__input",
-	submitButtonSelector: ".modal__button", 					//".popup__button",
+	formSelector: ".modal__form", //".popup__form",
+	inputSelector: ".modal__field", //".popup__input",
+	submitButtonSelector: ".modal__button", //".popup__button",
 	inactiveButtonClass: ".modal__button_disabled",
-	inputErrorClass: "modal__error", 								//"popup__input_type_error",
+	inputErrorClass: "modal__error", //"popup__input_type_error",
 	errorClass: "modal__error_visible",
 };
 
@@ -289,3 +289,7 @@ renderInitialCards();
 
 //all forms validation
 validateForms(config);
+
+//instance of popupWithImage
+const imagePopup = new PopupWithImage("#js-image-preview-modal");
+imagePopup.setEventListeners();
