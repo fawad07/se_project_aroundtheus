@@ -9,7 +9,7 @@ export class PopupWithForm extends Popup {
 	constructor(popupSelector, handleFormSubmit) {
 		super(popupSelector);
 		this._handleFormSubmit = handleFormSubmit;
-		this._formEl = this._popupSelector.querySelector(".modal__form");
+		this._formEl = this._selector.querySelector(".modal__form");
 	} //end const
 
 	/**

@@ -41,9 +41,7 @@ const initialCards = [
 /*----------------------------------------------------------*/
 /*                Profile edit button                       */
 /*----------------------------------------------------------*/
-
 const profileEditButton = document.querySelector("#js-profile-edit-button");
-
 const profileEditModal = document.querySelector("#js-profile-edit-modal");
 
 const profileCloseModal = profileEditModal.querySelector(
@@ -60,7 +58,7 @@ const profileDescriptionInput = document.querySelector(
 	"#js-profile-description-input"
 );
 
-const profileEditForm = profileEditModal.querySelector("#js-modal-edit-form");
+//const profileEditForm = profileEditModal.querySelector("#js-modal-edit-form");
 
 /*----------------------------------------------------------*/
 /*                Card Template/Element                             */
@@ -142,8 +140,6 @@ function handleModalCloseEscPressDown(evt) {
 	} //end if
 } //end func
 
-
-
 //Card Image Preview - event listener  USED LINE 239
 function handleImageClick(cardData) {
 	imagePopup.open(cardData);
@@ -164,9 +160,6 @@ function handleImageClick(cardData) {
 	*/
 } //end func
 
-
-
-
 /*
 //helper func
 function renderCard(cardData, container) {
@@ -183,6 +176,7 @@ function renderCard(cardData, container) {
 /*            profile edit button clicked                   */
 /*----------------------------------------------------------*/
 
+/*****													NEED 2 REMOVE TILL LN 190
 //profile edit button clicked -- pop up opened
 
 profileEditButton.addEventListener("click", () => {
@@ -190,18 +184,20 @@ profileEditButton.addEventListener("click", () => {
 	profileDescriptionInput.value = profileDescription.textContent; //pre-filled form with the profile description
 	openPopUp(profileEditModal);
 });
+*/
 
+/**NEED 2 REMOVE TILL LN 199 */
 /*----------------------------------------------------------*/
 /*            profile edit modal close btn clicked          */
 /*----------------------------------------------------------*/
 
 //close button in edit profile modal -- close pop-up
-profileCloseModal.addEventListener("click", () => closePopUp(profileEditModal));
+//profileCloseModal.addEventListener("click", () => closePopUp(profileEditModal));
 
 /*----------------------------------------------------------*/
 /*            profile edit modal save btn clicked           */
 /*----------------------------------------------------------*/
-
+/***															NEED 2 REMOVE TILL LN 212
 //profile save button clicked --> profile edit modal
 profileEditForm.addEventListener("submit", (event) => {
 	event.preventDefault();
@@ -210,6 +206,7 @@ profileEditForm.addEventListener("submit", (event) => {
 	profileDescription.textContent = profileDescriptionInput.value; //form text content goes to profile value
 	closePopUp(profileEditModal);
 });
+*/
 
 /*----------------------------------------------------------*/
 /*            profile add (+) btn clicked           */
@@ -244,7 +241,6 @@ function createCard(data) {
 	cardListElement.prepend(elementCard); //display card
 } //end func
 
-
 /*
 addCardmodalCloseButton.addEventListener("click", () =>
 	closePopUp(addCardModal)
@@ -257,8 +253,6 @@ imageClosePreviewModal.addEventListener("click", () =>
 	closePopUp(imagePreviewModal)
 );
 */
-
-
 
 /**
  * Param: None
@@ -276,6 +270,11 @@ function validateForms(opts) {
 	});
 } //end func
 
+function handleProfileSubmitForm({ name, description }) {
+	userInfo.setUserInfo({ name, description });
+	profileEditForm.close();
+} //end func
+
 /********************MAIN FILE BELOW******************** */
 const config = {
 	formSelector: ".modal__form", //".popup__form",
@@ -286,22 +285,36 @@ const config = {
 	errorClass: "modal__error_visible",
 };
 
-
 //all forms validation
 validateForms(config);
 
 //CARD SECTION
-const sectionCards = new Section({
-		items:	initialCards, renderer: createCard	},
-		/*(cardData) => {
-			const cardEl = createCard(cardData);
-			sectionCards.addItems(cardEl);
-		}  
-	},*/
+const sectionCards = new Section(
+	{
+		items: initialCards,
+		renderer: createCard,
+	},
 	"#js-card__list"
-	);
-	sectionCards.renderItems();
+);
+sectionCards.renderItems();
 
 //instance of popupWithImage
 const imagePopup = new PopupWithImage("#js-image-preview-modal");
 imagePopup.setEventListeners();
+
+//edit profile form
+const profileEditForm = new PopupWithForm(
+	"#js-profile-edit-modal",
+	handleProfileSubmitForm
+);
+profileEditButton.addEventListener("click", () => {
+	profileEditForm.open();
+	userInfo.getUserInfo();
+});
+profileEditForm.setEventListeners();
+
+//userInfo
+const userInfo = new UserInfo("#js-profile-title", "#js-profile-description");
+
+console.log(userInfo); //deugging
+console.log(profileEditForm); //deugging

@@ -8,7 +8,9 @@ export class UserInfo {
 	 */
 	constructor({ titleSelector, descriptionSelector }) {
 		this._titleElement = document.querySelector(titleSelector);
-		this._descriptionElement = doucument.querySelector(descriptionSelector);
+		console.log(this._titleElement);		//debugging
+
+		this._descriptionElement = document.querySelector(descriptionSelector);
 	} //end const
 
 	/**

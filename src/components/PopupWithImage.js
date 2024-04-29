@@ -9,9 +9,7 @@ export class PopupWithImage extends Popup {
 	 */
 	constructor(popupSelector) {
 		super(popupSelector);
-		console.log("PopUpWithImage Class:",popupSelector);				//debugging
-		
-		this._img = this._selector.querySelector("#js-card__image");  //ERROR
+		this._img = this._selector.querySelector("#js-card__image");
 		this._title = this._selector.querySelector(
 			"#js-image-preview-card-title"
 		);
