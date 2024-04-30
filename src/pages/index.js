@@ -319,10 +319,9 @@ profileEditButton.addEventListener("click", () => {
 profileEditForm.setEventListeners();
 
 //userInfo
-const userInfo = new UserInfo({
-	titleSelector: "#js-profile-title",
-	descriptionSelector: "#js-profile-description",
-});
+const userInfo = new UserInfo(
+{ titleSelector: "#js-profile-title", 
+descriptionSelector: "#js-profile-description" });
 
 //console.log(userInfo); //deugging
 //console.log(profileEditForm); //deugging
