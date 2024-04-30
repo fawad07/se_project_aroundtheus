@@ -8,8 +8,10 @@ export class UserInfo {
 	 */
 	constructor({ titleSelector, descriptionSelector }) {
 		this._titleElement = document.querySelector(titleSelector);
-		//console.log(this._titleElement);		//debugging
+	//	console.log("html element: ",  this._titleElement);		//debugging
+		
 		this._descriptionElement = document.querySelector(descriptionSelector);
+	//	console.log("html element: ",  this._descriptionElement);		//debugging
 	} //end const
 
 	/**
@@ -19,14 +21,14 @@ export class UserInfo {
 	 * 				i.e. name and description/about
 	 */
 	getUserInfo() {
-		console.log("inside getUserInfo(): ", this._titleElement.textContent); //debugging
+		//console.log("inside getUserInfo(): ", this._titleElement.textContent); //debugging
 
 		this._userInfo = {
 			name: this._titleElement.textContent,
 			description: this._descriptionElement.textContent,
 		}; //end object
 
-		console.log("inside getUserInfo(): ", this._userInfo); //debugging
+		//console.log("inside getUserInfo(), userInfo name: ", this._userInfo.name); //debugging
 		
 		return this._userInfo;
 	} //end func

@@ -234,8 +234,6 @@ addCardButtonForm.addEventListener("submit", (event) => {
 	closePopUp(addCardModal);
 });
 
-
-
 /*
 addCardmodalCloseButton.addEventListener("click", () =>
 	closePopUp(addCardModal)
@@ -248,9 +246,6 @@ imageClosePreviewModal.addEventListener("click", () =>
 	closePopUp(imagePreviewModal)
 );
 *********************************************************************/
-
-
-
 
 //func to make new card
 function createCard(data) {
@@ -275,8 +270,10 @@ function validateForms(opts) {
 } //end func
 
 function handleProfileSubmitForm({ name, description }) {
-	console.log("index.js: profileSubmitForm",  name);		//debugging
-	userInfo.setUserInfo({ name, description });
+	console.log("index.js: profileSubmitForm:", name); //debugging
+	console.log("index.js: profileSubmitForm:", description); //debugging
+
+	 userInfo.setUserInfo({ name, description });
 	profileEditForm.close();
 } //end func
 
@@ -312,16 +309,21 @@ const profileEditForm = new PopupWithForm(
 	"#js-profile-edit-modal",
 	handleProfileSubmitForm
 );
+
 profileEditButton.addEventListener("click", () => {
+	const currentUser = userInfo.getUserInfo();
+	profileTitleInput.value = currentUser.name;
+	profileDescriptionInput.value = currentUser.description;
+	console.log(userInfo.getUserInfo()); //debugging
 	profileEditForm.open();
-	userInfo.getUserInfo();
 });
 profileEditForm.setEventListeners();
 
 //userInfo
-const userInfo = new UserInfo(
-{ titleSelector: "#js-profile-title", 
-descriptionSelector: "#js-profile-description" });
+const userInfo = new UserInfo({
+	titleSelector: "#js-profile-title",
+	descriptionSelector: "#js-profile-description",
+});
 
 //console.log(userInfo); //deugging
 //console.log(profileEditForm); //deugging
