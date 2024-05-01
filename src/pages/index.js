@@ -5,35 +5,9 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
-//import { SOMETHING GOES HERE } from "../Utils/Constants.js";
+import utils from "../Utils/Constants.js";
 import "../pages/index.css";
 
-const initialCards = [
-	{
-		name: "Yosemite Valley",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-	},
-	{
-		name: "Lake Louise",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-	},
-	{
-		name: "Bald Mountains",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-	},
-	{
-		name: "Latemar",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-	},
-	{
-		name: "Vanoise National Park",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-	},
-	{
-		name: "Lago di Braies",
-		link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-	},
-];
 /*----------------------------------------------------------*/
 /*                 ELEMENTS                                 */
 /*----------------------------------------------------------*/
@@ -41,7 +15,6 @@ const initialCards = [
 /*----------------------------------------------------------*/
 /*                Profile edit button                       */
 /*----------------------------------------------------------*/
-const profileEditButton = document.querySelector("#js-profile-edit-button");
 const profileEditModal = document.querySelector("#js-profile-edit-modal");
 
 const profileCloseModal = profileEditModal.querySelector(
@@ -71,12 +44,10 @@ const cardListElement = document.querySelector("#js-card__list");
 
 const addCardModal = document.querySelector("#js-add-card-modal"); //grab card modal/popup from html
 
-const addCardForm = addCardModal.querySelector("#js-modal-add-card-form");
+//const addCardForm = addCardModal.querySelector("#js-modal-add-card-form");
 
-const newCardTitleInput = addCardForm.querySelector("#js-add-card-title-input");
-const newCardUrlInput = addCardForm.querySelector(
-	"#js-add-card-description-input"
-);
+//const newCardTitleInput = addCardForm.querySelector("#js-add-card-title-input");
+//const newCardUrlInput = addCardForm.querySelector("#js-add-card-description-input");
 
 /*----------------------------------------------------------*/
 /*                Profile add button                        */
@@ -127,7 +98,7 @@ function handleModalCloseMouseClick(evt) {
 	} //end if
 } //end func
 
-/*																		NEED TO REMOVE
+/*					NEED TO REMOVE -- add card form handled
 param: takes the event i.e key pressed
 Description: gets the modal_opened class and
 			checks if the esc key pressed only 
@@ -171,20 +142,6 @@ function renderCard(cardData, container) {
 /*----------------------------------------------------------*/
 /*               EVENT LISTNERS			             */
 /*----------------------------------------------------------*/
-
-/*----------------------------------------------------------*/
-/*            profile edit button clicked                   */
-/*----------------------------------------------------------*/
-
-/*****													NEED 2 REMOVE TILL LN 190
-//profile edit button clicked -- pop up opened
-
-profileEditButton.addEventListener("click", () => {
-	profileTitleInput.value = profileTitle.textContent; //pre-filled form with the profile title
-	profileDescriptionInput.value = profileDescription.textContent; //pre-filled form with the profile description
-	openPopUp(profileEditModal);
-});
-*/
 
 /**NEED 2 REMOVE TILL LN 199 */
 /*----------------------------------------------------------*/
@@ -249,19 +206,22 @@ imageClosePreviewModal.addEventListener("click", () =>
 
 //func to make new card
 function createCard(data) {
-	const newCard = new Card(data, "#js-card-template", handleImageClick); //pass new info to new card
+	const newCard = new Card(
+		data,
+		utils.htmlIds.cardTemplate,
+		handleImageClick
+	); //pass new info to new card
 	const elementCard = newCard.getCard();
 	cardListElement.prepend(elementCard); //display card
 } //end func
+
 /**
  * Param: None
  * Description: all form validation initialize
  */
 function validateForms(opts) {
 	//initialize forms
-	const forms = document.querySelectorAll(config.formSelector);
-	//console.log(typeof(forms));		//debugging  type0f --> objects that is a NodeList
-
+	const forms = document.querySelectorAll(utils.config.formSelector);
 	const formArray = Array.from(forms);
 	formArray.forEach((form) => {
 		const validateForm = new FormValidator(opts, form);
@@ -269,78 +229,60 @@ function validateForms(opts) {
 	});
 } //end func
 
-function handleProfileSubmitForm({ name, description }) {
-	console.log("index.js: profileSubmitForm:", name); //debugging
-	console.log("index.js: profileSubmitForm:", description); //debugging
-
-	//userInfo.setUserInfo({ name, description });
-	userInfo.setUserInfo({ name: name, description: description });
+function handleProfileSubmitForm(userData) {
+	userInfo.setUserInfo({
+		name: userData.title,
+		description: userData.description,
+	});
 	profileEditForm.close();
 } //end func
 
 function handleAddCardSubmitForm({ name, link }) {
+	console.log("Inside handle Add Card Submit form:");
 	//add new card i.e. Create Card
 } //end func
 
 /********************MAIN FILE BELOW******************** */
-const config = {
-	formSelector: ".modal__form", //".popup__form",
-	inputSelector: ".modal__field", //".popup__input",
-	submitButtonSelector: ".modal__button", //".popup__button",
-	inactiveButtonClass: ".modal__button_disabled",
-	inputErrorClass: "modal__error", //"popup__input_type_error",
-	errorClass: "modal__error_visible",
-};
 
 //all forms validation
-validateForms(config);
+validateForms(utils.config);
 
 //CARD SECTION
 const sectionCards = new Section(
 	{
-		items: initialCards,
+		items: utils.initialCards,
 		renderer: createCard,
 	},
-	"#js-card__list"
+	utils.htmlIds.cardList
 );
 sectionCards.renderItems();
 
 //instance of popupWithImage
-const imagePopup = new PopupWithImage("#js-image-preview-modal");
+const imagePopup = new PopupWithImage(utils.htmlIds.imagePreviewPopup);
 imagePopup.setEventListeners();
 
 //edit profile form
 const profileEditForm = new PopupWithForm(
-	"#js-profile-edit-modal",
+	utils.htmlIds.profileEditPopup,
 	handleProfileSubmitForm
 );
 
-profileEditButton.addEventListener("click", () => {
+utils.profileEditButton.addEventListener("click", () => {
 	const currentUser = userInfo.getUserInfo();
-
-	//debugiing statement below
-	console.log(
-		"inside profileEditButton EventListener: ",
-		currentUser.name,
-		currentUser.description
-	); //debugging
-
 	profileTitleInput.value = currentUser.name;
-	console.log("Profile Title input: ", profileTitleInput);
-
 	profileDescriptionInput.value = currentUser.description;
-	console.log("Profile Description input: ", profileDescriptionInput); //debugging
-	console.log("currentUser: ",  currentUser); //debugging
-
 	profileEditForm.open();
 });
 profileEditForm.setEventListeners();
 
 //userInfo
 const userInfo = new UserInfo({
-	titleSelector: "#js-profile-title",
-	descriptionSelector: "#js-profile-description",
+	titleSelector: utils.htmlIds.profileTitle,
+	descriptionSelector: utils.htmlIds.profileDescription,
 });
 
-//console.log(userInfo); //deugging
-//console.log(profileEditForm); //deugging
+//Add card Form
+const addCardForm = new PopupWithForm(
+	utils.htmlIds.addCardPopup,
+	handleAddCardSubmitForm
+);

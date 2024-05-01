@@ -8,10 +8,10 @@ export class UserInfo {
 	 */
 	constructor({ titleSelector, descriptionSelector }) {
 		this._titleElement = document.querySelector(titleSelector);
-	//	console.log("html element: ",  this._titleElement);		//debugging
-		
+		//	console.log("html element: ",  this._titleElement);		//debugging
+
 		this._descriptionElement = document.querySelector(descriptionSelector);
-	//	console.log("html element: ",  this._descriptionElement);		//debugging
+		//	console.log("html element: ",  this._descriptionElement);		//debugging
 	} //end const
 
 	/**
@@ -29,7 +29,7 @@ export class UserInfo {
 		}; //end object
 
 		//console.log("inside getUserInfo(), userInfo name: ", this._userInfo.name); //debugging
-		
+
 		return this._userInfo;
 	} //end func
 
@@ -39,9 +39,6 @@ export class UserInfo {
 	 * 						submission of the profile form.
 	 */
 	setUserInfo({ name, description }) {
-		console.log("inside setUserInfo", name);		//debugging
-		console.log("inside setUserInfo", description);		//debugging
-		
 		this._titleElement.textContent = name;
 		this._descriptionElement.textContent = description;
 	} //end func
