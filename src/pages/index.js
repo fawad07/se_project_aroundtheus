@@ -273,8 +273,13 @@ function handleProfileSubmitForm({ name, description }) {
 	console.log("index.js: profileSubmitForm:", name); //debugging
 	console.log("index.js: profileSubmitForm:", description); //debugging
 
-	 userInfo.setUserInfo({ name, description });
+	//userInfo.setUserInfo({ name, description });
+	userInfo.setUserInfo({ name: name, description: description });
 	profileEditForm.close();
+} //end func
+
+function handleAddCardSubmitForm({ name, link }) {
+	//add new card i.e. Create Card
 } //end func
 
 /********************MAIN FILE BELOW******************** */
@@ -312,9 +317,21 @@ const profileEditForm = new PopupWithForm(
 
 profileEditButton.addEventListener("click", () => {
 	const currentUser = userInfo.getUserInfo();
+
+	//debugiing statement below
+	console.log(
+		"inside profileEditButton EventListener: ",
+		currentUser.name,
+		currentUser.description
+	); //debugging
+
 	profileTitleInput.value = currentUser.name;
+	console.log("Profile Title input: ", profileTitleInput);
+
 	profileDescriptionInput.value = currentUser.description;
-	console.log(userInfo.getUserInfo()); //debugging
+	console.log("Profile Description input: ", profileDescriptionInput); //debugging
+	console.log("currentUser: ",  currentUser); //debugging
+
 	profileEditForm.open();
 });
 profileEditForm.setEventListeners();

@@ -39,7 +39,9 @@ export class UserInfo {
 	 * 						submission of the profile form.
 	 */
 	setUserInfo({ name, description }) {
-		console.log(name);		//debugging
+		console.log("inside setUserInfo", name);		//debugging
+		console.log("inside setUserInfo", description);		//debugging
+		
 		this._titleElement.textContent = name;
 		this._descriptionElement.textContent = description;
 	} //end func
