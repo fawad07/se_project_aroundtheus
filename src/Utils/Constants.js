@@ -101,5 +101,4 @@ const utils = {
 	initialCards,
 	htmlIds,
 };
-
 export default utils;
