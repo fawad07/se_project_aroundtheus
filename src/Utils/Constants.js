@@ -70,7 +70,7 @@ const config = {
 const htmlIds = {
 	cardList: "#js-card__list",
 	cardTemplate: "#js-card-template",
-    addCardPopup: "#js-add-card-modal",
+	addCardPopup: "#js-add-card-modal",
 	imagePreviewPopup: "#js-image-preview-modal",
 	profileEditPopup: "#js-profile-edit-modal",
 	profileTitle: "#js-profile-title",
@@ -80,23 +80,23 @@ const htmlIds = {
 // Bundle the variables and objects into a single object
 const utils = {
 	profileEditButton,
-	profileEditModal,           //NOT USED
-	profileCloseModal,          //NOT USED
+	profileEditModal, //NOT USED
+	profileCloseModal, //NOT USED
 	profileTitle,
 	profileDescription,
 	profileTitleInput,
 	profileDescriptionInput,
 	profileEditForm,
 	cardTemplate,
-	cardListElement,                //NOT USED
-	addCardModal,                   //NOT USED
+	cardListElement, //NOT USED
+	addCardModal, //NOT USED
 	addCardForm,
 	newCardTitleInput,
 	newCardUrlInput,
 	profileAddCardButton,
-	addCardmodalCloseButton,            //NOT USED
-	imagePreviewModal,                      //NOT USED
-	imageClosePreviewModal,             //NOT USED
+	addCardmodalCloseButton, //NOT USED
+	imagePreviewModal, //NOT USED
+	imageClosePreviewModal, //NOT USED
 	config,
 	initialCards,
 	htmlIds,
