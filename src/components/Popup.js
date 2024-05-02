@@ -1,16 +1,15 @@
 export class Popup {
 	constructor(popUpSelector) {
-		this._selector = document.querySelector(popUpSelector);
-		this._closeButton = this._selector.querySelector(
+		this._popupElement = document.querySelector(popUpSelector);
+		this._closeButton = this._popupElement.querySelector(
 			".modal__close-button"
 		);
-
 	} //end contructor
 
 	open() {
-		this._selector.classList.add("modal_opened");
+		this._popupElement.classList.add("modal_opened");
 		document.addEventListener("keydown", this._handleCloseEscPressDown);
-		this._selector.addEventListener(
+		this._popupElement.addEventListener(
 			"mousedown",
 			this._handleCloseMouseClick
 		);
@@ -18,9 +17,9 @@ export class Popup {
 
 	//close edit profile pop up/modal
 	close() {
-		this._selector.classList.remove("modal_opened");
+		this._popupElement.classList.remove("modal_opened");
 		document.removeEventListener("keydown", this._handleCloseEscPressDown);
-		this._selector.removeEventListener(
+		this._popupElement.removeEventListener(
 			"mousedown",
 			this._handleCloseMouseClick
 		);
