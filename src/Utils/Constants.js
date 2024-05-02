@@ -80,32 +80,26 @@ const htmlIds = {
 // Bundle the variables and objects into a single object
 const utils = {
 	profileEditButton,
-	profileEditModal,
-	profileCloseModal,
+	profileEditModal,           //NOT USED
+	profileCloseModal,          //NOT USED
 	profileTitle,
 	profileDescription,
 	profileTitleInput,
 	profileDescriptionInput,
 	profileEditForm,
 	cardTemplate,
-	cardListElement,
-	addCardModal,
+	cardListElement,                //NOT USED
+	addCardModal,                   //NOT USED
 	addCardForm,
 	newCardTitleInput,
 	newCardUrlInput,
 	profileAddCardButton,
-	addCardmodalCloseButton,
-	imagePreviewModal,
-	imageClosePreviewModal,
+	addCardmodalCloseButton,            //NOT USED
+	imagePreviewModal,                      //NOT USED
+	imageClosePreviewModal,             //NOT USED
 	config,
 	initialCards,
 	htmlIds,
 };
 
 export default utils;
-
-//REMEMBER TO IMPORT THE UTILS.JS IN INDEX.JS
-/*Sample usage in index.js:
-    1. utils.config.formSelector
-    2. utils.addCardForm
-*/
