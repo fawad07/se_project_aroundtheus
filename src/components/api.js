@@ -1,120 +1,113 @@
 class Api {
+	/**
+	 * param: options
+	 * Description: constructor takes a options obj that carries a bae url
+	 *                      and headers that contain auth and content-type
+	 */
+	constructor(options) {
+		this._baseUrl = options.baseUrl;
+		this._header = options.headers;
+	} //end constructor
 
-    /**
-     * param: options
-     * Description: constructor takes a options obj that carries a bae url
-     *                      and headers that contain auth and content-type 
-     */
-    constructor(options){
-        this._baseUrl = options.baseUrl;
-        this._header = options.headers;
-    }//end constructor
+	// Helper function to handle fetch response and errors
+	_handleResponse(res) {
+		if (res.ok) {
+			return res.json();
+		} //end if
+		return Promise.reject(`Error: ${res.status}`);
+	} //end func
 
-    /****************Card routes***************/
-    //GET /cards – Get all cards
-    /**
-     * Description: gets all initial cards form url
-     *                      json obj returned if status 200 
-     */
-    getInitialCards() {
-        return fetch(`${this._baseUrl}/cards`, {
-            method: "GET",
-            headers: this._header
-        }).then((res) => {
-            if(res.ok){
-                return res.json();
-            }//end if
-            // if the server returns an error, reject the promise
-            return Promise.reject(`Error: ${res.status}`);
-        })
-        .catch((err) => {
-            console.error(err);         // log the error to the console
-   });
-    }//end func
+	/****************Card routes***************/
+	// 1. GET /cards – Get all cards
+	/**
+	 * Description: gets all initial cards form url
+	 *                      json obj returned if status 200
+	 */
+	getInitialCards() {
+		return fetch(`${this._baseUrl}/cards`, {
+			method: "GET",
+			headers: this._header,
+		})
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.error(err); // log the error to the console
+			});
+	} //end func
 
-    //POST /cards – Create a card
-    /**
-     * 
-     * param: name, url/link 
-     * Description: takes the title of the card and a url 
-     *                      makes a POST request to add card on server
-     */
-    createCard({name, link}) {
-        return fetch(`${this._baseUrl}/cards`, {
-            method: "POST",
-            headers: this._header,
-            body: JSON.stringify(name, link)
-        }).then((res) => {
-            if(res.ok){
-                return res.json();
-            }//end if
-            return Promise.reject(`Error: ${res.status}`);
-        }).catch((err) => {
-            console.error(err);
-        });
-    }//end func
+	// 2. POST /cards – Create a card
+	/**
+	 *
+	 * param: name, url/link
+	 * Description: takes the title of the card and a url
+	 *                      makes a POST request to add card on server
+	 */
+	createCard({ name, link }) {
+		return fetch(`${this._baseUrl}/cards`, {
+			method: "POST",
+			headers: this._header,
+			body: JSON.stringify({ name, link }),
+		})
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.error(err);
+			});
+	} //end func
 
-    //DELETE /cards/:cardId – Delete a card
-    deleteCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/:${cardId}`, {
-            method: "DELETE",
-            headers: this._header,
-        }).then( (res) => {
-            if(res.ok) {
-                return res.json();
-            }//end if
-            return Promise.reject(`Error: ${res.status}`);
+	// 3. DELETE /cards/:cardId – Delete a card
+	deleteCard(cardId) {
+		return fetch(`${this._baseUrl}/cards/${cardId}`, {
+			method: "DELETE",
+			headers: this._header,
+		})
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.error(err);
+			});
+	} //end func
 
-        }).catch( (err) => {
-            console.error(err);
-        });
-    }//end func
+	// 4. PUT /cards/:cardId/likes – Like a card
 
+	// 5. DELETE /cards/:cardId/likes – Dislike a card
 
+	/*********User routes****************** */
+	// 6. GET /users/me – Get the current user’s info
+	getUserInfo() {
+		return fetch(`${this._baseUrl}/users/me`, {
+			method: "GET",
+			headers: this._header,
+		})
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.error(err); // log the error to the console
+			});
+	} //end func
 
-    //PUT /cards/:cardId/likes – Like a card
+	// 7. PATCH /users/me – Update your profile information
+	updateUserInfo(name, description) {
+		return fetch(`${this._baseUrl}/users/me`, {
+			method: "PATCH",
+			headers: this._header,
+			body: JSON.stringify({ name, description }),
+		})
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.error(`Error: ${err}`);
+			});
+	} //end func
 
-    //DELETE /cards/:cardId/likes – Dislike a card
-
-
-
-    /*********User routes****************** */
-    //GET /users/me – Get the current user’s info
-    getUserInfo() {
-        return fetch(`${this._baseUrl}/users/me`, {
-            method: "GET",
-            headers: this._header
-        }).then((res) => {
-            if(res.ok){
-                return res.json();
-            }//end if
-            // if the server returns an error, reject the promise
-            return Promise.reject(`Error: ${res.status}`);
-        }).catch((err) => {
-             console.error(err);         // log the error to the console
-        });
-
-    }//end func
-
-    //PATCH /users/me – Update your profile information
-
-    //PATCH /users/me/avatar – Update avatar
-    updateUserImage(url){
-        return fetch(`${this.baseUrl}/users/me/avatar`, {
-            method: "PATCH",
-            headers: this._header,
-            body: JSON.stringify(url)
-        }).then( (res) => {
-            if(res.ok) {
-                return res.json();
-            }//end if
-            return Promise.reject(`Error: ${res.status}`);
-        }).catch( (err) => {
-            console.error(err);
-        });
-    }//end func
-}//end class
-
+	// 8. PATCH /users/me/avatar – Update avatar
+	updateUserImage(url) {
+		return fetch(`${this._baseUrl}/users/me/avatar`, {
+			method: "PATCH",
+			headers: this._header,
+			body: JSON.stringify({ url }),
+		})
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.error(err);
+			});
+	} //end func
+} //end class
 
 /**
  * // Create an instance of the Api class
