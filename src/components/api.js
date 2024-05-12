@@ -10,11 +10,14 @@ class Api {
         this._header = options.headers;
     }//end constructor
 
-    //Card routes
+    /****************Card routes***************/
     //GET /cards – Get all cards
-
+    /**
+     * Description: gets all initial cards form url
+     *                      json obj returned if status 200 
+     */
     getInitialCards() {
-        return fetch(`${this._baseUrl}`, {
+        return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
             headers: this._header
         }).then((res) => {
@@ -30,12 +33,50 @@ class Api {
     }//end func
 
     //POST /cards – Create a card
+    /**
+     * 
+     * param: name, url/link 
+     * Description: takes the title of the card and a url 
+     *                      makes a POST request to add card on server
+     */
+    createCard({name, link}) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: "POST",
+            headers: this._header,
+            body: JSON.stringify(name, link)
+        }).then((res) => {
+            if(res.ok){
+                return res.json();
+            }//end if
+            return Promise.reject(`Error: ${res.status}`);
+        }).catch((err) => {
+            console.error(err);
+        });
+    }//end func
 
     //DELETE /cards/:cardId – Delete a card
+    deleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/:${cardId}`, {
+            method: "DELETE",
+            headers: this._header,
+        }).then( (res) => {
+            if(res.ok) {
+                return res.json();
+            }//end if
+            return Promise.reject(`Error: ${res.status}`);
+
+        }).catch( (err) => {
+            console.error(err);
+        });
+    }//end func
+
+
 
     //PUT /cards/:cardId/likes – Like a card
 
     //DELETE /cards/:cardId/likes – Dislike a card
+
+
 
     /*********User routes****************** */
     //GET /users/me – Get the current user’s info
@@ -58,7 +99,20 @@ class Api {
     //PATCH /users/me – Update your profile information
 
     //PATCH /users/me/avatar – Update avatar
-
+    updateUserImage(url){
+        return fetch(`${this.baseUrl}/users/me/avatar`, {
+            method: "PATCH",
+            headers: this._header,
+            body: JSON.stringify(url)
+        }).then( (res) => {
+            if(res.ok) {
+                return res.json();
+            }//end if
+            return Promise.reject(`Error: ${res.status}`);
+        }).catch( (err) => {
+            console.error(err);
+        });
+    }//end func
 }//end class
 
 
