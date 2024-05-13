@@ -58,11 +58,30 @@ function validateForms(opts) {
  * Description:	Sets the change/edit name/title and the description of the profile
  */
 function handleProfileSubmitForm(userData) {
+
+	/*console.log(userData);	//debugging
+	return;*/
+
+	// Call the updateUserInfo method from the Api class
+	api.updateUserInfo(userData.title, userData.description)
+		.then((data) => {
+			userInfo.setUserInfo({
+				name: userData.title,
+				description: userData.description,
+			});
+			profileEditForm.close();
+		})
+		.catch((err) => {
+			console.error(`Error updating new information: ${err}`);
+		});
+
+	/*
 	userInfo.setUserInfo({
 		name: userData.title,
 		description: userData.description,
 	});
 	profileEditForm.close();
+	*/
 } //end func
 
 /**
@@ -89,11 +108,13 @@ const opts = {
 	baseUrl: "https://around-api.en.tripleten-services.com/v1",
 	headers: {
 		authorization: "d50bb54b-1efc-4b8a-a5b1-3d5c72d6a1b0",
-		"content-type": "application/json",
+		"Content-Type": "application/json",
 	},
 };
 let sectionCards;
 const api = new Api(opts);
+
+/** 1. GET ALL CARDS ROUTE */
 api.getInitialCards()
 	.then((data) => {
 		//handle the response data
@@ -112,6 +133,14 @@ api.getInitialCards()
 	.catch((err) => {
 		console.error(`Error getting cards: ${err} `);
 	});
+
+/************************************************ */
+
+/**USER ROUTES
+ * 1. UPDATE USER ROUTE
+ */
+
+/************************************************ */
 
 //POP UP WITH IMAGE
 const imagePopup = new PopupWithImage(utils.htmlIds.imagePreviewPopup);

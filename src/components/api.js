@@ -88,11 +88,12 @@ export class Api {
 			method: "PATCH",
 			headers: this._header,
 			body: JSON.stringify({ name, description }),
-		})
+		});
+		/*
 			.then(this._handleResponse)
 			.catch((err) => {
 				console.error(`Error: ${err}`);
-			});
+			});*/
 	} //end func
 
 	// 8. PATCH /users/me/avatar – Update avatar
