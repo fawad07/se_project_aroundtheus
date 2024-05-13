@@ -1,4 +1,4 @@
-class Api {
+export class Api {
 	/**
 	 * param: options
 	 * Description: constructor takes a options obj that carries a bae url
@@ -134,6 +134,8 @@ class Api {
 				// Append both the link and name elements to the cardsContainer div
 				cardsContainer.appendChild(cardNameElement);
 				cardsContainer.appendChild(cardLinkElement);
+
+				https://assets.editorial.aetnd.com/uploads/2019/03/topic-london-gettyimages-760251843-feature.jpg
 			});
 		});
  * 

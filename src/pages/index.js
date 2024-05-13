@@ -5,6 +5,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/api.js";
 import utils from "../Utils/Constants.js";
 import "../pages/index.css";
 
@@ -84,14 +85,33 @@ function handleAddCardSubmitForm() {
 validateForms(utils.config);
 
 //CARD SECTION
-const sectionCards = new Section(
-	{
-		items: utils.initialCards,
-		renderer: createCard,
+const opts = {
+	baseUrl: "https://around-api.en.tripleten-services.com/v1",
+	headers: {
+		authorization: "d50bb54b-1efc-4b8a-a5b1-3d5c72d6a1b0",
+		"content-type": "application/json",
 	},
-	utils.htmlIds.cardList
-);
-sectionCards.renderItems();
+};
+let sectionCards;
+const api = new Api(opts);
+api.getInitialCards()
+	.then((data) => {
+		//handle the response data
+		console.log("Data from Api: ", data); //debugging statement
+
+		// Create a new Section instance with the fetched data and render the items
+		sectionCards = new Section(
+			{
+				items: data,
+				renderer: createCard,
+			},
+			utils.htmlIds.cardList
+		);
+		sectionCards.renderItems();
+	})
+	.catch((err) => {
+		console.error(`Error getting cards: ${err} `);
+	});
 
 //POP UP WITH IMAGE
 const imagePopup = new PopupWithImage(utils.htmlIds.imagePreviewPopup);
