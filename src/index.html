@@ -25,12 +25,12 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-			src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="avatar"
-            class="profile__image"
-          />
-          <div class="profile__info">
+			<img
+					src="<%=require('./images/jacques-cousteau.jpg')%>"
+					alt="avatar"
+					class="profile__image"
+			/>
+		  <div class="profile__info">
             <h1 class="profile__title" id="js-profile-title">Jacques Cousteau</h1>
             <button type="button" class="profile__edit-button" id="js-profile-edit-button"></button>
             <p class="profile__description" id="js-profile-description">Explorer</p>
@@ -121,6 +121,14 @@
 			<p class="modal__image-title" id="js-image-preview-card-title">Replace with card Title</p>
 		</div>		
 	</div>
+
+	<div class="modal" id="js-card-delete-modal">
+		<div class="modal__container">
+			<button class="modal__close-button" id="js-card-delete-close-modal"></button>
+			<p class="modal__title">Are you Sure?</p>
+			<button class="modal__yes-button" id="js-card-delete-modal">YES</button>
+			
+		</div>
 
 	
 	
