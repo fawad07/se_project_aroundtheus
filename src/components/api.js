@@ -87,7 +87,7 @@ export class Api {
 		return fetch(`${this._baseUrl}/users/me`, {
 			method: "PATCH",
 			headers: this._header,
-			body: JSON.stringify({ name, description }),
+			body: JSON.stringify({ name, about: description }),
 		});
 		/*
 			.then(this._handleResponse)

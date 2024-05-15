@@ -129,7 +129,7 @@ function handleImageClick(cardData) {
 	imagePopup.open(cardData);
 } //end func
 
-const deleteCardPopup = 
+//const deleteCardPopup = 
 
 
 /**
@@ -187,10 +187,26 @@ function handleAddCardSubmitForm() {
 	const name = utils.newCardTitleInput.value; //newCardTitleValue
 	const link = utils.newCardUrlInput.value; //newCardUrlValue
 	const dataCard = { name, link }; //collect new card data and link
-	createCard(dataCard);
+
+	// Send a POST request to add a new card to the server
+	//console.log(dataCard);	//debugging
+	api.createCard( { name: dataCard.name, link: dataCard.link}).then( (newCard) =>{
+		
+		//console.log(dataCard.name, dataCard.link);		//debugging
+		createCard(newCard); // Render the newly created card
+		addCardForm.close(); // Close the add card form
+
+	}).catch( (err) => {
+		console.log(err);
+		console.error(`Error adding new Card: ${err}`);
+
+	});
+/*  REPLACE WITH API CALL -- inside the then block
+	//createCard(dataCard);
 
 	//close addCardPopup
 	addCardForm.close();
+	*/
 } //end func
 
 /********************INSTANISATIONS BELOW******************** */
