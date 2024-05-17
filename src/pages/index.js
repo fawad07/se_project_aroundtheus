@@ -89,7 +89,7 @@ function handleProfileSubmitForm(userData) {
 
 function handleDeleteCard(card){
 	/**deleteCardModal open -- need to create HTML element like modal_opened */
-	console.log("inside handle delete card func: ",deleteCardModal);		//debugging
+	console.log("inside handle delete card func: ",card._id);		//debugging
 
 	//open delete card modal/popup
 	deleteCardModal.open();
