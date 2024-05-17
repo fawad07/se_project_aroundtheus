@@ -93,8 +93,17 @@ function handleDeleteCard(card){
 		console.log(err);
 		console.error(`Error removing Card: ${err}`);
 	});
-
 }//end func
+
+function handleProfilePicture(url){
+	api.updateUserImage(url).then( (res) => {
+		userInfo.setProfilePicture(res);
+		profilePictureModal.close();
+	})
+	.catch( (err) => {
+		console.err("Picture Not Update", err);
+	});
+}
 
 /**__________________________________________ */
 
@@ -102,6 +111,12 @@ const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteC
 deleteCardModal.setEventListeners();
 console.log(deleteCardModal);
 
+const profilePictureModal = new PopupWithForm("#js-profile-picture-modal", handleProfilePicture);
+/*profilePictureModal.addEventListener("submit", (evt) => {
+	evt.preventDefault();
+	profilePictureModal.open();
+})*/
+//profilePictureModal.setEventListener();
 
 
 //EDIT PROFILE FORM

@@ -6,12 +6,16 @@ export class UserInfo {
 	 * 						 one for the profile’s name element
 	 * 						 and one for its job element.
 	 */
-	constructor({ titleSelector, descriptionSelector }) {
+	constructor({
+		titleSelector,
+		descriptionSelector,
+		profilePictureSelector,
+	}) {
 		this._titleElement = document.querySelector(titleSelector);
-		//	console.log("html element: ",  this._titleElement);		//debugging
-
 		this._descriptionElement = document.querySelector(descriptionSelector);
-		//	console.log("html element: ",  this._descriptionElement);		//debugging
+		this._profilePictureElement = document.querySelector(
+			profilePictureSelector
+		);
 	} //end const
 
 	/**
@@ -42,4 +46,8 @@ export class UserInfo {
 		this._titleElement.textContent = name;
 		this._descriptionElement.textContent = description;
 	} //end func
+
+	setProfilePicture({ profilePicture }) {
+		this._profilePictureElement.src = profilePicture;
+	}
 } //end class
