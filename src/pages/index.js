@@ -9,6 +9,14 @@ import { Api } from "../components/api.js";
 import utils from "../Utils/Constants.js";
 import "../pages/index.css";
 
+//USER INFO
+const userInfo = new UserInfo({
+	titleSelector: utils.htmlIds.profileTitle,
+	descriptionSelector: utils.htmlIds.profileDescription,
+});
+
+
+
 /****** API CALLS***** */
 
 //CARD SECTION
@@ -41,6 +49,7 @@ api.getInitialCards()
 		sectionCards.renderItems();
 	})
 	.catch((err) => {
+		console.log(err);	//debugging statement
 		console.error(`Error getting cards: ${err} `);
 	});
 
@@ -84,7 +93,7 @@ function handleDeleteCard(card){
 
 	//open delete card modal/popup
 	deleteCardModal.open();
-	api.deleteCard(card).then( () => {
+	api.deleteCard(card._id).then( () => {
 		//deleteCardModal close;
 		deleteCardModal.close();
 		card.remove();
@@ -103,9 +112,31 @@ function handleProfilePicture(url){
 	.catch( (err) => {
 		console.err("Picture Not Update", err);
 	});
-}
+}//end func
+
+function handleCardLike(card){
+    card._isLiked !== true ? api.disLikeCard(card._id).then( (res) => {
+        card._isLIked = true;
+        card.toogleLike();
+    })
+    .catch( (err) => {
+        console.error(err);
+    }) : api.likeCard(card._id).then( (res) => {
+        card._isLiked = false;
+        card.toggleLike();
+    })
+    .catch( (err) => {
+        console.log(err);
+        console.error(err);
+    });
+}//end func
 
 /**__________________________________________ */
+
+const cardDeleteButton = document.querySelector(".card__delete-image");
+console.log(cardDeleteButton);	//debugging statement
+
+cardDeleteButton.addEventListener("click", () => handleDeleteCard);
 
 const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteCard);
 deleteCardModal.setEventListeners();
@@ -172,6 +203,8 @@ function createCard(data) {
 		data,
 		utils.htmlIds.cardTemplate,
 		handleImageClick,
+		handleDeleteCard,
+		handleCardLike
 	); //pass new info to new card
 	const elementCard = newCard.getCard();
 	sectionCards.addItems(elementCard);
@@ -226,9 +259,10 @@ function handleAddCardSubmitForm() {
 
 //ALL FORMS VALIDATIONS
 validateForms(utils.config);
-
+/*
 //USER INFO
 const userInfo = new UserInfo({
 	titleSelector: utils.htmlIds.profileTitle,
 	descriptionSelector: utils.htmlIds.profileDescription,
 });
+*/

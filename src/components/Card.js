@@ -10,10 +10,20 @@ export class Card {
                           takes a str selector, the card template tag
                           takes an image click handler  <-- elaborate on this later
 */
-	constructor(data, cardSelector, handleImageClick) {
+	constructor(
+		data,
+		cardSelector,
+		handleImageClick,
+		handleDeleteCard,
+		handleLikeCard
+	) {
 		this._data = data;
 		this._selector = cardSelector;
 		this._handleImageClick = handleImageClick;
+		this._handleDeleteCard = handleDeleteCard;
+		this._handleLikeCard = handleLikeCard;
+		this._cardId = data._id;
+		this._isLiked = data.isLiked;
 	} //end contructor
 
 	/*
@@ -65,8 +75,16 @@ export class Card {
 	_setLikeHandler() {
 		const likeButton = this._cardEl.querySelector(".card__like-button");
 		likeButton.addEventListener("click", () => {
-			likeButton.classList.toggle("card__like-button-active");
+			likeButton.classList.toggle("card__like-button_active");
 		});
+		
+		if (this._isLiked) {
+			likeButton.classList.add("card__like-button_active");
+		} //end if
+		else {
+			likeButton.classList.remove("card__like-button_active");
+		} //end else
+		
 	} //end func
 
 	/**
@@ -105,4 +123,13 @@ export class Card {
 			this._handleImageClick(this._data);
 		});
 	} //end func
+
+
+/*
+	toogleLike(){
+		const likeBtn = this._cardEl.querySelector(".card__like-button");
+		likeBtn.classList.toggle("card__like-button_active");
+		console.log("TOGGLE LIKE CLICKED");		//debugging
+	}//end func
+	*/
 } //end class
