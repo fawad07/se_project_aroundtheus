@@ -15,6 +15,8 @@ const userInfo = new UserInfo({
 	descriptionSelector: utils.htmlIds.profileDescription,
 });
 
+const cardDeleteButton = utils.cardTemplate.querySelector(".card__delete-image");
+
 
 
 /****** API CALLS***** */
@@ -133,7 +135,6 @@ function handleCardLike(card){
 
 /**__________________________________________ */
 
-const cardDeleteButton = utils.cardTemplate.querySelector(".card__delete-image");
 console.log(cardDeleteButton);	//debugging statement
 
 cardDeleteButton.addEventListener("click", () => handleDeleteCard);

@@ -4,7 +4,9 @@ export class Card {
     Params:
     data: obj ontainig card text and img link
     cardSelector: selector id i.e js-something orrosponding <template> element
-    handleImageClick: func that handlesopening ofpreview modal
+    handleImageClick: func that handles opening of preview modal
+	handleDeleteCard: func handles the detetion of card
+	handleLikeCard: func toggles like/unlike of card
 
     Description:  takes data obj that contains name and img link
                           takes a str selector, the card template tag
