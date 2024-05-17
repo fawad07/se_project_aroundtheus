@@ -133,7 +133,7 @@ function handleCardLike(card){
 
 /**__________________________________________ */
 
-const cardDeleteButton = document.querySelector(".card__delete-image");
+const cardDeleteButton = utils.cardTemplate.querySelector(".card__delete-image");
 console.log(cardDeleteButton);	//debugging statement
 
 cardDeleteButton.addEventListener("click", () => handleDeleteCard);
