@@ -66,8 +66,30 @@ export class Api {
 	} //end func
 
 	// 4. PUT /cards/:cardId/likes – Like a card
+	likeCard(cardId){
+		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+		method:  "PUT",
+		headers: this._header })
+		.then(this._handleResponse)
+		.catch( (err) => {
+			console.log(err);
+			console.error("Error liking Card: ". err);
+		});
+	}
+
 
 	// 5. DELETE /cards/:cardId/likes – Dislike a card
+	disLikeCard(cardId){
+		return fetch(`${this._baseUrl}`/cards/`${cardId}`/likes, {
+			method: "DELETE",
+			headers: this._header
+		})
+		.then(this._handleResponse)
+		.catch( (err) => {
+			console.log(err);
+			console.error("ERROR: ", err);
+		});
+	}
 
 	/*********User routes****************** */
 	// 6. GET /users/me – Get the current user’s info

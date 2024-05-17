@@ -12,8 +12,8 @@ import "../pages/index.css";
 /****** API CALLS***** */
 
 //CARD SECTION
-const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteCard);
-deleteCardModal.setEventListeners();
+
+
 const opts = {
 	baseUrl: "https://around-api.en.tripleten-services.com/v1",
 	headers: {
@@ -80,7 +80,7 @@ function handleProfileSubmitForm(userData) {
 
 function handleDeleteCard(card){
 	/**deleteCardModal open -- need to create HTML element like modal_opened */
-	console.log(deleteCardModal);		//debugging
+	console.log("inside handle delete card func: ",deleteCardModal);		//debugging
 
 	//open delete card modal/popup
 	deleteCardModal.open();
@@ -97,6 +97,12 @@ function handleDeleteCard(card){
 }//end func
 
 /**__________________________________________ */
+
+const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteCard);
+deleteCardModal.setEventListeners();
+console.log(deleteCardModal);
+
+
 
 //EDIT PROFILE FORM
 const profileEditForm = new PopupWithForm(
