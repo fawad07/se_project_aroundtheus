@@ -89,16 +89,16 @@ function handleProfileSubmitForm(userData) {
 } //end func
 
 
-function handleDeleteCard(card){
+function handleDeleteCard(cardElement, cardId){
 	/**deleteCardModal open -- need to create HTML element like modal_opened */
-	console.log("inside handle delete card func: ",card._id);		//debugging
+	console.log("inside handle delete card func: ",cardId);		//debugging
 
 	//open delete card modal/popup
 	deleteCardModal.open();
-	api.deleteCard(card._id).then( () => {
+	api.deleteCard(cardId).then( () => {
 		//deleteCardModal close;
 		deleteCardModal.close();
-		card.remove();
+		cardElement.remove();
 
 	}).catch( (err) => {
 		console.log(err);
@@ -118,8 +118,8 @@ function handleProfilePicture(url){
 
 function handleCardLike(card){
     card._isLiked !== true ? api.disLikeCard(card._id).then( (res) => {
-        card._isLIked = true;
-        card.toogleLike();
+        card._isLiked = true;
+        card.toogleLike();		//need to look at 
     })
     .catch( (err) => {
         console.error(err);
@@ -137,7 +137,7 @@ function handleCardLike(card){
 
 console.log(cardDeleteButton);	//debugging statement
 
-cardDeleteButton.addEventListener("click", () => handleDeleteCard(card));
+cardDeleteButton.addEventListener("click", () => handleDeleteCard);
 
 const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteCard);
 deleteCardModal.setEventListeners();

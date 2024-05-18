@@ -96,7 +96,10 @@ export class Card {
 	 */
 	_setDeleteHandler() {
 		const deleteButton = this._cardEl.querySelector(".card__delete-image");
-		deleteButton.addEventListener("click", this._handleDelete);
+		deleteButton.addEventListener("click", () =>{
+			 this._handleDeleteCard(this._cardEl, this._cardId);
+			});
+		//deleteButton.addEventListener("click", this._handleDelete);
 		/**WOKING CODE BELOW */
 		/*
 		deleteButton.addEventListener("click", () => {
@@ -106,7 +109,8 @@ export class Card {
 		*/
 	} //end func
 
-	_handleDelete = () => {
+
+	remove = () => {
 		this._cardEl.remove();
 		this._cardEl = null;
 	}; //end func
@@ -127,11 +131,11 @@ export class Card {
 	} //end func
 
 
-/*
+
 	toogleLike(){
 		const likeBtn = this._cardEl.querySelector(".card__like-button");
 		likeBtn.classList.toggle("card__like-button_active");
 		console.log("TOGGLE LIKE CLICKED");		//debugging
 	}//end func
-	*/
+	
 } //end class
