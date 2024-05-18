@@ -137,7 +137,7 @@ function handleCardLike(card){
 
 console.log(cardDeleteButton);	//debugging statement
 
-cardDeleteButton.addEventListener("click", () => handleDeleteCard);
+cardDeleteButton.addEventListener("click", () => handleDeleteCard(card));
 
 const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteCard);
 deleteCardModal.setEventListeners();
