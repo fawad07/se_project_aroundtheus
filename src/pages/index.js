@@ -6,6 +6,7 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/api.js";
+import { PopupDeleteConfirm } from "../components/PopupDeleteConfirm.js";
 import utils from "../Utils/Constants.js";
 import "../pages/index.css";
 
@@ -89,23 +90,27 @@ function handleProfileSubmitForm(userData) {
 } //end func
 
 
-function handleDeleteCard(cardElement, cardId){
+function handleDeleteCard(card){
 	/**deleteCardModal open -- need to create HTML element like modal_opened */
-	console.log("inside handle delete card func: ",cardId);		//debugging
+	//console.log("inside handle delete card func: ",cardId);		//debugging
 
 	//open delete card modal/popup
 	deleteCardModal.open();
-	//run api when deletecard modal form is submit/btn clicked in popup/modal
-	api.deleteCard(cardId).then( () => {
-		//deleteCardModal close;
-		deleteCardModal.close();
-		cardElement.remove();
-
-	}).catch( (err) => {
-		console.log(err);
-		console.error(`Error removing Card: ${err}`);
+	
+	//submit action 
+	deleteCardModal.setSubmitAction( () => {
+		api.deleteCard(card._id).then( () => {
+			deleteCardModal.close();
+			card.remove();
+		})
+		.catch( (err) => {
+			console.log(err);
+			console.error(err);
+		});
 	});
 }//end func
+
+
 
 function handleProfilePicture(url){
 	api.updateUserImage(url).then( (res) => {
@@ -136,14 +141,17 @@ function handleCardLike(card){
 
 /**__________________________________________ */
 
+/*
 console.log("card Delete button: ", cardDeleteButton);	//debugging statement
 
 cardDeleteButton.addEventListener("click", (evt) => {
 	evt.preventDefault();
 	//handleDeleteCard
 });
+*/
 
-const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteCard);
+
+const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
 deleteCardModal.setEventListeners();
 console.log("DELETE CARD MODAL: ",deleteCardModal);
 
