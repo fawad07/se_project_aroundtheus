@@ -95,6 +95,7 @@ function handleDeleteCard(cardElement, cardId){
 
 	//open delete card modal/popup
 	deleteCardModal.open();
+	//run api when deletecard modal form is submit/btn clicked in popup/modal
 	api.deleteCard(cardId).then( () => {
 		//deleteCardModal close;
 		deleteCardModal.close();
@@ -135,13 +136,16 @@ function handleCardLike(card){
 
 /**__________________________________________ */
 
-console.log(cardDeleteButton);	//debugging statement
+console.log("card Delete button: ", cardDeleteButton);	//debugging statement
 
-cardDeleteButton.addEventListener("click", () => handleDeleteCard);
+cardDeleteButton.addEventListener("click", (evt) => {
+	evt.preventDefault();
+	//handleDeleteCard
+});
 
 const deleteCardModal = new PopupWithForm("#js-card-delete-modal", handleDeleteCard);
 deleteCardModal.setEventListeners();
-console.log(deleteCardModal);
+console.log("DELETE CARD MODAL: ",deleteCardModal);
 
 const profilePictureModal = new PopupWithForm("#js-profile-picture-modal", handleProfilePicture);
 /*profilePictureModal.addEventListener("submit", (evt) => {

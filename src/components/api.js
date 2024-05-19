@@ -159,6 +159,7 @@ export class Api {
 				cardsContainer.appendChild(cardLinkElement);
 
 				https://assets.editorial.aetnd.com/uploads/2019/03/topic-london-gettyimages-760251843-feature.jpg
+				https://skeehive.com/wp-content/uploads/2023/04/Utah-Landscape-Photograph-Badlands.jpg
 			});
 		});
  * 
