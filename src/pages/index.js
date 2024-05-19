@@ -90,18 +90,18 @@ function handleProfileSubmitForm(userData) {
 } //end func
 
 
-function handleDeleteCard(card){
+function handleDeleteCard(cardElement, cardId){
 	/**deleteCardModal open -- need to create HTML element like modal_opened */
-	//console.log("inside handle delete card func: ",cardId);		//debugging
-
+	console.log("inside handle delete card func, cardid: ", cardId);		//debugging
+	
 	//open delete card modal/popup
 	deleteCardModal.open();
 	
 	//submit action 
 	deleteCardModal.setSubmitAction( () => {
-		api.deleteCard(card._id).then( () => {
+		api.deleteCard(cardId).then( () => {
 			deleteCardModal.close();
-			card.remove();
+			cardElement.remove();
 		})
 		.catch( (err) => {
 			console.log(err);
@@ -152,7 +152,7 @@ cardDeleteButton.addEventListener("click", (evt) => {
 
 
 const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
-deleteCardModal.setEventListeners();
+deleteCardModal.setEventListener();
 console.log("DELETE CARD MODAL: ",deleteCardModal);
 
 const profilePictureModal = new PopupWithForm("#js-profile-picture-modal", handleProfilePicture);
