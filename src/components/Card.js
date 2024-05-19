@@ -77,6 +77,7 @@ export class Card {
 	_setLikeHandler() {
 		const likeButton = this._cardEl.querySelector(".card__like-button");
 		likeButton.addEventListener("click", () => {
+			this._handleLikeCard(this);
 			likeButton.classList.toggle("card__like-button_active");
 		});
 		
@@ -132,7 +133,7 @@ export class Card {
 
 
 
-	toogleLike(){
+	toggleLike(){
 		const likeBtn = this._cardEl.querySelector(".card__like-button");
 		likeBtn.classList.toggle("card__like-button_active");
 		console.log("TOGGLE LIKE CLICKED");		//debugging

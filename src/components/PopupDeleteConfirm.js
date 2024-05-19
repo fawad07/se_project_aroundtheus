@@ -30,6 +30,6 @@ export class PopupDeleteConfirm extends Popup {
 			evt.preventDefault();
 			this._handleSubmitForm();
 		});
-		// super.close();
+		//super.close();
 	} //end func
 } //end class

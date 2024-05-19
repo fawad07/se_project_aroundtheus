@@ -123,6 +123,28 @@ function handleProfilePicture(url){
 }//end func
 
 function handleCardLike(card){
+	console.log("CARD: ", card);		//debugging
+
+	if(card._isLiked === false){
+		api.likeCard(card._id).then( (res) =>{
+			card._isLiked = true;
+			card.toggleLike();
+		})
+		.catch( (err) => {
+			console.error(err);
+		});
+	}//end if
+	else {
+		api.likeCard(card._id).then( (res) =>{
+			card._isLiked = false;
+			card.toggleLike();
+		})
+		.catch( (err) => {
+			console.error(err);
+		});
+	}//end else
+
+/*
     card._isLiked !== true ? api.disLikeCard(card._id).then( (res) => {
         card._isLiked = true;
         card.toogleLike();		//need to look at 
@@ -137,24 +159,17 @@ function handleCardLike(card){
         console.log(err);
         console.error(err);
     });
+	*/
 }//end func
 
 /**__________________________________________ */
-
-/*
-console.log("card Delete button: ", cardDeleteButton);	//debugging statement
-
-cardDeleteButton.addEventListener("click", (evt) => {
-	evt.preventDefault();
-	//handleDeleteCard
-});
-*/
 
 
 const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
 deleteCardModal.setEventListener();
 console.log("DELETE CARD MODAL: ",deleteCardModal);
 
+//need to make a change picture pop up html
 const profilePictureModal = new PopupWithForm("#js-profile-picture-modal", handleProfilePicture);
 /*profilePictureModal.addEventListener("submit", (evt) => {
 	evt.preventDefault();
