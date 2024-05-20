@@ -125,10 +125,10 @@ function handleProfilePicture(url){
 function handleCardLike(card){
 	console.log("CARD: ", card);		//debugging
 
-	if(card._isLiked === false){
-		api.likeCard(card._id).then( (res) =>{
-			card._isLiked = true;
+	if(card._isLiked){
+		api.likeCard(card._data._id).then( (res) =>{
 			card.toggleLike();
+			card._isLiked = false;			
 		})
 		.catch( (err) => {
 			console.error(err);
@@ -136,8 +136,8 @@ function handleCardLike(card){
 	}//end if
 	else {
 		api.likeCard(card._id).then( (res) =>{
-			card._isLiked = false;
 			card.toggleLike();
+			card._isLiked = true;
 		})
 		.catch( (err) => {
 			console.error(err);
@@ -166,7 +166,7 @@ function handleCardLike(card){
 
 
 const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
-deleteCardModal.setEventListener();
+deleteCardModal.setEventListeners();
 console.log("DELETE CARD MODAL: ",deleteCardModal);
 
 //need to make a change picture pop up html

@@ -78,16 +78,8 @@ export class Card {
 		const likeButton = this._cardEl.querySelector(".card__like-button");
 		likeButton.addEventListener("click", () => {
 			this._handleLikeCard(this);
-			likeButton.classList.toggle("card__like-button_active");
+			//likeButton.classList.toggle("card__like-button_active");
 		});
-		
-		if (this._isLiked) {
-			likeButton.classList.add("card__like-button_active");
-		} //end if
-		else {
-			likeButton.classList.remove("card__like-button_active");
-		} //end else
-		
 	} //end func
 
 	/**
@@ -135,7 +127,14 @@ export class Card {
 
 	toggleLike(){
 		const likeBtn = this._cardEl.querySelector(".card__like-button");
-		likeBtn.classList.toggle("card__like-button_active");
+		if (this._isLiked) {
+			likeBtn.classList.add("card__like-button_active");
+		} //end if
+		else {
+			likeBtn.classList.remove("card__like-button_active");
+		} //end else
+
+		//likeBtn.classList.toggle("card__like-button_active");	
 		console.log("TOGGLE LIKE CLICKED");		//debugging
 	}//end func
 	

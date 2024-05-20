@@ -25,11 +25,11 @@ export class PopupDeleteConfirm extends Popup {
 	/**
 	 * Description: submit button has an event listener for the submit.
 	 */
-	setEventListener() {
+	setEventListeners() {
 		this._popupForm.addEventListener("submit", (evt) => {
 			evt.preventDefault();
 			this._handleSubmitForm();
 		});
-		//super.close();
+		super.setEventListeners();
 	} //end func
 } //end class
