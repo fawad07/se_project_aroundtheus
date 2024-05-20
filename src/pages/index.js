@@ -135,7 +135,7 @@ function handleCardLike(card){
 		});
 	}//end if
 	else {
-		api.likeCard(card._id).then( (res) =>{
+		api.likeCard(card._data._id).then( (res) =>{
 			card.toggleLike();
 			card._isLiked = true;
 		})

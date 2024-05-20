@@ -128,9 +128,11 @@ export class Card {
 	toggleLike(){
 		const likeBtn = this._cardEl.querySelector(".card__like-button");
 		if (this._isLiked) {
+			this._isLiked = true;
 			likeBtn.classList.add("card__like-button_active");
 		} //end if
 		else {
+			this._isLiked = false;
 			likeBtn.classList.remove("card__like-button_active");
 		} //end else
 
