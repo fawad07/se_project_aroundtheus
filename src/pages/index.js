@@ -170,7 +170,7 @@ deleteCardModal.setEventListeners();
 console.log("DELETE CARD MODAL: ",deleteCardModal);
 
 //need to make a change picture pop up html
-const profilePictureModal = new PopupWithForm("#js-profile-picture-modal", handleProfilePicture);
+const profilePictureModal = new PopupWithForm("#js-edit-profile-picture-modal", handleProfilePicture);
 /*profilePictureModal.addEventListener("submit", (evt) => {
 	evt.preventDefault();
 	profilePictureModal.open();
