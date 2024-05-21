@@ -112,10 +112,10 @@ function handleDeleteCard(cardElement, cardId){
 
 
 
-function handleProfilePicture(url){
+function handleEditProfilePicture(url){
 	api.updateUserImage(url).then( (res) => {
 		userInfo.setProfilePicture(res);
-		profilePictureModal.close();
+		editProfilePictureModal.close();
 	})
 	.catch( (err) => {
 		console.err("Picture Not Update", err);
@@ -143,23 +143,6 @@ function handleCardLike(card){
 			console.error(err);
 		});
 	}//end else
-
-/*
-    card._isLiked !== true ? api.disLikeCard(card._id).then( (res) => {
-        card._isLiked = true;
-        card.toogleLike();		//need to look at 
-    })
-    .catch( (err) => {
-        console.error(err);
-    }) : api.likeCard(card._id).then( (res) => {
-        card._isLiked = false;
-        card.toggleLike();
-    })
-    .catch( (err) => {
-        console.log(err);
-        console.error(err);
-    });
-	*/
 }//end func
 
 /**__________________________________________ */
@@ -167,15 +150,22 @@ function handleCardLike(card){
 
 const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
 deleteCardModal.setEventListeners();
-console.log("DELETE CARD MODAL: ",deleteCardModal);
+//console.log("DELETE CARD MODAL: ",deleteCardModal);		debugging
 
 //need to make a change picture pop up html
-const profilePictureModal = new PopupWithForm("#js-edit-profile-picture-modal", handleProfilePicture);
-/*profilePictureModal.addEventListener("submit", (evt) => {
+const editProfilePictureModal = new PopupWithForm("#js-edit-profile-picture-modal", handleEditProfilePicture);
+/*editProfilePictureModal.addEventListener("submit", (evt) => {
 	evt.preventDefault();
-	profilePictureModal.open();
+	editProfilePictureModal.open();
 })*/
-//profilePictureModal.setEventListener();
+//editProfilePictureModal.setEventListener();
+
+const editProfileOverlayImg = document.querySelector("#js-edit-profile-overlay_img");
+editProfileOverlayImg.addEventListener("click", () =>{
+	console.log("Profile edit button clicked",editProfileOverlayImg);
+	debugger;
+	editProfilePictureModal.open();
+});
 
 
 //EDIT PROFILE FORM
