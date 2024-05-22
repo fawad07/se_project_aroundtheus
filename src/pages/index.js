@@ -120,8 +120,19 @@ function handleDeleteCard(cardElement, cardId) {
 function handleEditProfilePicture(url) {
 
 	//open edit profile picture modal (avatar)
-	//editProfilePictureForm.open();
+	
 	api.updateUserImage(url)
+	.then((res) => {
+		userInfo.setProfilePicture(url);
+		editProfilePictureForm.close();
+	})
+	.catch((err) => {
+		console.err("Picture Not Update", err);
+	});
+/*
+	editProfilePictureForm.open();
+	editProfilePictureForm.setSubmitAction( () => {
+		api.updateUserImage(url)
 		.then((res) => {
 			userInfo.setProfilePicture(url);
 			editProfilePictureForm.close();
@@ -129,6 +140,9 @@ function handleEditProfilePicture(url) {
 		.catch((err) => {
 			console.err("Picture Not Update", err);
 		});
+	});
+	*/
+
 } //end func
 
 function handleCardLike(card) {

@@ -9,6 +9,9 @@ export class PopupDeleteConfirm extends Popup {
 	 */
 	constructor(popupSelector) {
 		super(popupSelector);
+
+		//this._popupForm = this._popupElement.querySelector("#js-edit-profile-picture-modal");
+		
 		this._popupForm = this._popupElement.querySelector("#js-delete-form");
 		this._submitBtn = this._popupForm.querySelector("#js-card-delete-btn");
 	} //end constructor
