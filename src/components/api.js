@@ -80,7 +80,7 @@ export class Api {
 
 	// 5. DELETE /cards/:cardId/likes – Dislike a card
 	disLikeCard(cardId){
-		return fetch(`${this._baseUrl}`/cards/`${cardId}`/likes, {
+		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
 			method: "DELETE",
 			headers: this._header
 		})

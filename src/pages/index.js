@@ -16,14 +16,22 @@ const userInfo = new UserInfo({
 	descriptionSelector: utils.htmlIds.profileDescription,
 });
 
-const cardDeleteButton = utils.cardTemplate.querySelector(".card__delete-image");
 
+const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
 
+//need to make a change picture pop up html
+const editProfilePictureForm = new PopupWithForm(
+	"#js-edit-profile-picture-modal",
+	handleEditProfilePicture
+);
+
+/*const cardDeleteButton = utils.cardTemplate.querySelector(
+	".card__delete-image"
+);*/
 
 /****** API CALLS***** */
 
 //CARD SECTION
-
 
 const opts = {
 	baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -52,12 +60,11 @@ api.getInitialCards()
 		sectionCards.renderItems();
 	})
 	.catch((err) => {
-		console.log(err);	//debugging statement
+		console.log(err); //debugging statement
 		console.error(`Error getting cards: ${err} `);
 	});
 
-
-	api.getUserInfo()
+api.getUserInfo()
 	.then((res) => {
 		userInfo.setUserInfo({
 			name: res.name,
@@ -89,84 +96,91 @@ function handleProfileSubmitForm(userData) {
 		});
 } //end func
 
-
-function handleDeleteCard(cardElement, cardId){
+function handleDeleteCard(cardElement, cardId) {
 	/**deleteCardModal open -- need to create HTML element like modal_opened */
-	console.log("inside handle delete card func, cardid: ", cardId);		//debugging
-	
+	console.log("inside handle delete card func, cardid: ", cardId); //debugging
+
 	//open delete card modal/popup
 	deleteCardModal.open();
-	
-	//submit action 
-	deleteCardModal.setSubmitAction( () => {
-		api.deleteCard(cardId).then( () => {
-			deleteCardModal.close();
-			cardElement.remove();
-		})
-		.catch( (err) => {
-			console.log(err);
-			console.error(err);
-		});
+
+	//submit action
+	deleteCardModal.setSubmitAction(() => {
+		api.deleteCard(cardId)
+			.then(() => {
+				deleteCardModal.close();
+				cardElement.remove();
+			})
+			.catch((err) => {
+				console.log(err);
+				console.error(err);
+			});
 	});
-}//end func
+} //end func
 
+function handleEditProfilePicture(url) {
 
-
-function handleEditProfilePicture(url){
-	api.updateUserImage(url).then( (res) => {
-		userInfo.setProfilePicture(res);
-		editProfilePictureModal.close();
-	})
-	.catch( (err) => {
-		console.err("Picture Not Update", err);
-	});
-}//end func
-
-function handleCardLike(card){
-	console.log("CARD: ", card);		//debugging
-
-	if(card._isLiked){
-		api.likeCard(card._data._id).then( (res) =>{
-			card.toggleLike();
-			card._isLiked = false;			
+	//open edit profile picture modal (avatar)
+	//editProfilePictureForm.open();
+	api.updateUserImage(url)
+		.then((res) => {
+			userInfo.setProfilePicture(url);
+			editProfilePictureForm.close();
 		})
-		.catch( (err) => {
-			console.error(err);
+		.catch((err) => {
+			console.err("Picture Not Update", err);
 		});
-	}//end if
-	else {
-		api.likeCard(card._data._id).then( (res) =>{
-			card.toggleLike();
-			card._isLiked = true;
-		})
-		.catch( (err) => {
-			console.error(err);
-		});
-	}//end else
-}//end func
+} //end func
+
+function handleCardLike(card) {
+	console.log("CARD: ", card); //debugging
+
+	if (!card._isLiked) {
+		api.disLikeCard(card._data._id)
+			.then((res) => {
+				console.log("Inside api.disLikeCard, res is: ", res.link);
+				//res.isLiked = false;
+				card._isLiked = false;
+				card.toggleLike();
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	} //end if
+	else{
+		api.likeCard(card._data._id)
+			.then((res) => {
+				console.log("Inside api.likeCard");
+				card._isLiked = true;
+				card.toggleLike();
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	} //end else
+} //end func
 
 /**__________________________________________ */
 
-
-const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
 deleteCardModal.setEventListeners();
 //console.log("DELETE CARD MODAL: ",deleteCardModal);		debugging
 
-//need to make a change picture pop up html
-const editProfilePictureModal = new PopupWithForm("#js-edit-profile-picture-modal", handleEditProfilePicture);
-/*editProfilePictureModal.addEventListener("submit", (evt) => {
+
+/*editProfilePictureForm.addEventListener("submit", (evt) => {
 	evt.preventDefault();
-	editProfilePictureModal.open();
+	editProfilePictureForm.open();
 })*/
-//editProfilePictureModal.setEventListener();
+editProfilePictureForm.setEventListeners();
 
-const editProfileOverlayImg = document.querySelector("#js-edit-profile-overlay_img");
-editProfileOverlayImg.addEventListener("click", () =>{
-	console.log("Profile edit button clicked",editProfileOverlayImg);
-	debugger;
-	editProfilePictureModal.open();
+const editProfileOverlayImg = document.querySelector(
+	"#js-edit-profile-overlay_img");
+
+editProfileOverlayImg.addEventListener("click", () => {
+	//console.log("Profile edit button clicked", editProfileOverlayImg);		//debuging
+	//debugger;
+	console.log("edit profile Picture Form: ", editProfilePictureForm);		//debuging
+
+	editProfilePictureForm.open();
 });
-
 
 //EDIT PROFILE FORM
 const profileEditForm = new PopupWithForm(
@@ -208,7 +222,6 @@ function handleImageClick(cardData) {
 
 //const deleteCardPopup = querySelector("#js-card-delete-modal");
 
-
 /**
  * param: data
  * Description:	Takes a data object that is used to create a card with the Card object
@@ -227,7 +240,6 @@ function createCard(data) {
 	const elementCard = newCard.getCard();
 	sectionCards.addItems(elementCard);
 } //end func
-
 
 /**
  * Param: settings/configurations
@@ -254,18 +266,17 @@ function handleAddCardSubmitForm() {
 
 	// Send a POST request to add a new card to the server
 	//console.log(dataCard);	//debugging
-	api.createCard( { name: dataCard.name, link: dataCard.link}).then( (newCard) =>{
-		
-		//console.log(dataCard.name, dataCard.link);		//debugging
-		createCard(newCard); // Render the newly created card
-		addCardForm.close(); // Close the add card form
-
-	}).catch( (err) => {
-		console.log(err);
-		console.error(`Error adding new Card: ${err}`);
-
-	});
-/*  REPLACE WITH API CALL -- inside the then block
+	api.createCard({ name: dataCard.name, link: dataCard.link })
+		.then((newCard) => {
+			//console.log(dataCard.name, dataCard.link);		//debugging
+			createCard(newCard); // Render the newly created card
+			addCardForm.close(); // Close the add card form
+		})
+		.catch((err) => {
+			console.log(err);
+			console.error(`Error adding new Card: ${err}`);
+		});
+	/*  REPLACE WITH API CALL -- inside the then block
 	//createCard(dataCard);
 
 	//close addCardPopup

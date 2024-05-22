@@ -40,7 +40,7 @@ export class Card {
 		//.card__delete-image
 		this._setDeleteHandler();
 
-		//.card__image
+		//.card__image 
 		this._setImageClickHandler();
 	} //end func
 
@@ -78,7 +78,7 @@ export class Card {
 		const likeButton = this._cardEl.querySelector(".card__like-button");
 		likeButton.addEventListener("click", () => {
 			this._handleLikeCard(this);
-			//likeButton.classList.toggle("card__like-button_active");
+			//likeButton.classList.toggle("card__like-button-active");
 		});
 	} //end func
 
@@ -112,6 +112,7 @@ export class Card {
 	 * Params:	None
 	 * Description:	func called by set event listeners and this handles what
 	 * 						happens when image clicked
+	 * 						This func refers to the image click on the Card
 	 * return:	None
 	 */
 	_setImageClickHandler() {
@@ -129,14 +130,13 @@ export class Card {
 		const likeBtn = this._cardEl.querySelector(".card__like-button");
 		if (this._isLiked) {
 			this._isLiked = false;
-			likeBtn.classList.add("card__like-button_active");
+			likeBtn.classList.add("card__like-button-active");
 		} //end if
 		else {
 			this._isLiked = true;
-			likeBtn.classList.remove("card__like-button_active");
+			likeBtn.classList.remove("card__like-button-active");
 		} //end else
 
-		//likeBtn.classList.toggle("card__like-button_active");	
 		console.log("TOGGLE LIKE CLICKED");		//debugging
 	}//end func
 	
