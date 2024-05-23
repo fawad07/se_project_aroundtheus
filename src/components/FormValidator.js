@@ -6,6 +6,7 @@ export class FormValidator {
   */
 	constructor(config, formElement) {
 		this._config = config;
+		console.log(config);
 		this._form = formElement; //HTML element
 	} //end constructor
 

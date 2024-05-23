@@ -40,7 +40,7 @@ export class Card {
 		//.card__delete-image
 		this._setDeleteHandler();
 
-		//.card__image 
+		//.card__image
 		this._setImageClickHandler();
 	} //end func
 
@@ -60,6 +60,7 @@ export class Card {
 		const cardTitleElement = this._cardEl.querySelector(".card__title");
 		cardImageElement.src = this._data.link;
 		cardImageElement.alt = this._data.name;
+		this._likeBtn = this._cardEl.querySelector(".card__like-button");
 		cardTitleElement.textContent = this._data.name;
 
 		//2. set event listeners
@@ -75,8 +76,8 @@ export class Card {
 	 * Description: function used to help the set event listeners function to toggle the like button
 	 */
 	_setLikeHandler() {
-		const likeButton = this._cardEl.querySelector(".card__like-button");
-		likeButton.addEventListener("click", () => {
+		console.log(this._likeBtn);
+		this._likeBtn.addEventListener("click", () => {
 			this._handleLikeCard(this);
 			//likeButton.classList.toggle("card__like-button-active");
 		});
@@ -89,9 +90,9 @@ export class Card {
 	 */
 	_setDeleteHandler() {
 		const deleteButton = this._cardEl.querySelector(".card__delete-image");
-		deleteButton.addEventListener("click", () =>{
-			 this._handleDeleteCard(this._cardEl, this._cardId);
-			});
+		deleteButton.addEventListener("click", () => {
+			this._handleDeleteCard(this._cardEl, this._cardId);
+		});
 		//deleteButton.addEventListener("click", this._handleDelete);
 		/**WOKING CODE BELOW */
 		/*
@@ -101,7 +102,6 @@ export class Card {
 		});
 		*/
 	} //end func
-
 
 	remove = () => {
 		this._cardEl.remove();
@@ -124,20 +124,16 @@ export class Card {
 		});
 	} //end func
 
-
-
-	toggleLike(){
-		const likeBtn = this._cardEl.querySelector(".card__like-button");
+	toggleLike() {
 		if (this._isLiked) {
-			this._isLiked = false;
-			likeBtn.classList.add("card__like-button-active");
+			//this._isLiked = false;
+			this._likeBtn.classList.add("card__like-button-active");
 		} //end if
 		else {
-			this._isLiked = true;
-			likeBtn.classList.remove("card__like-button-active");
+			//this._isLiked = true;
+			this._likeBtn.classList.remove("card__like-button-active");
 		} //end else
 
-		console.log("TOGGLE LIKE CLICKED");		//debugging
-	}//end func
-	
+		console.log("TOGGLE LIKE CLICKED"); //debugging
+	} //end func
 } //end class

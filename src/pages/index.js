@@ -14,8 +14,8 @@ import "../pages/index.css";
 const userInfo = new UserInfo({
 	titleSelector: utils.htmlIds.profileTitle,
 	descriptionSelector: utils.htmlIds.profileDescription,
+	profilePictureSelector: ".profile__image",
 });
-
 
 const deleteCardModal = new PopupDeleteConfirm("#js-card-delete-modal");
 
@@ -118,31 +118,19 @@ function handleDeleteCard(cardElement, cardId) {
 } //end func
 
 function handleEditProfilePicture(url) {
-
+	console.log("inside handlePrfilePicture, url: ", url);
 	//open edit profile picture modal (avatar)
-	
-	api.updateUserImage(url)
-	.then((res) => {
-		userInfo.setProfilePicture(url);
-		editProfilePictureForm.close();
-	})
-	.catch((err) => {
-		console.err("Picture Not Update", err);
-	});
-/*
-	editProfilePictureForm.open();
-	editProfilePictureForm.setSubmitAction( () => {
-		api.updateUserImage(url)
+
+	api.updateUserImage({ avatar: url.url })
 		.then((res) => {
-			userInfo.setProfilePicture(url);
+			console.log("inside api.updateUserImage, resposne: ", res); //debugging
+			userInfo.setProfilePicture({ profilePicture: url.url });
 			editProfilePictureForm.close();
 		})
 		.catch((err) => {
-			console.err("Picture Not Update", err);
+			console.error("Picture Not Update", err);
+			editProfilePictureForm.close();
 		});
-	});
-	*/
-
 } //end func
 
 function handleCardLike(card) {
@@ -151,20 +139,20 @@ function handleCardLike(card) {
 	if (!card._isLiked) {
 		api.disLikeCard(card._data._id)
 			.then((res) => {
-				console.log("Inside api.disLikeCard, res is: ", res.link);
+				console.log("Inside api.disLikeCard, res is: ", res); //debugging
 				//res.isLiked = false;
-				card._isLiked = false;
+				//card._isLiked = true; //change made to true from false
 				card.toggleLike();
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	} //end if
-	else{
+	else {
 		api.likeCard(card._data._id)
 			.then((res) => {
 				console.log("Inside api.likeCard");
-				card._isLiked = true;
+				//card._isLiked = false; //change made to false from true
 				card.toggleLike();
 			})
 			.catch((err) => {
@@ -176,22 +164,15 @@ function handleCardLike(card) {
 /**__________________________________________ */
 
 deleteCardModal.setEventListeners();
-//console.log("DELETE CARD MODAL: ",deleteCardModal);		debugging
 
-
-/*editProfilePictureForm.addEventListener("submit", (evt) => {
-	evt.preventDefault();
-	editProfilePictureForm.open();
-})*/
 editProfilePictureForm.setEventListeners();
 
 const editProfileOverlayImg = document.querySelector(
-	"#js-edit-profile-overlay_img");
+	"#js-edit-profile-overlay_img"
+);
 
 editProfileOverlayImg.addEventListener("click", () => {
-	//console.log("Profile edit button clicked", editProfileOverlayImg);		//debuging
-	//debugger;
-	console.log("edit profile Picture Form: ", editProfilePictureForm);		//debuging
+	console.log("edit profile Picture Form: ", editProfilePictureForm); //debuging
 
 	editProfilePictureForm.open();
 });

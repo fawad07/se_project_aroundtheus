@@ -66,29 +66,29 @@ export class Api {
 	} //end func
 
 	// 4. PUT /cards/:cardId/likes – Like a card
-	likeCard(cardId){
+	likeCard(cardId) {
 		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-		method:  "PUT",
-		headers: this._header })
-		.then(this._handleResponse)
-		.catch( (err) => {
-			console.log(err);
-			console.error("Error liking Card: ". err);
-		});
+			method: "PUT",
+			headers: this._header,
+		})
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.log(err);
+				console.error("Error liking Card: ".err);
+			});
 	}
 
-
 	// 5. DELETE /cards/:cardId/likes – Dislike a card
-	disLikeCard(cardId){
+	disLikeCard(cardId) {
 		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
 			method: "DELETE",
-			headers: this._header
+			headers: this._header,
 		})
-		.then(this._handleResponse)
-		.catch( (err) => {
-			console.log(err);
-			console.error("ERROR: ", err);
-		});
+			.then(this._handleResponse)
+			.catch((err) => {
+				console.log(err);
+				console.error("ERROR: ", err);
+			});
 	}
 
 	/*********User routes****************** */
@@ -120,10 +120,11 @@ export class Api {
 
 	// 8. PATCH /users/me/avatar – Update avatar
 	updateUserImage(url) {
+		//debugger;
 		return fetch(`${this._baseUrl}/users/me/avatar`, {
 			method: "PATCH",
 			headers: this._header,
-			body: JSON.stringify({ url }),
+			body: JSON.stringify(url),
 		})
 			.then(this._handleResponse)
 			.catch((err) => {
@@ -133,34 +134,13 @@ export class Api {
 } //end class
 
 /**
- * // Create an instance of the Api class
- *const opts = {
-			baseUrl: "https://around-api.en.tripleten-services.com/v1",
-			headers: {
-				authorization: "d50bb54b-1efc-4b8a-a5b1-3d5c72d6a1b0",
-				"content-type": "application/json"
-			}
-		};
-
-		const api = new Api(opts);
-		api.getInitialCards().then(data => {
-			const cardsContainer = document.getElementById('cardsContainer');
-			data.forEach(card => {
-				// Create a paragraph element for each card's link
-				const cardLinkElement = document.createElement('p');
-				cardLinkElement.textContent = card.link;
-
-				// Create an h1 element for each card's name
-				const cardNameElement = document.createElement('h1');
-				cardNameElement.textContent = card.name;
-
-				// Append both the link and name elements to the cardsContainer div
-				cardsContainer.appendChild(cardNameElement);
-				cardsContainer.appendChild(cardLinkElement);
-
-				https://assets.editorial.aetnd.com/uploads/2019/03/topic-london-gettyimages-760251843-feature.jpg
-				https://skeehive.com/wp-content/uploads/2023/04/Utah-Landscape-Photograph-Badlands.jpg
-			});
-		});
+ * https://assets.editorial.aetnd.com/uploads/2019/03/topic-london-gettyimages-760251843-feature.jpg
+	https://skeehive.com/wp-content/uploads/2023/04/Utah-Landscape-Photograph-Badlands.jpg
+	https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.justwatch.com%2Fimages%2Fbackdrop%2F99701958%2Fs1440%2Fmary-poppins-returns&f=1&nofb=1&ipt=9620982db199add9ca3e332d6d52d43f3841720121d5e2d4f26e209f4dc288c8&ipo=images
  * 
+	ISSUES:
+		1. image Edit --> Status 400, which part of the code needs modification
+		2. Delete Card: card gets deleted but also gives an error
+		3. like card refresh when page refresh
+
  */
