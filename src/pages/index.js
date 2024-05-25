@@ -136,7 +136,7 @@ function handleEditProfilePicture(url) {
 function handleCardLike(card) {
 	console.log("CARD: ", card); //debugging
 
-	if (!card._isLiked) {
+	if (card._isLiked) {
 		api.disLikeCard(card._data._id)
 			.then((res) => {
 				console.log("Inside api.disLikeCard, res is: ", res); //debugging

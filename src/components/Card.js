@@ -61,6 +61,10 @@ export class Card {
 		cardImageElement.src = this._data.link;
 		cardImageElement.alt = this._data.name;
 		this._likeBtn = this._cardEl.querySelector(".card__like-button");
+		if(this._isLiked) {
+			this._likeBtn.classList.add("card__like-button-active");
+		}//end if
+
 		cardTitleElement.textContent = this._data.name;
 
 		//2. set event listeners
@@ -125,12 +129,12 @@ export class Card {
 	} //end func
 
 	toggleLike() {
-		if (this._isLiked) {
-			//this._isLiked = false;
+		if (!this._isLiked) {
+			this._isLiked = false;
 			this._likeBtn.classList.add("card__like-button-active");
 		} //end if
 		else {
-			//this._isLiked = true;
+			this._isLiked = true;
 			this._likeBtn.classList.remove("card__like-button-active");
 		} //end else
 
