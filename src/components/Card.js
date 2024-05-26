@@ -61,9 +61,9 @@ export class Card {
 		cardImageElement.src = this._data.link;
 		cardImageElement.alt = this._data.name;
 		this._likeBtn = this._cardEl.querySelector(".card__like-button");
-		if(this._isLiked) {
+		if (this._isLiked) {
 			this._likeBtn.classList.add("card__like-button-active");
-		}//end if
+		} //end if
 
 		cardTitleElement.textContent = this._data.name;
 
