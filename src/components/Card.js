@@ -80,7 +80,7 @@ export class Card {
 	 * Description: function used to help the set event listeners function to toggle the like button
 	 */
 	_setLikeHandler() {
-		console.log(this._likeBtn);
+		//console.log(this._likeBtn);
 		this._likeBtn.addEventListener("click", () => {
 			this._handleLikeCard(this);
 			//likeButton.classList.toggle("card__like-button-active");

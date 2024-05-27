@@ -66,9 +66,13 @@ api.getInitialCards()
 
 api.getUserInfo()
 	.then((res) => {
+		console.log("Inside getUserInfo, Response: ", res); //debugging
 		userInfo.setUserInfo({
 			name: res.name,
 			description: res.about,
+		});
+		userInfo.setProfilePicture({
+			profilePicture: res.avatar,
 		});
 	})
 	.catch((err) => {
@@ -89,6 +93,8 @@ function handleProfileSubmitForm(userData) {
 				name: userData.title,
 				description: userData.description,
 			});
+			//userInfo.setProfilePicture( {profilePicture: userData.avatar});
+
 			profileEditForm.close();
 		})
 		.catch((err) => {

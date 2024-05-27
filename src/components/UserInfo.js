@@ -16,6 +16,7 @@ export class UserInfo {
 		this._profilePictureElement = document.querySelector(
 			profilePictureSelector
 		);
+		//console.log("in UserInfo.js: profilePictureSelector: ", this._profilePictureElement);	//debugging
 	} //end const
 
 	/**
@@ -30,7 +31,9 @@ export class UserInfo {
 		this._userInfo = {
 			name: this._titleElement.textContent,
 			description: this._descriptionElement.textContent,
+			avatar: this._profilePictureElement.src,
 		}; //end object
+		console.log("Inside getUSerInfo: ", this._userInfo);	//debugging
 
 		//console.log("inside getUserInfo(), userInfo name: ", this._userInfo.name); //debugging
 
