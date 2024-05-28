@@ -244,12 +244,13 @@ function createCard(data) {
 
 /**
  * Param: settings/configurations
- * Description: all form validation initialize
+ * Description: all form validation initialize except the Delete confirmation form
  */
 function validateForms(opts) {
 	//initialize forms
-	const forms = document.querySelectorAll(utils.config.formSelector);
-	const formArray = Array.from(forms);
+	const forms = document.querySelectorAll(utils.config.formSelector); //gets all modal__form, in Node form
+	let formArray = Array.from(forms); //Node forms converted to array
+	formArray = formArray.filter((forms) => forms.id !== "js-delete-form"); //delete form removed from array because it does not need valdiation
 	formArray.forEach((form) => {
 		const validateForm = new FormValidator(opts, form);
 		validateForm.enableValidation();
