@@ -97,14 +97,7 @@ export class Card {
 		deleteButton.addEventListener("click", () => {
 			this._handleDeleteCard(this._cardEl, this._cardId);
 		});
-		//deleteButton.addEventListener("click", this._handleDelete);
-		/**WOKING CODE BELOW */
-		/*
-		deleteButton.addEventListener("click", () => {
-			this._cardEl.remove();
-			this._cardEl = null;
-		});
-		*/
+		
 	} //end func
 
 	remove = () => {

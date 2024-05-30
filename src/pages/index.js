@@ -123,14 +123,14 @@ function handleDeleteCard(cardElement, cardId) {
 	});
 } //end func
 
-function handleEditProfilePicture(url) {
-	console.log("inside handlePrfilePicture, url: ", url);
+function handleEditProfilePicture(inputData) {
+	console.log("inside handlePrfilePicture, url: ", inputData); //debigging
 	//open edit profile picture modal (avatar)
 
-	api.updateUserImage({ avatar: url.url })
+	api.updateUserImage({ avatar: inputData.url })
 		.then((res) => {
 			console.log("inside api.updateUserImage, resposne: ", res); //debugging
-			userInfo.setProfilePicture({ profilePicture: url.url });
+			userInfo.setProfilePicture({ profilePicture: inputData.url });
 			editProfilePictureForm.close();
 		})
 		.catch((err) => {
