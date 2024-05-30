@@ -27,11 +27,7 @@ export class Api {
 		return fetch(`${this._baseUrl}/cards`, {
 			method: "GET",
 			headers: this._header,
-		})
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.error(err); // log the error to the console
-			});
+		}).then(this._handleResponse);
 	} //end func
 
 	// 2. POST /cards – Create a card
@@ -46,11 +42,7 @@ export class Api {
 			method: "POST",
 			headers: this._header,
 			body: JSON.stringify({ name, link }),
-		})
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.error(err);
-			});
+		}).then(this._handleResponse);
 	} //end func
 
 	// 3. DELETE /cards/:cardId – Delete a card
@@ -58,11 +50,7 @@ export class Api {
 		return fetch(`${this._baseUrl}/cards/${cardId}`, {
 			method: "DELETE",
 			headers: this._header,
-		})
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.error(err);
-			});
+		}).then(this._handleResponse);
 	} //end func
 
 	// 4. PUT /cards/:cardId/likes – Like a card
@@ -70,12 +58,7 @@ export class Api {
 		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
 			method: "PUT",
 			headers: this._header,
-		})
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.log(err);
-				console.error("Error liking Card: ".err);
-			});
+		}).then(this._handleResponse);
 	}
 
 	// 5. DELETE /cards/:cardId/likes – Dislike a card
@@ -83,12 +66,7 @@ export class Api {
 		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
 			method: "DELETE",
 			headers: this._header,
-		})
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.log(err);
-				console.error("ERROR: ", err);
-			});
+		}).then(this._handleResponse);
 	}
 
 	/*********User routes****************** */
@@ -97,11 +75,7 @@ export class Api {
 		return fetch(`${this._baseUrl}/users/me`, {
 			method: "GET",
 			headers: this._header,
-		})
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.error(err); // log the error to the console
-			});
+		}).then(this._handleResponse);
 	} //end func
 
 	// 7. PATCH /users/me – Update your profile information
@@ -111,11 +85,6 @@ export class Api {
 			headers: this._header,
 			body: JSON.stringify({ name, about: description }),
 		});
-		/*
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.error(`Error: ${err}`);
-			});*/
 	} //end func
 
 	// 8. PATCH /users/me/avatar – Update avatar
@@ -125,22 +94,6 @@ export class Api {
 			method: "PATCH",
 			headers: this._header,
 			body: JSON.stringify(url),
-		})
-			.then(this._handleResponse)
-			.catch((err) => {
-				console.error(err);
-			});
+		}).then(this._handleResponse);
 	} //end func
 } //end class
-
-/**
- * https://assets.editorial.aetnd.com/uploads/2019/03/topic-london-gettyimages-760251843-feature.jpg
-	https://skeehive.com/wp-content/uploads/2023/04/Utah-Landscape-Photograph-Badlands.jpg
-	https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.justwatch.com%2Fimages%2Fbackdrop%2F99701958%2Fs1440%2Fmary-poppins-returns&f=1&nofb=1&ipt=9620982db199add9ca3e332d6d52d43f3841720121d5e2d4f26e209f4dc288c8&ipo=images
- * 
-	ISSUES:
-		1. image Edit --> Status 400, which part of the code needs modification
-		2. Delete Card: card gets deleted but also gives an error
-		3. like card refresh when page refresh
-
- */
