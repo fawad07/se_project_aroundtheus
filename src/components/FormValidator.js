@@ -13,7 +13,7 @@ export class FormValidator {
 	enableValidation() {
 		this._form.addEventListener("submit", (evt) => {
 			evt.preventDefault();
-			this._disabledButton();
+			//this._disabledButton();
 		});
 		this._setEventListeners();
 	} //end func
@@ -55,7 +55,7 @@ export class FormValidator {
 	_disabledButton() {
 		this._submitButton.classList.add(this._config.inactiveButtonClass);
 		this._submitButton.disabled = true;
-	} //end func
+	} //end func 
 
 	/**
 	 * Params: None
