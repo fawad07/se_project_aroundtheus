@@ -117,7 +117,6 @@ function handleDeleteCard(cardElement, cardId) {
 				cardElement.remove();
 			})
 			.catch((err) => {
-				console.log(err);
 				console.error(err);
 			});
 	});
