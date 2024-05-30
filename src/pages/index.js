@@ -123,7 +123,7 @@ function handleDeleteCard(cardElement, cardId) {
 } //end func
 
 function handleEditProfilePicture(inputData) {
-	console.log("inside handlePrfilePicture, url: ", inputData); //debigging
+	console.log("inside handlePrfilePicture, url: ", inputData.url); //debigging
 	//open edit profile picture modal (avatar)
 	editProfilePictureForm.renderLoading(true);
 	api.updateUserImage({ avatar: inputData.url })
