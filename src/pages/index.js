@@ -25,10 +25,6 @@ const editProfilePictureForm = new PopupWithForm(
 	handleEditProfilePicture
 );
 
-/*const cardDeleteButton = utils.cardTemplate.querySelector(
-	".card__delete-image"
-);*/
-
 /****** API CALLS***** */
 
 //CARD SECTION
@@ -87,6 +83,7 @@ api.getUserInfo()
  */
 function handleProfileSubmitForm(userData) {
 	// Call the updateUserInfo method from the Api class
+	profileEditForm.renderLoading(true);
 	api.updateUserInfo(userData.title, userData.description)
 		.then(() => {
 			userInfo.setUserInfo({
@@ -98,6 +95,7 @@ function handleProfileSubmitForm(userData) {
 			profileEditForm.close();
 		})
 		.catch((err) => {
+			profileEditForm.renderLoading(false);
 			console.error(`Error updating new information: ${err}`);
 		});
 } //end func
@@ -111,12 +109,14 @@ function handleDeleteCard(cardElement, cardId) {
 
 	//submit action
 	deleteCardModal.setSubmitAction(() => {
+		deleteCardModal.renderLoading(true, "Deleting...");
 		api.deleteCard(cardId)
 			.then(() => {
 				deleteCardModal.close();
 				cardElement.remove();
 			})
 			.catch((err) => {
+				deleteCardModal.renderLoading(false, "Yes");
 				console.error(err);
 			});
 	});
@@ -125,7 +125,7 @@ function handleDeleteCard(cardElement, cardId) {
 function handleEditProfilePicture(inputData) {
 	console.log("inside handlePrfilePicture, url: ", inputData); //debigging
 	//open edit profile picture modal (avatar)
-
+	editProfilePictureForm.renderLoading(true);
 	api.updateUserImage({ avatar: inputData.url })
 		.then((res) => {
 			console.log("inside api.updateUserImage, resposne: ", res); //debugging
@@ -133,6 +133,7 @@ function handleEditProfilePicture(inputData) {
 			editProfilePictureForm.close();
 		})
 		.catch((err) => {
+			editProfilePictureForm.renderLoading(false);
 			console.error("Picture Not Update", err);
 		});
 } //end func
@@ -144,8 +145,6 @@ function handleCardLike(card) {
 		api.disLikeCard(card._data._id)
 			.then((res) => {
 				console.log("Inside api.disLikeCard, res is: ", res); //debugging
-				//res.isLiked = false;
-				//card._isLiked = true; //change made to true from false
 				card.toggleLike();
 			})
 			.catch((err) => {
@@ -156,7 +155,6 @@ function handleCardLike(card) {
 		api.likeCard(card._data._id)
 			.then((res) => {
 				console.log("Inside api.likeCard");
-				//card._isLiked = false; //change made to false from true
 				card.toggleLike();
 			})
 			.catch((err) => {

@@ -53,4 +53,21 @@ Description: closes pop up/ modal when clicked outside form
 			this._handleCloseMouseClick
 		);
 	} //end func
+
+	/**
+	 * Params: isLoading, loadingText
+	 * Description:	isLoading is a boolean value used to change the text of the submit button when calls
+	 * 						made to/from Api
+	 * 						loadingText is a string that lets the user know that request is being worked on
+	 * 						in the back
+	 */
+	renderLoading(isLoading, loadingText = "Saving...") {
+		if (!isLoading) {
+			this._submitBtnText = this._submitBtnText.textContent;
+		} //end if
+		else {
+			this._submitBtnText = loadingText;
+		} //end else
+	} //end func
+
 } //end class
