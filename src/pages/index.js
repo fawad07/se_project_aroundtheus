@@ -263,14 +263,14 @@ function handleAddCardSubmitForm() {
 	const dataCard = { name, link }; //collect new card data and link
 
 	// Send a POST request to add a new card to the server
-	//console.log(dataCard);	//debugging
+	addCardForm.renderLoading(true);
 	api.createCard({ name: dataCard.name, link: dataCard.link })
 		.then((newCard) => {
-			//console.log(dataCard.name, dataCard.link);		//debugging
 			createCard(newCard); // Render the newly created card
 			addCardForm.close(); // Close the add card form
 		})
 		.catch((err) => {
+			addCardForm.renderLoading(false,"Save");
 			console.log(err);
 			console.error(`Error adding new Card: ${err}`);
 		});
