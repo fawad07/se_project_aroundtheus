@@ -256,15 +256,20 @@ function validateForms(opts) {
 /**
  * Description:	Adds a new card everytime the + button is clicked
  */
-function handleAddCardSubmitForm() {
+function handleAddCardSubmitForm(cardData) {
+/**************DEBUGGING************************************** */
+	//console.log("Inside Handle Add Card submit Form, cardData: ",cardData.title);
 	//add new card i.e. Create Card
+/*
 	const name = utils.newCardTitleInput.value; //newCardTitleValue
 	const link = utils.newCardUrlInput.value; //newCardUrlValue
-	const dataCard = { name, link }; //collect new card data and link
+	const dataCard = { name, link }; //collect new card data and link  */
+/****************************************************************** */
+
 
 	// Send a POST request to add a new card to the server
 	addCardForm.renderLoading(true);
-	api.createCard({ name: dataCard.name, link: dataCard.link })
+	api.createCard({ name: cardData.title, link: cardData.url })
 		.then((newCard) => {
 			createCard(newCard); // Render the newly created card
 			addCardForm.close(); // Close the add card form
