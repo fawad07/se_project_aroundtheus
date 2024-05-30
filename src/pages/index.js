@@ -135,7 +135,6 @@ function handleEditProfilePicture(inputData) {
 		})
 		.catch((err) => {
 			console.error("Picture Not Update", err);
-			editProfilePictureForm.close();
 		});
 } //end func
 
