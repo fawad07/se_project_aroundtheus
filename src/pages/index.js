@@ -43,7 +43,7 @@ const api = new Api(opts);
 api.getInitialCards()
 	.then((data) => {
 		//handle the response data
-		console.log("Data from Api: ", data); //debugging statement
+		//console.log("Data from Api: ", data); //debugging statement
 
 		// Create a new Section instance with the fetched data and render the items
 		sectionCards = new Section(
@@ -62,7 +62,7 @@ api.getInitialCards()
 
 api.getUserInfo()
 	.then((res) => {
-		console.log("Inside getUserInfo, Response: ", res); //debugging
+		//console.log("Inside getUserInfo, Response: ", res); //debugging
 		userInfo.setUserInfo({
 			name: res.name,
 			description: res.about,
@@ -125,7 +125,7 @@ function handleDeleteCard(cardElement, cardId) {
 function handleEditProfilePicture(inputData) {
 	console.log("inside handlePrfilePicture, url: ", inputData.url); //debigging
 	//open edit profile picture modal (avatar)
-	editProfilePictureForm.renderLoading(true);
+	editProfilePictureForm.renderLoading(true);			//DEBUGGING
 	api.updateUserImage({ avatar: inputData.url })
 		.then((res) => {
 			console.log("inside api.updateUserImage, resposne: ", res); //debugging
@@ -139,10 +139,10 @@ function handleEditProfilePicture(inputData) {
 } //end func
 
 function handleCardLike(card) {
-	console.log("CARD: ", card); //debugging
+	console.log("Inside Handle Card Like , CARD: ", card); //debugging
 
-	if (card._isLiked) {
-		api.disLikeCard(card._data._id)
+	if (card.isLiked) {
+		api.disLikeCard(card.data._id)
 			.then((res) => {
 				console.log("Inside api.disLikeCard, res is: ", res); //debugging
 				card.toggleLike();
@@ -152,7 +152,7 @@ function handleCardLike(card) {
 			});
 	} //end if
 	else {
-		api.likeCard(card._data._id)
+		api.likeCard(card.data._id)
 			.then((res) => {
 				console.log("Inside api.likeCard");
 				card.toggleLike();

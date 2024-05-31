@@ -19,13 +19,13 @@ export class Card {
 		handleDeleteCard,
 		handleLikeCard
 	) {
-		this._data = data;
+		this.data = data;
 		this._selector = cardSelector;
 		this._handleImageClick = handleImageClick;
 		this._handleDeleteCard = handleDeleteCard;
 		this._handleLikeCard = handleLikeCard;
 		this._cardId = data._id;
-		this._isLiked = data.isLiked;
+		this.isLiked = data.isLiked;
 	} //end contructor
 
 	/*
@@ -58,14 +58,14 @@ export class Card {
 
 		const cardImageElement = this._cardEl.querySelector(".card__image");
 		const cardTitleElement = this._cardEl.querySelector(".card__title");
-		cardImageElement.src = this._data.link;
-		cardImageElement.alt = this._data.name;
+		cardImageElement.src = this.data.link;
+		cardImageElement.alt = this.data.name;
 		this._likeBtn = this._cardEl.querySelector(".card__like-button");
-		if (this._isLiked) {
+		if (this.isLiked) {
 			this._likeBtn.classList.add("card__like-button-active");
 		} //end if
 
-		cardTitleElement.textContent = this._data.name;
+		cardTitleElement.textContent = this.data.name;
 
 		//2. set event listeners
 		this._setEventListeners();
@@ -97,7 +97,6 @@ export class Card {
 		deleteButton.addEventListener("click", () => {
 			this._handleDeleteCard(this._cardEl, this._cardId);
 		});
-		
 	} //end func
 
 	remove = () => {
@@ -117,17 +116,17 @@ export class Card {
 		const cardImageElement = this._cardEl.querySelector(".card__image");
 		// Use the stored handleImageClick function
 		cardImageElement.addEventListener("click", () => {
-			this._handleImageClick(this._data);
+			this._handleImageClick(this.data);
 		});
 	} //end func
 
 	toggleLike() {
-		if (!this._isLiked) {
-			this._isLiked = true;
+		if (!this.isLiked) {
+			this.isLiked = true;
 			this._likeBtn.classList.add("card__like-button-active");
 		} //end if
 		else {
-			this._isLiked = false;
+			this.isLiked = false;
 			this._likeBtn.classList.remove("card__like-button-active");
 		} //end else
 

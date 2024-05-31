@@ -59,12 +59,21 @@ export class PopupWithForm extends Popup {
 	 * 						loadingText is a string that lets the user know that request is being worked on
 	 * 						in the back
 	 *
-	renderLoading(isLoading, loadingText = "Saving...") {
+	async renderLoading(isLoading, loadingText = "Saving...") {
 		if (!isLoading) {
 			this._submitBtnText = this._submitBtnText.textContent;
+			await this._delay(3000);
 		} //end if
 		else {
 			this._submitBtnText = loadingText;
+			await this._delay(3000);
 		} //end else
-	} //end func */
+	} //end func 
+	
+	_delay(ms){
+		return new Promise(resolve => {
+			setTimeout(resolve, ms);
+		});
+	}
+	*/
 } //end class
