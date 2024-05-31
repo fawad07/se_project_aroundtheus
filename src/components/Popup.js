@@ -5,17 +5,8 @@ export class Popup {
 			".modal__close-button"
 		);
 
-		
-		
-		//this._submitBtnText =
-		//	this._popupElement.querySelector(".modal__button").textContent;
-
-		//this._submitBtnText = this._submitBtnText.textContent;
-
-		// Check if modal__button exists before accessing its textContent
-		const submitButton = this._popupElement.querySelector(".modal__button");
-		this._submitBtnText = submitButton ? submitButton.textContent : ' ';
-		console.log(this._submitBtnText);
+		this._submitButton = this._popupElement.querySelector(".modal__button");
+		console.log(this._submitButton);		//Debugging
 	} //end contructor
 
 	open() {
@@ -72,44 +63,18 @@ Description: closes pop up/ modal when clicked outside form
 	 * 						made to/from Api
 	 * 						loadingText is a string that lets the user know that request is being worked on
 	 * 						in the back
-	 *
+	 */
 	renderLoading(isLoading, loadingText = "Saving...") {
 		console.log("isLoading:", isLoading); // Log the value of isLoading
-		console.log("this._submitBtnText:", this._submitBtnText); // Log the current value of this._submitBtnText
+		console.log("this._submitButton:", this._submitButton); // Log the current value of this._submitBtnText
 
 		if (!isLoading) {
-			this._submitBtnText = this._submitBtnText.textContent;
+			this._submitButton.textContent = this._submitButton;
 		} //end if
 		else {
-			this._submitBtnText = loadingText;
+			this._submitButton.textContent = loadingText;
 		} //end else
-		console.log("this._submitBtnText after assignment:", this._submitBtnText); // Log the value of this._submitBtnText after assignment
+		console.log("this._submitButton after assignment:", this._submitButton); // Log the value of this._submitBtnText after assignment
 		
 	} //end func
-/**************************************************** */
-/*******TEST DELAY/SLEEP FUNCTION**************** */
-
-	async renderLoading(isLoading, loadingText = "Saving...") {
-		console.log("isLoading:", isLoading); // Log the value of isLoading
-		console.log("this._submitBtnText:", this._submitBtnText); // Log the current value of this._submitBtnText
-
-		if (isLoading) {
-			this._submitBtnText = loadingText;
-		} //end if
-		else {
-			this._submitBtnText = this._submitBtnText.textContent;
-		} //end else
-		console.log("this._submitBtnText after assignment:", this._submitBtnText); // Log the value of this._submitBtnText after assignment
-		
-		await this._delay(60000);
-	} //end func 
-	
-	_delay(ms){
-		return new Promise(resolve => {
-			setTimeout(resolve, ms);
-		});
-	}//end func
-	
-
-
 } //end class
