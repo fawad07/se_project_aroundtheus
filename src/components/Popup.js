@@ -4,9 +4,8 @@ export class Popup {
 		this._closeButton = this._popupElement.querySelector(
 			".modal__close-button"
 		);
-
 		this._submitButton = this._popupElement.querySelector(".modal__button");
-		console.log(this._submitButton);		//Debugging
+		
 	} //end contructor
 
 	open() {
@@ -65,16 +64,11 @@ Description: closes pop up/ modal when clicked outside form
 	 * 						in the back
 	 */
 	renderLoading(isLoading, loadingText = "Saving...") {
-		console.log("isLoading:", isLoading); // Log the value of isLoading
-		console.log("this._submitButton:", this._submitButton); // Log the current value of this._submitBtnText
-
 		if (!isLoading) {
 			this._submitButton.textContent = this._submitButton;
 		} //end if
 		else {
 			this._submitButton.textContent = loadingText;
-		} //end else
-		console.log("this._submitButton after assignment:", this._submitButton); // Log the value of this._submitBtnText after assignment
-		
+		} //end else	
 	} //end func
 } //end class

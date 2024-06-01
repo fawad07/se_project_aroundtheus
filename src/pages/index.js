@@ -95,8 +95,11 @@ function handleProfileSubmitForm(userData) {
 			profileEditForm.close();
 		})
 		.catch((err) => {
-			profileEditForm.renderLoading(false);
+			profileEditForm.renderLoading(false, "Save");
 			console.error(`Error updating new information: ${err}`);
+		})
+		.finally( () =>{
+			profileEditForm.renderLoading(false, "Save");
 		});
 } //end func
 
@@ -118,6 +121,9 @@ function handleDeleteCard(cardElement, cardId) {
 			.catch((err) => {
 				deleteCardModal.renderLoading(false, "Yes");
 				console.error(err);
+			})
+			.finally( () => {
+				deleteCardModal.renderLoading(false, "Yes");
 			});
 	});
 } //end func
@@ -133,8 +139,11 @@ function handleEditProfilePicture(inputData) {
 			editProfilePictureForm.close();
 		})
 		.catch((err) => {
-			editProfilePictureForm.renderLoading(false);
+			editProfilePictureForm.renderLoading(false, "Save");
 			console.error("Picture Not Update", err);
+		})
+		.finally( () =>{
+			editProfilePictureForm.renderLoading(false, "Save");
 		});
 } //end func
 
@@ -276,8 +285,10 @@ function handleAddCardSubmitForm(cardData) {
 		})
 		.catch((err) => {
 			addCardForm.renderLoading(false,"Save");
-			console.log(err);
 			console.error(`Error adding new Card: ${err}`);
+		})
+		.finally( () => {
+			addCardForm.renderLoading(false, "Save");
 		});
 	/*  REPLACE WITH API CALL -- inside the then block
 	//createCard(dataCard);
