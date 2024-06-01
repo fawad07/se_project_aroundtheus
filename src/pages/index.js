@@ -98,7 +98,7 @@ function handleProfileSubmitForm(userData) {
 			profileEditForm.renderLoading(false, "Save");
 			console.error(`Error updating new information: ${err}`);
 		})
-		.finally( () =>{
+		.finally(() => {
 			profileEditForm.renderLoading(false, "Save");
 		});
 } //end func
@@ -122,7 +122,7 @@ function handleDeleteCard(cardElement, cardId) {
 				deleteCardModal.renderLoading(false, "Yes");
 				console.error(err);
 			})
-			.finally( () => {
+			.finally(() => {
 				deleteCardModal.renderLoading(false, "Yes");
 			});
 	});
@@ -131,7 +131,7 @@ function handleDeleteCard(cardElement, cardId) {
 function handleEditProfilePicture(inputData) {
 	console.log("inside handlePrfilePicture, url: ", inputData.url); //debigging
 	//open edit profile picture modal (avatar)
-	editProfilePictureForm.renderLoading(true);			//DEBUGGING
+	editProfilePictureForm.renderLoading(true); //DEBUGGING
 	api.updateUserImage({ avatar: inputData.url })
 		.then((res) => {
 			console.log("inside api.updateUserImage, resposne: ", res); //debugging
@@ -142,7 +142,7 @@ function handleEditProfilePicture(inputData) {
 			editProfilePictureForm.renderLoading(false, "Save");
 			console.error("Picture Not Update", err);
 		})
-		.finally( () =>{
+		.finally(() => {
 			editProfilePictureForm.renderLoading(false, "Save");
 		});
 } //end func
@@ -266,15 +266,14 @@ function validateForms(opts) {
  * Description:	Adds a new card everytime the + button is clicked
  */
 function handleAddCardSubmitForm(cardData) {
-/**************DEBUGGING************************************** */
+	/**************DEBUGGING************************************** */
 	//console.log("Inside Handle Add Card submit Form, cardData: ",cardData.title);
 	//add new card i.e. Create Card
-/*
+	/*
 	const name = utils.newCardTitleInput.value; //newCardTitleValue
 	const link = utils.newCardUrlInput.value; //newCardUrlValue
 	const dataCard = { name, link }; //collect new card data and link  */
-/****************************************************************** */
-
+	/****************************************************************** */
 
 	// Send a POST request to add a new card to the server
 	addCardForm.renderLoading(true);
@@ -284,10 +283,10 @@ function handleAddCardSubmitForm(cardData) {
 			addCardForm.close(); // Close the add card form
 		})
 		.catch((err) => {
-			addCardForm.renderLoading(false,"Save");
+			addCardForm.renderLoading(false, "Save");
 			console.error(`Error adding new Card: ${err}`);
 		})
-		.finally( () => {
+		.finally(() => {
 			addCardForm.renderLoading(false, "Save");
 		});
 	/*  REPLACE WITH API CALL -- inside the then block
