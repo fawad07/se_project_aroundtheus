@@ -10,9 +10,9 @@ export class PopupWithForm extends Popup {
 		super(popupSelector);
 		this._handleFormSubmit = handleFormSubmit;
 		this._formEl = this._popupElement.querySelector(".modal__form");
-		this._submitBtnText =
-			this._popupElement.querySelector(".modal__button");
-		this._submitBtnText = this._submitBtnText.textContent;
+		this._submitBtn = this._popupElement.querySelector(".modal__button");
+		this._submitBtnText = this._submitBtn.textContent;
+		
 	} //end const
 
 	/**
@@ -51,4 +51,28 @@ export class PopupWithForm extends Popup {
 		super.close();
 		this._formEl.reset();
 	} //end func
+
+	
+	/**
+	 * Params: isLoading, loadingText
+	 * Description:	isLoading is a boolean value used to change the text of the submit button when calls
+	 * 						made to/from Api
+	 * 						loadingText is a string that lets the user know that request is being worked on
+	 * 						in the back
+	 */
+	renderLoading(isLoading, loadingText = "Saving...") {
+		console.log("boolean isLoading: ", isLoading);
+		console.log("button Text before assignment: ", this._submitBtn.textContent);
+		
+		if (!isLoading) {
+			this._submitBtn.textContent = this._submitBtnText;
+		} //end if
+		else {
+			this._submitBtn.textContent = loadingText;
+		} //end else	
+		console.log("button Text after assignment: ", this._submitBtn.textContent);
+		
+		
+	} //end func
+
 } //end class

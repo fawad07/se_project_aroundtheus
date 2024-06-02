@@ -95,7 +95,7 @@ function handleProfileSubmitForm(userData) {
 			profileEditForm.close();
 		})
 		.catch((err) => {
-			profileEditForm.renderLoading(false, "Save");
+			//profileEditForm.renderLoading(false, "Save");
 			console.error(`Error updating new information: ${err}`);
 		})
 		.finally(() => {
@@ -112,14 +112,14 @@ function handleDeleteCard(cardElement, cardId) {
 
 	//submit action
 	deleteCardModal.setSubmitAction(() => {
-		deleteCardModal.renderLoading(true, "Deleting...");
+		deleteCardModal.renderLoading(true);
 		api.deleteCard(cardId)
 			.then(() => {
 				deleteCardModal.close();
 				cardElement.remove();
 			})
 			.catch((err) => {
-				deleteCardModal.renderLoading(false, "Yes");
+				//deleteCardModal.renderLoading(false, "Yes");
 				console.error(err);
 			})
 			.finally(() => {

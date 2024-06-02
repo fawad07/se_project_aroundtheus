@@ -13,7 +13,8 @@ export class PopupDeleteConfirm extends Popup {
 		//this._popupForm = this._popupElement.querySelector("#js-edit-profile-picture-modal");
 
 		this._popupForm = this._popupElement.querySelector("#js-delete-form");
-		this._submitBtn = this._popupForm.querySelector("#js-card-delete-btn");
+		this._submitBtn = this._popupElement.querySelector(".modal__button");
+		this._submitBtnText = this._submitBtn.textContent;
 	} //end constructor
 
 	/**
@@ -34,5 +35,21 @@ export class PopupDeleteConfirm extends Popup {
 			this._handleSubmitForm();
 		});
 		super.setEventListeners();
+	} //end func
+
+	/**
+	 * Params: isLoading, loadingText
+	 * Description:	isLoading is a boolean value used to change the text of the submit button when calls
+	 * 						made to/from Api
+	 * 						loadingText is a string that lets the user know that request is being worked on
+	 * 						in the back
+	 */
+	renderLoading(isLoading, loadingText = "Deleting...") {
+		if (!isLoading) {
+			this._submitBtn.textContent = this._submitBtnText;
+		} //end if
+		else {
+			this._submitBtn.textContent = loadingText;
+		} //end else
 	} //end func
 } //end class

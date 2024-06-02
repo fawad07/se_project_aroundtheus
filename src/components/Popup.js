@@ -4,8 +4,6 @@ export class Popup {
 		this._closeButton = this._popupElement.querySelector(
 			".modal__close-button"
 		);
-		this._submitButton = this._popupElement.querySelector(".modal__button");
-		
 	} //end contructor
 
 	open() {
@@ -54,21 +52,5 @@ Description: closes pop up/ modal when clicked outside form
 			"click",
 			this._handleCloseMouseClick
 		);
-	} //end func
-
-	/**
-	 * Params: isLoading, loadingText
-	 * Description:	isLoading is a boolean value used to change the text of the submit button when calls
-	 * 						made to/from Api
-	 * 						loadingText is a string that lets the user know that request is being worked on
-	 * 						in the back
-	 */
-	renderLoading(isLoading, loadingText = "Saving...") {
-		if (!isLoading) {
-			this._submitButton.textContent = this._submitButton;
-		} //end if
-		else {
-			this._submitButton.textContent = loadingText;
-		} //end else	
 	} //end func
 } //end class
