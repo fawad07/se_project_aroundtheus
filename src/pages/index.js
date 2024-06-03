@@ -10,6 +10,9 @@ import { PopupDeleteConfirm } from "../components/PopupDeleteConfirm.js";
 import utils from "../Utils/Constants.js";
 import "../pages/index.css";
 
+//ALL FORMS VALIDATIONS
+validateForms(utils.config);
+
 //USER INFO
 const userInfo = new UserInfo({
 	titleSelector: utils.htmlIds.profileTitle,
@@ -43,8 +46,6 @@ const api = new Api(opts);
 api.getInitialCards()
 	.then((data) => {
 		//handle the response data
-		//console.log("Data from Api: ", data); //debugging statement
-
 		// Create a new Section instance with the fetched data and render the items
 		sectionCards = new Section(
 			{
@@ -56,13 +57,11 @@ api.getInitialCards()
 		sectionCards.renderItems();
 	})
 	.catch((err) => {
-		console.log(err); //debugging statement
 		console.error(`Error getting cards: ${err} `);
 	});
 
 api.getUserInfo()
 	.then((res) => {
-		//console.log("Inside getUserInfo, Response: ", res); //debugging
 		userInfo.setUserInfo({
 			name: res.name,
 			description: res.about,
@@ -104,9 +103,6 @@ function handleProfileSubmitForm(userData) {
 } //end func
 
 function handleDeleteCard(cardElement, cardId) {
-	/**deleteCardModal open -- need to create HTML element like modal_opened */
-	console.log("inside handle delete card func, cardid: ", cardId); //debugging
-
 	//open delete card modal/popup
 	deleteCardModal.open();
 
@@ -129,17 +125,15 @@ function handleDeleteCard(cardElement, cardId) {
 } //end func
 
 function handleEditProfilePicture(inputData) {
-	console.log("inside handlePrfilePicture, url: ", inputData.url); //debigging
 	//open edit profile picture modal (avatar)
-	editProfilePictureForm.renderLoading(true); //DEBUGGING
+	editProfilePictureForm.renderLoading(true);
 	api.updateUserImage({ avatar: inputData.url })
 		.then((res) => {
-			console.log("inside api.updateUserImage, resposne: ", res); //debugging
 			userInfo.setProfilePicture({ profilePicture: inputData.url });
 			editProfilePictureForm.close();
 		})
 		.catch((err) => {
-			editProfilePictureForm.renderLoading(false, "Save");
+			//editProfilePictureForm.renderLoading(false, "Save");
 			console.error("Picture Not Update", err);
 		})
 		.finally(() => {
@@ -148,12 +142,9 @@ function handleEditProfilePicture(inputData) {
 } //end func
 
 function handleCardLike(card) {
-	console.log("Inside Handle Card Like , CARD: ", card); //debugging
-
 	if (card.isLiked) {
 		api.disLikeCard(card.data._id)
 			.then((res) => {
-				console.log("Inside api.disLikeCard, res is: ", res); //debugging
 				card.toggleLike();
 			})
 			.catch((err) => {
@@ -266,15 +257,6 @@ function validateForms(opts) {
  * Description:	Adds a new card everytime the + button is clicked
  */
 function handleAddCardSubmitForm(cardData) {
-	/**************DEBUGGING************************************** */
-	//console.log("Inside Handle Add Card submit Form, cardData: ",cardData.title);
-	//add new card i.e. Create Card
-	/*
-	const name = utils.newCardTitleInput.value; //newCardTitleValue
-	const link = utils.newCardUrlInput.value; //newCardUrlValue
-	const dataCard = { name, link }; //collect new card data and link  */
-	/****************************************************************** */
-
 	// Send a POST request to add a new card to the server
 	addCardForm.renderLoading(true);
 	api.createCard({ name: cardData.title, link: cardData.url })
@@ -283,28 +265,9 @@ function handleAddCardSubmitForm(cardData) {
 			addCardForm.close(); // Close the add card form
 		})
 		.catch((err) => {
-			addCardForm.renderLoading(false, "Save");
 			console.error(`Error adding new Card: ${err}`);
 		})
 		.finally(() => {
 			addCardForm.renderLoading(false, "Save");
 		});
-	/*  REPLACE WITH API CALL -- inside the then block
-	//createCard(dataCard);
-
-	//close addCardPopup
-	addCardForm.close();
-	*/
 } //end func
-
-/********************INSTANISATIONS BELOW******************** */
-
-//ALL FORMS VALIDATIONS
-validateForms(utils.config);
-/*
-//USER INFO
-const userInfo = new UserInfo({
-	titleSelector: utils.htmlIds.profileTitle,
-	descriptionSelector: utils.htmlIds.profileDescription,
-});
-*/
